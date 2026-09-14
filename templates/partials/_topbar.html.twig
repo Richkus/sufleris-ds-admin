@@ -12,7 +12,11 @@
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" data-tooltip="Mokesčių Sufleris" aria-label="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
 
         <div class="topbar__profile-wrap">
-            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" data-tooltip="Profilis" aria-label="Profilis">
+            {# :data-tooltip so it disappears the instant the dropdown
+               opens instead of lingering while the mouse is still over
+               the button — see the same pattern in
+               _shell-switcher.html.twig. #}
+            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" :data-tooltip="profileOpen ? false : 'Profilis'" aria-label="Profilis">
                 {{ icons.icon('user-circle', 20) }}
             </button>
 

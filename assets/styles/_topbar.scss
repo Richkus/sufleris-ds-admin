@@ -96,7 +96,6 @@
     white-space: nowrap;
     padding: map-get($ds-spacers, xxs) map-get($ds-spacers, sm);
     border-radius: map-get($ds-radii, xs);
-    box-shadow: 0 4px 10px rgba($grey-900, 0.16);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s ease, transform 0.15s ease;
