@@ -1,5 +1,6 @@
 {% set currentPage = 'colors' %}
 {% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
 
 {% block title %}Colors — {{ parent() }}{% endblock %}
 
@@ -31,12 +32,19 @@
 ] %}
 
 {% macro swatchRow(family, steps) %}
+    {% import "partials/_icons.html.twig" as icons %}
     <div class="color-family">
         <h5 class="color-family__title">{{ family.label }}</h5>
         <div class="color-swatch-row">
             {% for i in 0..8 %}
+                {% set varName = '--ds-' ~ family.key ~ '-' ~ steps[i] %}
                 <div class="color-swatch">
-                    <div class="color-swatch__chip bg-ds-{{ family.key }}-{{ steps[i] }}"></div>
+                    <div class="color-swatch__chip bg-ds-{{ family.key }}-{{ steps[i] }}"
+                         x-data="{ copied: false }"
+                         @click="window.dsCopy('var({{ varName }})'); copied = true; setTimeout(() => copied = false, 1500)"
+                         title="Kopijuoti var({{ varName }})">
+                        <span class="color-swatch__check" x-show="copied" x-transition.scale.duration.100ms x-cloak>{{ icons.icon('check', 18) }}</span>
+                    </div>
                     <div class="color-swatch__step">{{ steps[i] }}</div>
                     <div class="color-swatch__hex">{{ family.hex[i] }}</div>
                 </div>
@@ -82,8 +90,14 @@
         <h2 class="ds-section__title">Soft accent tints</h2>
         <div class="color-swatch-row">
             {% for tint in softTints %}
+                {% set varName = '--ds-' ~ tint.key %}
                 <div class="color-swatch color-swatch--soft">
-                    <div class="color-swatch__chip bg-ds-{{ tint.key }}"></div>
+                    <div class="color-swatch__chip bg-ds-{{ tint.key }}"
+                         x-data="{ copied: false }"
+                         @click="window.dsCopy('var({{ varName }})'); copied = true; setTimeout(() => copied = false, 1500)"
+                         title="Kopijuoti var({{ varName }})">
+                        <span class="color-swatch__check" x-show="copied" x-transition.scale.duration.100ms x-cloak>{{ icons.icon('check', 16) }}</span>
+                    </div>
                     <div class="color-swatch__step">{{ tint.label }}</div>
                     <div class="color-swatch__hex">{{ tint.hex }}</div>
                 </div>

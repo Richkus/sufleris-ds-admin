@@ -21,11 +21,37 @@
 }
 
 .color-swatch__chip {
+    position: relative;
     width: 82px;
     height: 64px;
     border-radius: map-get($ds-radii, sm);
     border: 1px solid rgba($grey-900, 0.06);
     margin-bottom: map-get($ds-spacers, sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 150ms ease, transform 150ms ease;
+
+    &:hover {
+        box-shadow: 0 0 0 2px rgba($teal-500, 0.35);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+.color-swatch__check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(#fff, 0.85);
+    color: $teal-700;
+    box-shadow: 0 1px 3px rgba($grey-900, 0.15);
 }
 
 .color-swatch__step {

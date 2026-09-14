@@ -1,0 +1,23 @@
+{#
+    Global toast stack, fixed bottom-right. Anything site-wide can push a
+    toast via `window.dsCopy(text, message)` or
+    `Alpine.store('toasts').push(message)` — see assets/js/app.js.
+
+    Newest toast renders LAST in the DOM but the container is
+    flex-direction: column-reverse, so it visually appears at the bottom
+    (closest to wherever the user just clicked) and pushes older toasts
+    upward — the standard stacking behaviour (Sonner/Radix Toast).
+#}
+<div class="toast-stack" x-data>
+    <template x-for="toast in $store.toasts.items" :key="toast.id">
+        <div class="toast-item"
+             x-transition:enter="toast-item--transition"
+             x-transition:enter-start="toast-item--enter-start"
+             x-transition:leave="toast-item--transition"
+             x-transition:leave-end="toast-item--leave-end">
+            <svg class="toast-item__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <span class="toast-item__message" x-text="toast.message"></span>
+            <button type="button" class="toast-item__close" @click="$store.toasts.remove(toast.id)" aria-label="Uždaryti">&times;</button>
+        </div>
+    </template>
+</div>

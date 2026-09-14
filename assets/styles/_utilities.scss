@@ -11,6 +11,20 @@
 // Alpine.js: hide un-initialized `x-show` content until Alpine boots.
 [x-cloak] { display: none !important; }
 
+// --- CSS custom properties for every token, e.g. var(--ds-teal-500) ------
+// This is what the Colors page's click-to-copy feature copies to the
+// clipboard — a real, pasteable CSS reference, not a bare hex value.
+:root {
+    @each $family, $steps in $ds-colors {
+        @each $step, $value in $steps {
+            --ds-#{$family}-#{$step}: #{$value};
+        }
+    }
+    @each $name, $value in $ds-soft-tints {
+        --ds-#{$name}: #{$value};
+    }
+}
+
 // --- Full palette background / text / border utilities -------------------
 @each $family, $steps in $ds-colors {
     @each $step, $value in $steps {

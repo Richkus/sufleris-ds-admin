@@ -1,0 +1,71 @@
+// ==========================================================================
+// Global toast stack — fixed bottom-right, newest toast closest to the
+// corner, older ones pushed upward. See templates/partials/_toast-stack.html.twig
+// and assets/js/app.js (Alpine.store('toasts'), window.dsCopy()).
+// ==========================================================================
+
+.toast-stack {
+    position: fixed;
+    right: map-get($ds-spacers, "3xl");
+    bottom: map-get($ds-spacers, "3xl");
+    z-index: 1080; // above Bootstrap modals (1055) just in case
+    display: flex;
+    flex-direction: column-reverse;
+    gap: map-get($ds-spacers, sm);
+    pointer-events: none;
+    max-width: 360px;
+}
+
+.toast-item {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl);
+    background: $teal-700;
+    color: #fff;
+    border-radius: map-get($ds-radii, md);
+    box-shadow: 0 4px 12px rgba($grey-900, 0.18);
+    font-size: 13px;
+    line-height: 18px;
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.toast-item__icon {
+    flex: 0 0 auto;
+}
+
+.toast-item__message {
+    flex: 1 1 auto;
+    word-break: break-word;
+}
+
+.toast-item__close {
+    flex: 0 0 auto;
+    background: transparent;
+    border: none;
+    color: rgba(#fff, 0.75);
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+// Alpine x-transition classes (see _toast-stack.html.twig)
+.toast-item--transition {
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.toast-item--enter-start {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+}
+
+.toast-item--leave-end {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+}

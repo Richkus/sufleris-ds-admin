@@ -32,6 +32,8 @@
         </div>
     </div>
 
+    {% include "partials/_toast-stack.html.twig" %}
+
     {% block javascripts %}
         {# Encore's enableSingleRuntimeChunk() splits the webpack runtime
            into its own file — it MUST load before app.js or the module
