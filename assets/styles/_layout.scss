@@ -31,8 +31,17 @@
 .app-content {
     flex: 1 1 auto;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
     padding: map-get($ds-spacers, "4xl") calc(#{map-get($ds-spacers, "4xl")} * 2);
     overflow-y: auto;
+}
+
+// Pushes the footer (see _footer.html.twig) to the bottom of the content
+// area even when the page content is short — .app-content is a flex
+// column, so `margin-top: auto` here eats all remaining vertical space.
+.ds-footer-wrap {
+    margin-top: auto;
 }
 
 // Admin/"bare" pages render without the sidebar/topbar chrome at all.

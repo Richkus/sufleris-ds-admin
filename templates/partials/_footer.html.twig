@@ -3,9 +3,15 @@
     divider followed by a left "Made by ..." credit and a right
     "Updated on DD.MM.YYYY" date. `buildDate` is injected by
     scripts/render-twig.js at render time.
+
+    `.ds-footer-wrap` gets `margin-top: auto` so the footer always sits at
+    the bottom of the content area, even on short pages — see _layout.scss
+    (`.app-content` is a flex column for this to work).
 #}
-<hr class="ds-page__divider">
-<div class="ds-footer">
-    <span class="ds-footer__made">Made by Mokesčių SUFLERIS&reg; by MERITS Elektroninės sistemos, UAB.</span>
-    <span class="ds-footer__updated">Updated on {{ buildDate }}</span>
+<div class="ds-footer-wrap">
+    <hr class="ds-page__divider">
+    <div class="ds-footer">
+        <span class="ds-footer__made">Made by Mokesčių SUFLERIS&reg; by MERITS Elektroninės sistemos, UAB.</span>
+        <span class="ds-footer__updated">Updated on {{ buildDate }}</span>
+    </div>
 </div>

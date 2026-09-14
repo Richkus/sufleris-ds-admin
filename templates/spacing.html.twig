@@ -3,64 +3,9 @@
 
 {% block title %}Spacing — {{ parent() }}{% endblock %}
 
-{% set spacers = [
-    { key: 'xxs', px: '2px' },
-    { key: 'xs', px: '4px' },
-    { key: 'sm', px: '6px' },
-    { key: 'md', px: '8px' },
-    { key: 'lg', px: '12px' },
-    { key: 'xl', px: '16px' },
-    { key: '2xl', px: '20px' },
-    { key: '3xl', px: '24px' },
-    { key: '4xl', px: '32px' },
-] %}
-
-{% set radii = [
-    { key: 'none', px: '0px' },
-    { key: 'xxs', px: '2px' },
-    { key: 'xs', px: '4px' },
-    { key: 'sm', px: '6px' },
-    { key: 'md', px: '8px' },
-    { key: 'lg', px: '10px' },
-    { key: 'xl', px: '12px' },
-    { key: '2xl', px: '16px' },
-    { key: '3xl', px: '20px' },
-    { key: 'full', px: '9999px' },
-] %}
-
 {% block content %}
     {% include "partials/_page-header.html.twig" with {
         title: 'Spacing',
         subtitle: 'Tarpų ir kampų suapvalinimo skalė, užtikrinanti nuoseklų layout\'ą.',
     } %}
-
-    <section class="ds-section">
-        <h2 class="ds-section__title">Spacing tokenai</h2>
-        <p class="ds-text-md text-ds-grey-600 mb-ds-xl">Tarpai (padding, gap) visada imami iš šios skalės — niekada hardcoded reikšmės.</p>
-
-        {% for s in spacers %}
-            <div class="spacing-row">
-                <div class="spacing-row__name">spacing-{{ s.key }}</div>
-                <div class="spacing-row__track">
-                    <div class="spacing-row__bar spacing-swatch--{{ s.key }}"></div>
-                </div>
-                <div class="spacing-row__value">{{ s.px }}</div>
-            </div>
-        {% endfor %}
-    </section>
-
-    <hr class="ds-page__divider">
-
-    <section class="ds-section">
-        <h2 class="ds-section__title">Corner Radius</h2>
-        <div class="radius-grid">
-            {% for r in radii %}
-                <div class="radius-swatch">
-                    <div class="radius-swatch__box radius-ds-{{ r.key }}"></div>
-                    <div class="radius-swatch__name">radius-{{ r.key }}</div>
-                    <div class="radius-swatch__value">{{ r.px }}</div>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
 {% endblock %}

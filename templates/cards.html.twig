@@ -1,58 +1,12 @@
 {% set currentPage = 'cards' %}
 {% extends "base.html.twig" %}
-{% import "partials/_icons.html.twig" as icons %}
 
 {% block title %}Cards — {{ parent() }}{% endblock %}
 
 {% block content %}
     {% include "partials/_page-header.html.twig" with {
         title: 'Cards',
-        subtitle: 'Kortelė grupuoja susijusį turinį (antraštę, tekstą, veiksmus) į vieną vizualinį bloką. Sufleris DS dar neturi dedikuoto Card komponento — žemiau surinktas pavyzdys iš Card header + spacing/radius tokenų, kad būtų ką pradėti tobulinti.',
+        subtitle: 'Kortelė grupuoja susijusį turinį (antraštę, tekstą, veiksmus) į vieną vizualinį bloką. Sufleris DS dar neturi dedikuoto Card komponento.',
         pill: { label: 'Trūksta bazinio komponento', variant: 'missing' },
     } %}
-
-    <section class="ds-section">
-        <h2 class="ds-section__title">Variants &amp; States</h2>
-
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card-ds">
-                    <div class="card-ds__header">
-                        <div>
-                            <div class="card-ds__title-row">
-                                <span class="card-ds__title">Team members</span>
-                                <span class="badge-ds badge-ds--brand">10/20 seats</span>
-                            </div>
-                            <p class="card-ds__meta mb-0">Manage your team members and their a&hellip;</p>
-                        </div>
-                        <span class="card-ds__kebab">{{ icons.icon('kebab', 18) }}</span>
-                    </div>
-                    <hr class="card-ds__divider">
-                    <p class="card-ds__body mb-0">Trumpas kortelės aprašomasis tekstas, paaiškinantis turinį vartotojui.</p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card-ds">
-                    <div class="card-ds__header">
-                        <div>
-                            <div class="card-ds__title-row">
-                                <span class="card-ds__title">Team members</span>
-                                <span class="badge-ds badge-ds--brand">10/20 seats</span>
-                            </div>
-                            <p class="card-ds__meta mb-0">Manage your team members and their a&hellip;</p>
-                        </div>
-                        <span class="card-ds__kebab">{{ icons.icon('kebab', 18) }}</span>
-                    </div>
-                    <hr class="card-ds__divider">
-                    <p class="card-ds__body mb-0">Trumpas kortelės aprašomasis tekstas, paaiškinantis turinį vartotojui.</p>
-                    <div class="card-ds__footer">
-                        <button type="button" class="btn-ds btn-ds--primary">Mygtukas</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <a href="#" class="ds-figma-link">{{ icons.icon('external-link', 14) }} Figmoje</a>
 {% endblock %}

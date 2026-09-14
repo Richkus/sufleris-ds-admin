@@ -1,29 +1,7 @@
 {% set currentPage = 'inputs' %}
 {% extends "base.html.twig" %}
-{% import "partials/_icons.html.twig" as icons %}
 
 {% block title %}Inputs — {{ parent() }}{% endblock %}
-
-{% macro field(state, destructive) %}
-    {% import "partials/_icons.html.twig" as icons %}
-    {% set boxClass = 'input-ds-box' ~ (state == 'placeholder' ? ' input-ds-box--placeholder') ~ (state == 'focused' ? ' is-focused') ~ (state == 'disabled' ? ' is-disabled') ~ (destructive ? ' is-error') %}
-    <div class="input-ds-field">
-        <label class="input-ds-label">Email <span class="input-ds-required">*</span></label>
-        <div class="{{ boxClass }}">
-            {{ icons.icon('mail', 18) }}
-            <span class="input-ds-box__text">olivia@untitledui.com</span>
-            {% if destructive %}
-                {{ icons.icon('alert-circle', 18) }}
-            {% else %}
-                {{ icons.icon('help-circle', 18) }}
-            {% endif %}
-        </div>
-        <div class="input-ds-hint {{ destructive ? 'is-error' }}">
-            {{ destructive ? 'This is an error message.' : 'This is a hint text to help user.' }}
-        </div>
-        <div class="type-specimen__caption">{{ state|capitalize }}</div>
-    </div>
-{% endmacro %}
 
 {% block content %}
     {% include "partials/_page-header.html.twig" with {
@@ -31,28 +9,4 @@
         subtitle: 'Teksto įvedimo laukas naudojamas formose ir paieškoje. Kol kas naudojamas bazinis Untitled UI komponentas — dar neperkurtas kaip atskiras Sufleris V.3 komponentas.',
         pill: { label: 'Bazinis (Untitled UI)', variant: 'basic' },
     } %}
-
-    <section class="ds-section">
-        <h2 class="ds-section__title">Variants &amp; States</h2>
-
-        <div class="ds-group">
-            <div class="ds-group__label">Default</div>
-            <div class="row g-4">
-                <div class="col-md-6">{{ _self.field('placeholder', false) }}</div>
-                <div class="col-md-6">{{ _self.field('filled', false) }}</div>
-                <div class="col-md-6">{{ _self.field('focused', false) }}</div>
-                <div class="col-md-6">{{ _self.field('disabled', false) }}</div>
-            </div>
-        </div>
-
-        <div class="ds-group">
-            <div class="ds-group__label">Destructive</div>
-            <div class="row g-4">
-                <div class="col-md-6">{{ _self.field('placeholder', true) }}</div>
-                <div class="col-md-6">{{ _self.field('filled', true) }}</div>
-            </div>
-        </div>
-    </section>
-
-    <a href="#" class="ds-figma-link">{{ icons.icon('external-link', 14) }} Figmoje</a>
 {% endblock %}
