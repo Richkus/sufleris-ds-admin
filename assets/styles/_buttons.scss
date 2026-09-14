@@ -109,19 +109,17 @@
 // ==========================================================================
 // "Show code" pattern (Buttons page)
 //
-// Every variant gets a "Rodyti kodą" / "Uždaryti" toggle under its state
-// row (right-aligned) that expands/collapses a code panel with a
+// Every variant gets a "Kodas" / X toggle INLINE with its state-button
+// row (pushed to the right edge via margin-left: auto, same row — not a
+// separate row underneath) that expands/collapses a code panel with a
 // copy-to-clipboard header and a scrollable, syntax-highlighted code
 // body — see templates/buttons.html.twig.
 // ==========================================================================
 
-.btn-demo__toggle-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: map-get($ds-spacers, xl);
-}
-
 .show-code-toggle {
+    // Pushes it to the end of .ds-group__row's flex line, flush with the
+    // state buttons rather than on its own row.
+    margin-left: auto;
     background: none;
     border: none;
     padding: 0;
@@ -158,18 +156,12 @@
 .code-panel__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    // No language label anymore (was "HTML") — just the copy button,
+    // pushed to the right.
+    justify-content: flex-end;
     height: 46px;
     padding: 0 map-get($ds-spacers, xl);
     background: $grey-100;
-}
-
-.code-panel__label {
-    font-family: $font-family-sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: $grey-600;
-    text-transform: uppercase;
 }
 
 .code-panel__copy {

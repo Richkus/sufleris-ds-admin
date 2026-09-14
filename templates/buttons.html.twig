@@ -38,19 +38,17 @@
                 }
             }">
             <div class="ds-group__label">Primary</div>
-            <div class="ds-group__row">{{ _self.stateButton('primary', 'Primary') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('primary', 'Primary') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
@@ -77,19 +75,17 @@
                 }
             }">
             <div class="ds-group__label">Secondary</div>
-            <div class="ds-group__row">{{ _self.stateButton('secondary', 'Secondary') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('secondary', 'Secondary') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
@@ -116,19 +112,17 @@
                 }
             }">
             <div class="ds-group__label">Tertiary</div>
-            <div class="ds-group__row">{{ _self.stateButton('tertiary', 'Tertiary') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('tertiary', 'Tertiary') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
@@ -155,19 +149,17 @@
                 }
             }">
             <div class="ds-group__label">Destructive &middot; Primary</div>
-            <div class="ds-group__row">{{ _self.stateButton('destructive', 'Destructive') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('destructive', 'Destructive') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
@@ -194,19 +186,17 @@
                 }
             }">
             <div class="ds-group__label">Destructive &middot; Secondary</div>
-            <div class="ds-group__row">{{ _self.stateButton('destructive-secondary', 'Destructive Secondary') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('destructive-secondary', 'Destructive Secondary') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
@@ -233,19 +223,17 @@
                 }
             }">
             <div class="ds-group__label">Link</div>
-            <div class="ds-group__row">{{ _self.stateButton('link', 'Link') }}</div>
-
-            <div class="btn-demo__toggle-row">
+            <div class="ds-group__row">
+                {{ _self.stateButton('link', 'Link') }}
                 <button type="button" class="show-code-toggle"
                         @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Rodyti kodą</span>
-                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                    <span x-show="!expanded" x-transition.opacity.duration.150ms>{{ icons.icon('code', 16) }} Kodas</span>
+                    <span x-show="expanded" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('x', 16) }}</span>
                 </button>
             </div>
 
             <div class="code-panel" x-show="expanded" x-collapse x-cloak>
                 <div class="code-panel__header">
-                    <span class="code-panel__label">HTML</span>
                     <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
                         <span x-show="!copied" x-transition.opacity.duration.150ms>{{ icons.icon('copy', 14) }}</span>
                         <span x-show="copied" x-transition.opacity.duration.150ms x-cloak>{{ icons.icon('check', 14) }}</span>
