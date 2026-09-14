@@ -14,17 +14,18 @@
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
     {#
-        Experimental "V.2" shell toggle (see the topbar/sidebar buttons
-        in _topbar.html.twig/_sidebar.html.twig) — applies the saved
-        choice to <html> before anything paints, so there's no flash of
-        the wrong shell on load. Must run synchronously in <head>,
-        before body/CSS render.
+        Experimental shell cycle (V.1 default / V.2 / V.3 — see the
+        topbar/sidebar buttons in _topbar.html.twig/_sidebar.html.twig)
+        — applies the saved choice to <html> before anything paints, so
+        there's no flash of the wrong shell on load. Must run
+        synchronously in <head>, before body/CSS render.
     #}
     <script>
         (function () {
             try {
-                if (localStorage.getItem('ds-shell') === 'v2') {
-                    document.documentElement.classList.add('shell-v2');
+                var v = localStorage.getItem('ds-shell');
+                if (v === 'v2' || v === 'v3') {
+                    document.documentElement.classList.add('shell-' + v);
                 }
             } catch (e) {}
         })();

@@ -249,3 +249,17 @@ html.shell-v2 {
         border-radius: map-get($ds-radii, "3xl");
     }
 }
+
+// ==========================================================================
+// Experimental "V.3" shell (Figma 5644:845 — a fresh duplicate of the
+// default Wellcome frame, no edits yet) — topbar stays visible (unlike
+// V.2, which hides it), standard sidebar/content chrome. Currently
+// renders identically to the default V.1 shell on purpose: this is a
+// placeholder scope to add V.3-specific overrides into once that Figma
+// frame actually diverges from the default. Part of the same
+// V.1/V.2/V.3 cycle as the html.shell-v2 block above — see app.js
+// (window.dsToggleShell) and the flash-prevention script in
+// base.html.twig.
+// ==========================================================================
+html.shell-v3 {
+}

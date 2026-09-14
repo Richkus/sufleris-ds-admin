@@ -98,16 +98,26 @@ window.dsCopy = function dsCopy(text, message) {
 };
 
 /**
- * Experimental shell toggle (see the topbar/sidebar buttons in
+ * Experimental shell cycle (see the topbar/sidebar buttons in
  * _topbar.html.twig/_sidebar.html.twig and the flash-prevention inline
- * script in base.html.twig) — flips between the default "V.1" shell and
- * the alternate "V.2" shell from Figma 5638:14930, persisted per-browser
- * so it survives navigating between the site's separate static pages.
+ * script in base.html.twig) — cycles V.1 (default) -> V.2 (Figma
+ * 5638:14930: no topbar, sidebar/content as floating rounded cards) ->
+ * V.3 (Figma 5644:845: topbar always visible, standard sidebar/content
+ * chrome — currently matches V.1 visually since that Figma frame is a
+ * fresh duplicate with no edits yet; kept as its own class so it can
+ * diverge later without touching V.1) -> back to V.1. Persisted
+ * per-browser so it survives navigating between the site's separate
+ * static pages.
  */
+const DS_SHELL_VERSIONS = ['v1', 'v2', 'v3'];
+
 window.dsToggleShell = function dsToggleShell() {
-    const isV2 = document.documentElement.classList.toggle('shell-v2');
+    const current = DS_SHELL_VERSIONS.find((v) => document.documentElement.classList.contains(`shell-${v}`)) || 'v1';
+    const next = DS_SHELL_VERSIONS[(DS_SHELL_VERSIONS.indexOf(current) + 1) % DS_SHELL_VERSIONS.length];
+    DS_SHELL_VERSIONS.forEach((v) => document.documentElement.classList.remove(`shell-${v}`));
+    if (next !== 'v1') document.documentElement.classList.add(`shell-${next}`);
     try {
-        localStorage.setItem('ds-shell', isV2 ? 'v2' : 'v1');
+        localStorage.setItem('ds-shell', next);
     } catch (e) {}
 };
 
