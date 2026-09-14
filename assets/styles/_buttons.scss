@@ -141,8 +141,7 @@
 
     &:hover { color: $grey-800; }
 
-    &[disabled],
-    &.is-inert {
+    &[disabled] {
         cursor: default;
     }
 }
