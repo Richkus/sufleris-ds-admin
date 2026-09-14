@@ -25,12 +25,25 @@
                 {% if not isBare %}
                     {% include "partials/_sidebar.html.twig" %}
                 {% endif %}
-                <main class="app-content {{ isBare ? 'app-content--bare' }} {{ contentClass|default('') }}">
-                    {% block content %}{% endblock %}
-                    {% if not isBare %}
-                        {% include "partials/_footer.html.twig" %}
-                    {% endif %}
-                </main>
+                {# .app-content is the SCROLL container — always full width next
+                   to the sidebar, so the scrollbar/wheel works no matter where
+                   the cursor is over the pane (not just over the narrower
+                   centered column). .app-content__inner carries the actual
+                   820px content-column width/centering; it's a separate
+                   element specifically so the two concerns (scroll region vs.
+                   content width) don't fight each other. #}
+                {% if isBare %}
+                    <main class="app-content app-content--bare">
+                        {% block content %}{% endblock %}
+                    </main>
+                {% else %}
+                    <main class="app-content">
+                        <div class="app-content__inner {{ contentClass|default('') }}">
+                            {{ block('content') }}
+                            {% include "partials/_footer.html.twig" %}
+                        </div>
+                    </main>
+                {% endif %}
             </div>
         </div>
     </div>

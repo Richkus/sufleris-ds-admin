@@ -28,20 +28,33 @@
     min-height: 0;
 }
 
+// The SCROLL container — always full width next to the sidebar. Mouse
+// wheel / scrollbar needs to work no matter where the cursor is over the
+// pane, not just when it's over the narrower centered column below.
 .app-content {
     flex: 1 1 auto;
     min-width: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
-    // 820px content column (matches the Figma source), plus the padding
-    // gutter on each side — centered in whatever space is left next to
-    // the sidebar, not stretched full-width.
+    overflow-y: auto;
+}
+
+// The CONTENT-WIDTH container — 820px column (matches the Figma source)
+// plus the padding gutter on each side, centered within .app-content.
+// Kept separate from .app-content on purpose: putting both the scroll
+// overflow AND the max-width/centering on one element means the
+// scrollable region itself shrinks to that same narrow width, so
+// scrolling only worked with the cursor directly over the text column.
+.app-content__inner {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: calc(820px + #{map-get($ds-spacers, "4xl")} * 2);
     margin-left: auto;
     margin-right: auto;
     padding: map-get($ds-spacers, "4xl");
-    overflow-y: auto;
 }
 
 // Pushes the footer (see _footer.html.twig) to the bottom of the content
@@ -69,7 +82,7 @@
 // Wellcome's hero is a full-bleed banner in Figma (spans the entire content
 // width next to the sidebar, not the 820px column every other page uses) —
 // opt this page out of the cap/centering entirely.
-.app-content--flush {
+.app-content__inner--flush {
     padding: 0;
     max-width: none;
     margin-left: 0;
