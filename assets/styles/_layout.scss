@@ -169,7 +169,11 @@ html.shell-flat {
     .sidebar__flat-header {
         display: block;
         flex: 0 0 auto;
-        padding: map-get($ds-spacers, xl) map-get($ds-spacers, xl) 0;
+        // Left padding matches the nav items' own left offset exactly —
+        // .sidebar__nav's left padding (lg) + .sidebar__item's own left
+        // padding (lg) = 3xl — so the wordmark lines up with "Foundations"
+        // etc. below it instead of sitting further left.
+        padding: map-get($ds-spacers, xl) map-get($ds-spacers, xl) 0 map-get($ds-spacers, "3xl");
     }
 
     .sidebar__nav {
@@ -199,19 +203,24 @@ html.shell-flat {
 
     // .sidebar__item's hover/active tints (grey-100/teal-100) were tuned
     // for a white sidebar — against this grey-100 card they'd barely
-    // read as a state change, so bump both for contrast.
+    // read as a state change, so bump both for contrast. Hover is a flat
+    // white — plain and a bit stark against the soft grey card, and too
+    // close to .is-active's teal-200 in weight — grey-200 instead reads
+    // as a gentle one-step-deeper neutral, keeping "hover" and "active"
+    // clearly different kinds of state (shade vs. color) rather than two
+    // similar-strength color blocks.
     .sidebar__item:hover {
-        background: $body-bg;
+        background: $grey-200;
     }
 
     .sidebar__item.is-active {
         background: $teal-200;
     }
 
-    // Same problem for the relocated topbar icon buttons (hover is
+    // Same reasoning for the relocated topbar icon buttons (hover is
     // teal-100 by default).
     .sidebar__flat-actions .topbar__icon-btn:hover,
     .sidebar__flat-actions .topbar__icon-btn.is-active {
-        background: $body-bg;
+        background: $grey-200;
     }
 }
