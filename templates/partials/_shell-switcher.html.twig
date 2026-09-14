@@ -15,7 +15,7 @@
     we've settled on a layout.
 #}
 <div class="shell-switcher" x-data="{ open: false }">
-    <button type="button" class="topbar__icon-btn" :class="{ 'is-active': open }" @click="open = !open" title="Layoutas (V.1 / V.2 / V.3)">
+    <button type="button" class="topbar__icon-btn" :class="{ 'is-active': open }" @click="open = !open" data-tooltip="Layoutas (V.1 / V.2 / V.3)" aria-label="Layoutas (V.1 / V.2 / V.3)">
         {{ icons.icon('layers', 20) }}
     </button>
 

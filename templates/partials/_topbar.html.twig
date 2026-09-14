@@ -8,11 +8,11 @@
 
     <div class="topbar__actions">
         {% include "partials/_shell-switcher.html.twig" %}
-        <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
-        <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
+        <a href="admin.html" class="topbar__icon-btn" data-tooltip="MS Admin" aria-label="MS Admin">{{ icons.icon('settings', 20) }}</a>
+        <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" data-tooltip="Mokesčių Sufleris" aria-label="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
 
         <div class="topbar__profile-wrap">
-            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" title="Profilis">
+            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" data-tooltip="Profilis" aria-label="Profilis">
                 {{ icons.icon('user-circle', 20) }}
             </button>
 

@@ -73,6 +73,41 @@
     position: relative;
 }
 
+// Small hover tooltip — used on the topbar/sidebar icon buttons
+// (data-tooltip="..." + aria-label, not the native title attribute,
+// which is slow to appear and unstyled). Generic on purpose (not
+// scoped to .topbar__icon-btn) so any element can opt in the same way.
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + #{map-get($ds-spacers, sm)});
+    left: 50%;
+    transform: translate(-50%, -4px);
+    background: $grey-900;
+    color: #fff;
+    font-family: $font-family-sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: map-get($ds-spacers, xxs) map-get($ds-spacers, sm);
+    border-radius: map-get($ds-radii, xs);
+    box-shadow: 0 4px 10px rgba($grey-900, 0.16);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 60;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
 // Experimental V.1/V.2/V.3 layout switcher dropdown — see
 // _shell-switcher.html.twig for why this exists. .sidebar__v2-actions
 // (V.2 only, see _layout.scss) overrides the menu to open

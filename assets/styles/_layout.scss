@@ -200,6 +200,19 @@ html.shell-v2 {
             left: 0;
             bottom: calc(100% + #{map-get($ds-spacers, sm)});
         }
+
+        // Same reasoning for the icon hover tooltips (see [data-tooltip]
+        // in _topbar.scss) — they'd normally open downward, running off
+        // the bottom of the viewport here.
+        [data-tooltip]::after {
+            top: auto;
+            bottom: calc(100% + #{map-get($ds-spacers, sm)});
+            transform: translate(-50%, 4px);
+        }
+
+        [data-tooltip]:hover::after {
+            transform: translate(-50%, 0);
+        }
     }
 
     // .sidebar__item's hover/active tints (grey-100/teal-100) were tuned
