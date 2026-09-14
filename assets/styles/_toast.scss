@@ -11,9 +11,40 @@
     z-index: 1080; // above Bootstrap modals (1055) just in case
     display: flex;
     flex-direction: column-reverse;
-    gap: map-get($ds-spacers, sm);
+    // No `gap` here — spacing lives on .toast-slot's own margin instead,
+    // so it can animate away together with height when a toast is
+    // dismissed (a flex `gap` can't be transitioned to zero).
     pointer-events: none;
     max-width: 360px;
+}
+
+// Wraps each .toast-item and owns both the inter-toast spacing and the
+// collapse animation, so dismissing a toast smoothly closes the gap
+// instead of the remaining toasts snapping into place the instant the
+// dismissed one leaves layout. `grid-template-rows: 1fr -> 0fr` is the
+// standard CSS-only technique for animating to/from an "auto" height.
+.toast-slot {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 200ms ease, margin-top 200ms ease;
+    overflow: hidden;
+
+    &:not(:first-child) {
+        margin-top: map-get($ds-spacers, sm);
+    }
+
+    &.toast-slot--collapsed {
+        grid-template-rows: 0fr;
+        margin-top: 0;
+    }
+}
+
+.toast-slot__inner {
+    // Required by the grid-rows collapse trick: a 1fr/0fr track only
+    // animates smoothly if its content can shrink below its natural
+    // height, which min-height: 0 allows (grid items default to auto,
+    // i.e. never smaller than their content).
+    min-height: 0;
 }
 
 .toast-item {

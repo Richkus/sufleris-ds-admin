@@ -7,16 +7,29 @@
     flex-direction: column-reverse, so it visually appears at the bottom
     (closest to wherever the user just clicked) and pushes older toasts
     upward — the standard stacking behaviour (Sonner/Radix Toast).
+
+    Each toast is wrapped in .toast-slot, which owns the spacing between
+    items and collapses its own height (via a CSS grid-rows transition,
+    not the x-collapse plugin — this needs the surrounding margin to
+    animate away too, together with height) whenever toast.visible goes
+    false. Without this wrapper, a dismissed toast would fade out in
+    place but then the remaining ones would instantly snap into the
+    gap the moment it left layout — this makes them slide smoothly
+    instead.
 #}
 <div class="toast-stack" x-data>
     <template x-for="toast in $store.toasts.items" :key="toast.id">
-        <div class="toast-item"
-             x-show="toast.visible"
-             x-transition:enter.opacity.scale.95.duration.220ms
-             x-transition:leave.opacity.scale.95.duration.180ms>
-            <svg class="toast-item__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            <span class="toast-item__message" x-text="toast.message"></span>
-            <button type="button" class="toast-item__close" @click="$store.toasts.remove(toast.id)" aria-label="Uždaryti">&times;</button>
+        <div class="toast-slot" :class="{ 'toast-slot--collapsed': !toast.visible }">
+            <div class="toast-slot__inner">
+                <div class="toast-item"
+                     x-show="toast.visible"
+                     x-transition:enter.opacity.scale.95.duration.220ms
+                     x-transition:leave.opacity.scale.95.duration.180ms>
+                    <svg class="toast-item__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    <span class="toast-item__message" x-text="toast.message"></span>
+                    <button type="button" class="toast-item__close" @click="$store.toasts.remove(toast.id)" aria-label="Uždaryti">&times;</button>
+                </div>
+            </div>
         </div>
     </template>
 </div>

@@ -45,11 +45,13 @@ window.addEventListener('load', () => {
  * x-for implementation), so pushing/splicing `items` directly would make
  * toasts pop in/out instantly. Instead: push with visible:false, flip it
  * true a tick later (enter transition), and on removal flip it back to
- * false and only splice from `items` once the leave transition (see the
- * duration below and the template's matching x-transition:leave) has had
- * time to finish, so the DOM node never disappears mid-fade.
+ * false and only splice from `items` once BOTH the toast's own leave
+ * fade (x-transition:leave, 180ms) and its wrapping .toast-slot's height
+ * collapse (200ms, see _toast.scss) have had time to finish — otherwise
+ * the DOM node disappears mid-animation and the remaining toasts snap
+ * into place instead of sliding smoothly.
  */
-const TOAST_LEAVE_MS = 180;
+const TOAST_LEAVE_MS = 220;
 
 Alpine.store('toasts', {
     items: [],
