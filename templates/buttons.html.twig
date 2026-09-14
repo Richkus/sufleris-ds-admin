@@ -16,16 +16,6 @@
     <svg class="btn-ds__spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
 {% endmacro %}
 
-{#
-    Inert "Rodyti kodą" toggle — used by every variant except Primary. It is
-    visually identical to the interactive one but has no code panel to
-    reveal yet (per the Figma prototype, only Buttons/Primary is wired up).
-#}
-{% macro inertShowCode() %}
-    {% import "partials/_icons.html.twig" as icons %}
-    <span class="show-code-toggle is-inert">{{ icons.icon('code', 16) }} Rodyti kodą</span>
-{% endmacro %}
-
 {% block content %}
     {% include "partials/_page-header.html.twig" with {
         title: 'Buttons',
@@ -78,39 +68,199 @@
             </div>
         </div>
 
-        <div class="ds-group">
+        <div class="ds-group" x-data="{
+                expanded: false,
+                copied: false,
+                code: '&lt;button class=&quot;btn btn-secondary&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-secondary btn-hover&quot;&gt;Hover&lt;/button&gt;\n&lt;button class=&quot;btn btn-secondary&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-secondary btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                copyCode() {
+                    navigator.clipboard.writeText(this.code).catch(() => {});
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2200);
+                }
+            }">
             <div class="ds-group__label">Secondary</div>
             <div class="ds-group__row">{{ _self.stateButton('secondary', 'Secondary') }}</div>
+
             <hr class="btn-demo__divider">
-            {{ _self.inertShowCode() }}
+
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                {{ icons.icon('code', 16) }} Rodyti kodą
+            </button>
+
+            <div class="code-panel" x-show="expanded" x-cloak>
+                <div class="code-panel__header">
+                    <span class="code-panel__label">HTML</span>
+                    <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
+                        <span x-show="!copied">{{ icons.icon('copy', 14) }}</span>
+                        <span x-show="copied" x-cloak>{{ icons.icon('check', 14) }}</span>
+                    </button>
+                </div>
+                <div class="code-panel__body">
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-secondary&quot;&gt;Default&lt;/button&gt;
+&lt;button class=&quot;btn btn-secondary btn-hover&quot;&gt;Hover&lt;/button&gt;
+&lt;button class=&quot;btn btn-secondary&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;button class=&quot;btn btn-secondary btn-loading&quot;&gt;
+  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
-        <div class="ds-group">
+        <div class="ds-group" x-data="{
+                expanded: false,
+                copied: false,
+                code: '&lt;button class=&quot;btn btn-tertiary&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-tertiary btn-hover&quot;&gt;Hover&lt;/button&gt;\n&lt;button class=&quot;btn btn-tertiary&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-tertiary btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                copyCode() {
+                    navigator.clipboard.writeText(this.code).catch(() => {});
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2200);
+                }
+            }">
             <div class="ds-group__label">Tertiary</div>
             <div class="ds-group__row">{{ _self.stateButton('tertiary', 'Tertiary') }}</div>
+
             <hr class="btn-demo__divider">
-            {{ _self.inertShowCode() }}
+
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                {{ icons.icon('code', 16) }} Rodyti kodą
+            </button>
+
+            <div class="code-panel" x-show="expanded" x-cloak>
+                <div class="code-panel__header">
+                    <span class="code-panel__label">HTML</span>
+                    <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
+                        <span x-show="!copied">{{ icons.icon('copy', 14) }}</span>
+                        <span x-show="copied" x-cloak>{{ icons.icon('check', 14) }}</span>
+                    </button>
+                </div>
+                <div class="code-panel__body">
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-tertiary&quot;&gt;Default&lt;/button&gt;
+&lt;button class=&quot;btn btn-tertiary btn-hover&quot;&gt;Hover&lt;/button&gt;
+&lt;button class=&quot;btn btn-tertiary&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;button class=&quot;btn btn-tertiary btn-loading&quot;&gt;
+  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
-        <div class="ds-group">
+        <div class="ds-group" x-data="{
+                expanded: false,
+                copied: false,
+                code: '&lt;button class=&quot;btn btn-danger&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-danger btn-hover&quot;&gt;Hover&lt;/button&gt;\n&lt;button class=&quot;btn btn-danger&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-danger btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                copyCode() {
+                    navigator.clipboard.writeText(this.code).catch(() => {});
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2200);
+                }
+            }">
             <div class="ds-group__label">Destructive &middot; Primary</div>
             <div class="ds-group__row">{{ _self.stateButton('destructive', 'Destructive') }}</div>
+
             <hr class="btn-demo__divider">
-            {{ _self.inertShowCode() }}
+
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                {{ icons.icon('code', 16) }} Rodyti kodą
+            </button>
+
+            <div class="code-panel" x-show="expanded" x-cloak>
+                <div class="code-panel__header">
+                    <span class="code-panel__label">HTML</span>
+                    <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
+                        <span x-show="!copied">{{ icons.icon('copy', 14) }}</span>
+                        <span x-show="copied" x-cloak>{{ icons.icon('check', 14) }}</span>
+                    </button>
+                </div>
+                <div class="code-panel__body">
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-danger&quot;&gt;Default&lt;/button&gt;
+&lt;button class=&quot;btn btn-danger btn-hover&quot;&gt;Hover&lt;/button&gt;
+&lt;button class=&quot;btn btn-danger&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;button class=&quot;btn btn-danger btn-loading&quot;&gt;
+  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
-        <div class="ds-group">
+        <div class="ds-group" x-data="{
+                expanded: false,
+                copied: false,
+                code: '&lt;button class=&quot;btn btn-outline-danger&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-outline-danger btn-hover&quot;&gt;Hover&lt;/button&gt;\n&lt;button class=&quot;btn btn-outline-danger&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-outline-danger btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                copyCode() {
+                    navigator.clipboard.writeText(this.code).catch(() => {});
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2200);
+                }
+            }">
             <div class="ds-group__label">Destructive &middot; Secondary</div>
             <div class="ds-group__row">{{ _self.stateButton('destructive-secondary', 'Destructive Secondary') }}</div>
+
             <hr class="btn-demo__divider">
-            {{ _self.inertShowCode() }}
+
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                {{ icons.icon('code', 16) }} Rodyti kodą
+            </button>
+
+            <div class="code-panel" x-show="expanded" x-cloak>
+                <div class="code-panel__header">
+                    <span class="code-panel__label">HTML</span>
+                    <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
+                        <span x-show="!copied">{{ icons.icon('copy', 14) }}</span>
+                        <span x-show="copied" x-cloak>{{ icons.icon('check', 14) }}</span>
+                    </button>
+                </div>
+                <div class="code-panel__body">
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-outline-danger&quot;&gt;Default&lt;/button&gt;
+&lt;button class=&quot;btn btn-outline-danger btn-hover&quot;&gt;Hover&lt;/button&gt;
+&lt;button class=&quot;btn btn-outline-danger&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;button class=&quot;btn btn-outline-danger btn-loading&quot;&gt;
+  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
-        <div class="ds-group">
+        <div class="ds-group" x-data="{
+                expanded: false,
+                copied: false,
+                code: '&lt;button class=&quot;btn btn-link&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-link btn-hover&quot;&gt;Hover&lt;/button&gt;\n&lt;button class=&quot;btn btn-link&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-link btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                copyCode() {
+                    navigator.clipboard.writeText(this.code).catch(() => {});
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2200);
+                }
+            }">
             <div class="ds-group__label">Link</div>
             <div class="ds-group__row">{{ _self.stateButton('link', 'Link') }}</div>
+
             <hr class="btn-demo__divider">
-            {{ _self.inertShowCode() }}
+
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                {{ icons.icon('code', 16) }} Rodyti kodą
+            </button>
+
+            <div class="code-panel" x-show="expanded" x-cloak>
+                <div class="code-panel__header">
+                    <span class="code-panel__label">HTML</span>
+                    <button type="button" class="code-panel__copy" @click="copyCode()" :title="copied ? 'Nukopijuota' : 'Kopijuoti kodą'">
+                        <span x-show="!copied">{{ icons.icon('copy', 14) }}</span>
+                        <span x-show="copied" x-cloak>{{ icons.icon('check', 14) }}</span>
+                    </button>
+                </div>
+                <div class="code-panel__body">
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-link&quot;&gt;Default&lt;/button&gt;
+&lt;button class=&quot;btn btn-link btn-hover&quot;&gt;Hover&lt;/button&gt;
+&lt;button class=&quot;btn btn-link&quot; disabled&gt;Disabled&lt;/button&gt;
+&lt;button class=&quot;btn btn-link btn-loading&quot;&gt;
+  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
+&lt;/button&gt;</code></pre>
+                </div>
+            </div>
         </div>
     </section>
 

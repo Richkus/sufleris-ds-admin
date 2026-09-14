@@ -228,36 +228,39 @@
     }
 }
 
-// Prism token colors — no prebuilt Prism theme is imported (see app.js),
-// so every color here is intentional and drawn from the DS palette
-// instead of a generic syntax-theme default.
+// Prism token colors — no prebuilt Prism theme package is imported (see
+// app.js), but these ARE deliberately Prism's own classic default-theme
+// hex values (prismjs.com's own demo), not DS brand tokens. The client
+// asked for "colors like programmers are used to seeing" — this is the
+// most widely recognized syntax-highlighting palette on the web, so it's
+// a deliberate, one-time exception to tokens-first for this specific
+// case (recognizability > brand consistency, by explicit request).
 .token.tag,
-.token.tag .token.class-name {
-    color: $blue-600;
+.token.tag .token.class-name,
+.token.boolean,
+.token.number {
+    color: #905;
 }
 
-.token.attr-name {
-    color: $teal-700;
+.token.attr-name,
+.token.selector {
+    color: #690;
 }
 
+.token.atrule,
 .token.attr-value,
-.token.attr-value .token.punctuation {
-    color: $green-600;
+.token.attr-value .token.punctuation,
+.token.keyword {
+    color: #07a;
 }
 
 .token.punctuation {
-    color: $grey-500;
+    color: #999;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: $grey-400;
-    font-style: italic;
-}
-
-.token.boolean,
-.token.number {
-    color: $purple-600;
+    color: slategray;
 }
