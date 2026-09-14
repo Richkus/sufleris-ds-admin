@@ -15,10 +15,13 @@
                 {{ icons.icon('user-circle', 20) }}
             </button>
 
+            {# Alpine's transition *modifier* shorthand (.opacity.scale.duration)
+               generates the CSS itself — unlike the old longhand version here,
+               which referenced "transition ease-out duration-150" as if those
+               were real utility classes; Bootstrap doesn't define them, so
+               that transition was silently a no-op (instant snap). #}
             <div x-show="profileOpen" x-cloak @click.outside="profileOpen = false"
-                 x-transition:enter="transition ease-out duration-150"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:enter-end="opacity-100">
+                 x-transition.opacity.scale.95.duration.150ms>
                 {% include "partials/_profile-dropdown.html.twig" %}
             </div>
         </div>

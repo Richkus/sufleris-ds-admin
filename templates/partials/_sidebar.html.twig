@@ -75,10 +75,7 @@
                     <span>{{ section.label }}</span>
                     <span class="sidebar__chevron" :class="{ 'is-collapsed': !open.{{ section.key }} }">{{ icons.chevronSm() }}</span>
                 </button>
-                <div class="sidebar__section-items" x-show="open.{{ section.key }}"
-                     x-transition:enter="transition ease-out duration-150"
-                     x-transition:enter-start="opacity-0"
-                     x-transition:enter-end="opacity-100">
+                <div class="sidebar__section-items" x-show="open.{{ section.key }}" x-collapse.duration.150ms>
                     {% for item in section.items %}
                         {% if item.disabled %}
                             <span class="sidebar__item is-disabled">{{ item.label }}</span>
