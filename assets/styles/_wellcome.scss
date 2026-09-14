@@ -4,6 +4,14 @@
 
 .hero-ds {
     position: relative;
+    // Fill the whole content area's visible height (its parent,
+    // .app-content__inner--flush, is a flex column with the footer below
+    // it) rather than a fixed box — in Figma the hero spans the entire
+    // viewport under the topbar, edge to edge, with no plain-white gap
+    // before the footer. min-height is just a floor for very short
+    // viewports. Being flex-based (not fixed px), both the fill and the
+    // centered content below re-adapt automatically on resize.
+    flex: 1 1 auto;
     min-height: 460px;
     width: 100%;
     box-sizing: border-box;
