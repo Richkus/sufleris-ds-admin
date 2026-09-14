@@ -123,11 +123,14 @@
 }
 
 // ==========================================================================
-// Experimental "flat" shell (Figma 5638:14930) — no card/margin/shadow
-// around the content, sidebar carries a soft tint instead of white.
-// Toggled via the topbar button in _topbar.html.twig; see app.js
-// (window.dsToggleShell) and the flash-prevention script in
-// base.html.twig. Remove this whole block (and the toggle) once we've
+// Experimental "flat" shell (Figma 5638:14930) — content area is plain
+// white with no card/shadow, and the sidebar becomes its own floating
+// grey-100 rounded card (with the wordmark + settings/home/profile icons
+// relocated into it, top and bottom — see _sidebar.html.twig) instead of
+// a full-height column under a separate topbar. Toggled via the topbar
+// button in _topbar.html.twig; see app.js (window.dsToggleShell) and the
+// flash-prevention script in base.html.twig. Remove this whole block
+// (and the toggle, and the flat-header/flat-actions markup) once we've
 // decided whether to keep it.
 // ==========================================================================
 html.shell-flat {
@@ -142,8 +145,73 @@ html.shell-flat {
         box-shadow: none;
     }
 
+    // The real topbar is replaced by .sidebar__flat-header/-actions below.
+    .topbar {
+        display: none;
+    }
+
     .sidebar {
-        background: $teal-100;
-        border-right-color: $teal-200;
+        display: flex;
+        flex-direction: column;
+        // Figma: a 280px-wide card inset 12px/9px from the shell edges
+        // with 20px corners, not a flush full-height column.
+        height: auto;
+        margin: 9px 12px;
+        border-right: none;
+        border-radius: map-get($ds-radii, "3xl");
+        background: $grey-100;
+        // No overflow: hidden — .sidebar__flat-actions' profile dropdown
+        // (see below) needs to escape this box; its children are already
+        // inset from the edges by their own padding so the rounded
+        // corners still read cleanly without clipping.
+    }
+
+    .sidebar__flat-header {
+        display: block;
+        flex: 0 0 auto;
+        padding: map-get($ds-spacers, xl) map-get($ds-spacers, xl) 0;
+    }
+
+    .sidebar__nav {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .sidebar__flat-actions {
+        display: flex;
+        align-items: center;
+        gap: map-get($ds-spacers, md);
+        flex: 0 0 auto;
+        padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl);
+        // .profile-dropdown normally opens downward-and-leftward
+        // (right: 0) from an icon near the topbar's right edge. That
+        // icon now sits near the bottom-LEFT of the viewport instead, so
+        // unchanged it would run off both the bottom and the left edge —
+        // open upward-and-rightward instead.
+        .profile-dropdown {
+            top: auto;
+            right: auto;
+            left: 0;
+            bottom: calc(100% + #{map-get($ds-spacers, sm)});
+        }
+    }
+
+    // .sidebar__item's hover/active tints (grey-100/teal-100) were tuned
+    // for a white sidebar — against this grey-100 card they'd barely
+    // read as a state change, so bump both for contrast.
+    .sidebar__item:hover {
+        background: $body-bg;
+    }
+
+    .sidebar__item.is-active {
+        background: $teal-200;
+    }
+
+    // Same problem for the relocated topbar icon buttons (hover is
+    // teal-100 by default).
+    .sidebar__flat-actions .topbar__icon-btn:hover,
+    .sidebar__flat-actions .topbar__icon-btn.is-active {
+        background: $body-bg;
     }
 }

@@ -31,6 +31,14 @@
     scrollbar-color: $grey-300 transparent;
 }
 
+// Hidden by default — only shown in the experimental "flat" shell, see
+// the html.shell-flat block in _layout.scss and the comment in
+// _sidebar.html.twig.
+.sidebar__flat-header,
+.sidebar__flat-actions {
+    display: none;
+}
+
 .sidebar__nav {
     display: flex;
     flex-direction: column;

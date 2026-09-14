@@ -68,6 +68,20 @@
 ] %}
 
 <nav class="sidebar">
+    {#
+        Only shown in the experimental "flat" shell (html.shell-flat, see
+        _topbar.html.twig/app.js) — that variant hides the real topbar
+        entirely and relocates the wordmark + icon actions here, matching
+        Figma 5638:14930. Duplicated (not moved) so the default shell is
+        untouched; hidden via CSS the rest of the time.
+    #}
+    <div class="sidebar__flat-header">
+        <a href="index.html" class="topbar__wordmark">
+            <span class="topbar__wordmark-brand">Sufleris</span>
+            <span class="topbar__wordmark-sub">DS.V.3</span>
+        </a>
+    </div>
+
     <div class="sidebar__nav" x-data="{ open: { foundations: true, components: true, patterns: true, pages: true } }">
         {% for section in sections %}
             <div class="sidebar__section">
@@ -86,5 +100,25 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+
+    <div class="sidebar__flat-actions" x-data="{ profileOpen: false }">
+        {#
+            Without this, the flat shell has no way back to the card
+            shell — the real toggle button lives in .topbar, which this
+            variant hides entirely.
+        #}
+        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="Layout eksperimentas">{{ icons.icon('layout', 20) }}</button>
+        <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
+        <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
+        <div class="topbar__profile-wrap">
+            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" title="Profilis">
+                {{ icons.icon('user-circle', 20) }}
+            </button>
+            <div x-show="profileOpen" x-cloak @click.outside="profileOpen = false"
+                 x-transition.opacity.scale.95.duration.150ms>
+                {% include "partials/_profile-dropdown.html.twig" %}
+            </div>
+        </div>
     </div>
 </nav>
