@@ -82,8 +82,28 @@
     }
 }
 
-.hero-ds__deco {
+// Decorative illustration cluster (document/coins, people, calendar/
+// calculator groups + scattered shapes) — see
+// partials/_wellcome-illustrations.html.twig. Floated to the right of the
+// text column, vertically centered on the hero regardless of its height
+// (position: absolute + top: 50%/translateY, not a fixed px offset, so it
+// re-centers with the text on any viewport) and hidden below ~1100px
+// where it would otherwise start overlapping the title/buttons.
+.hero-ds__illustrations {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    right: clamp(#{map-get($ds-spacers, "4xl")}, 8vw, calc(#{map-get($ds-spacers, "4xl")} * 3));
+    transform: translateY(-50%);
+    width: clamp(220px, 22vw, 329px);
     pointer-events: none;
+
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    @media (max-width: 1100px) {
+        display: none;
+    }
 }
