@@ -97,4 +97,18 @@ window.dsCopy = function dsCopy(text, message) {
     Alpine.store('toasts').push(message || `Nukopijuota: ${text}`);
 };
 
+/**
+ * Experimental shell toggle (see the topbar button in _topbar.html.twig
+ * and the flash-prevention inline script in base.html.twig) — flips
+ * between the default "card" shell and the alternate "flat" shell from
+ * Figma 5638:14930, persisted per-browser so it survives navigating
+ * between the site's separate static pages.
+ */
+window.dsToggleShell = function dsToggleShell() {
+    const isFlat = document.documentElement.classList.toggle('shell-flat');
+    try {
+        localStorage.setItem('ds-shell', isFlat ? 'flat' : 'card');
+    } catch (e) {}
+};
+
 Alpine.start();
