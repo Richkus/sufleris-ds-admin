@@ -1,0 +1,93 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    Expects `currentPage` (string slug) in scope, set per-page in the page
+    template's {% set currentPage = '...' %} before {% extends %} content is
+    rendered (see any page template for the pattern).
+
+    Flat grouped structure (Foundations / Components / Patterns /
+    Pages · Templates), synced from Figma's current Nav/Sidebar master
+    (node 5377:2, Design System page). The wordmark in the top bar is the
+    only way back to Wellcome — it no longer has its own nav row.
+#}
+{% set sections = [
+    {
+        key: 'foundations',
+        label: 'Foundations',
+        items: [
+            { label: 'Brand', slug: 'brand', href: 'brand.html' },
+            { label: 'Colors', slug: 'colors', href: 'colors.html' },
+            { label: 'Typography', slug: 'typography', href: 'typography.html' },
+            { label: 'Spacing', slug: 'spacing', href: 'spacing.html' },
+            { label: 'Icons', disabled: true },
+        ],
+    },
+    {
+        key: 'components',
+        label: 'Components',
+        items: [
+            { label: 'Button', slug: 'buttons', href: 'buttons.html' },
+            { label: 'Input', slug: 'inputs', href: 'inputs.html' },
+            { label: 'Badge', slug: 'badge', href: 'badge.html' },
+            { label: 'Dropdown', disabled: true },
+            { label: 'Checkbox', disabled: true },
+            { label: 'Radio button', disabled: true },
+            { label: 'Tooltip', disabled: true },
+            { label: 'Modal', disabled: true },
+            { label: 'Feedback', disabled: true },
+            { label: 'Tabs', slug: 'tabs', href: 'tabs.html' },
+        ],
+    },
+    {
+        key: 'patterns',
+        label: 'Patterns',
+        items: [
+            { label: 'Content Card', slug: 'cards', href: 'cards.html' },
+            { label: 'Search Result', disabled: true },
+            { label: 'Search Bar', disabled: true },
+            { label: 'Source Item', disabled: true },
+            { label: 'Navigation Item', disabled: true },
+            { label: 'Filter Group', disabled: true },
+            { label: 'Content Item Header', disabled: true },
+            { label: 'Similar Content', disabled: true },
+            { label: 'User Actions', disabled: true },
+            { label: 'Table of Contents', disabled: true },
+            { label: 'Slider / Carousel', disabled: true },
+        ],
+    },
+    {
+        key: 'pages',
+        label: 'Pages / Templates',
+        items: [
+            { label: 'Search', disabled: true },
+            { label: 'Home', disabled: true },
+            { label: 'Content detail', disabled: true },
+            { label: 'Test / Quiz', disabled: true },
+            { label: 'etc.', disabled: true },
+        ],
+    },
+] %}
+
+<nav class="sidebar">
+    <div class="sidebar__nav" x-data="{ open: { foundations: true, components: true, patterns: true, pages: true } }">
+        {% for section in sections %}
+            <div class="sidebar__section">
+                <button type="button" class="sidebar__section-header" @click="open.{{ section.key }} = !open.{{ section.key }}" :aria-expanded="open.{{ section.key }}.toString()">
+                    <span>{{ section.label }}</span>
+                    <span class="sidebar__chevron" :class="{ 'is-collapsed': !open.{{ section.key }} }">{{ icons.chevronSm() }}</span>
+                </button>
+                <div class="sidebar__section-items" x-show="open.{{ section.key }}"
+                     x-transition:enter="transition ease-out duration-150"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100">
+                    {% for item in section.items %}
+                        {% if item.disabled %}
+                            <span class="sidebar__item is-disabled">{{ item.label }}</span>
+                        {% else %}
+                            <a href="{{ item.href }}" class="sidebar__item {{ currentPage == item.slug ? 'is-active' }}">{{ item.label }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</nav>

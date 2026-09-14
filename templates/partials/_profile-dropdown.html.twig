@@ -1,0 +1,52 @@
+{% import "partials/_icons.html.twig" as icons %}
+
+<div class="profile-dropdown">
+    <div class="profile-dropdown__header">
+        <div class="profile-dropdown__avatar">{{ icons.icon('user-circle', 32) }}</div>
+        <div class="profile-dropdown__name-row">
+            <span class="profile-dropdown__name">Audrius</span>
+            <span class="profile-dropdown__pro-badge">PRO</span>
+        </div>
+        <div class="profile-dropdown__plan">Be abonentinio plano</div>
+        <a href="#" class="profile-dropdown__plan-link">Apie mano planą</a>
+    </div>
+
+    <hr class="profile-dropdown__divider">
+
+    <div class="profile-dropdown__menu">
+        <a href="#" class="profile-dropdown__item">
+            <span>
+                <span class="profile-dropdown__item-title d-block">Mano SUFLERIS</span>
+                <span class="profile-dropdown__item-desc d-block">Jūsų pasižymėta, jums atrakinta informacija bei jums atsakyti klausimai</span>
+            </span>
+            <span class="profile-dropdown__item-chevron">{{ icons.icon('chevron-right', 16) }}</span>
+        </a>
+        <a href="#" class="profile-dropdown__item">
+            <span>
+                <span class="profile-dropdown__item-title d-block">Nustatymai</span>
+                <span class="profile-dropdown__item-desc d-block">Jūsų kontaktai. Įmonės rekvizitai. Slaptažodžio keitimas. Naujienlaiškis</span>
+            </span>
+            <span class="profile-dropdown__item-chevron">{{ icons.icon('chevron-right', 16) }}</span>
+        </a>
+    </div>
+
+    <hr class="profile-dropdown__divider">
+
+    <div class="profile-dropdown__menu">
+        <a href="#" class="profile-dropdown__item profile-dropdown__item--simple">
+            <span class="profile-dropdown__item-title">Užduoti savo klausimą</span>
+        </a>
+        <a href="#" class="profile-dropdown__item profile-dropdown__item--simple">
+            <span class="profile-dropdown__item-title">Sąskaitos</span>
+        </a>
+        <a href="#" class="profile-dropdown__item profile-dropdown__item--simple">
+            <span class="profile-dropdown__item-title">Atsijungti</span>
+        </a>
+    </div>
+
+    <hr class="profile-dropdown__divider">
+
+    <div class="profile-dropdown__footer">
+        Pagalbos centras &middot; Atsiliepimai &middot; Taisyklės
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{% set currentPage = 'brand' %}
+{% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Brand — {{ parent() }}{% endblock %}
+
+{% block content %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Brand',
+        subtitle: 'Prekės ženklo elementai — logotipas ir pagrindinės spalvos, kuriančios Mokesčių Sufleris identitetą.',
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Logotipas</h2>
+        <div class="d-flex gap-ds-lg flex-wrap mb-ds-xl">
+            <div class="logo-tile logo-tile--light">
+                <span class="logo-tile__wordmark">
+                    <span class="logo-tile__eyebrow">MOKESČIŲ</span>
+                    <span class="logo-tile__word">SUFLERIS</span>
+                </span>
+            </div>
+            <div class="logo-tile logo-tile--mid">
+                <span class="logo-tile__wordmark">
+                    <span class="logo-tile__eyebrow">MOKESČIŲ</span>
+                    <span class="logo-tile__word">SUFLERIS</span>
+                </span>
+            </div>
+            <div class="logo-tile logo-tile--dark">
+                <span class="logo-tile__wordmark">
+                    <span class="logo-tile__eyebrow">MOKESČIŲ</span>
+                    <span class="logo-tile__word">SUFLERIS</span>
+                </span>
+            </div>
+        </div>
+
+        <a href="#" class="btn-ds-download">{{ icons.icon('download', 16) }} Atsisiųsti logotipus</a>
+    </section>
+{% endblock %}

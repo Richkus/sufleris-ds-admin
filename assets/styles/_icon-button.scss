@@ -1,0 +1,61 @@
+// ==========================================================================
+// Icon Button — icon-only, square, used in toolbars/table rows.
+// State cells (Default/Hover/Active/Disabled) are static, like buttons.html.
+// ==========================================================================
+
+.icon-btn-ds {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: map-get($ds-radii, sm);
+    border: 1px solid transparent;
+    background: transparent;
+    color: $grey-500;
+    cursor: pointer;
+
+    svg { width: 18px; height: 18px; }
+}
+
+.icon-btn-ds--40 {
+    width: 40px;
+    height: 40px;
+
+    svg { width: 20px; height: 20px; }
+}
+
+.icon-btn-ds--32 {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-btn-ds--bordered {
+    border-color: $grey-200;
+}
+
+.icon-btn-ds.is-hover {
+    background: $grey-100;
+    color: $grey-700;
+}
+
+.icon-btn-ds.is-active {
+    background: $teal-100;
+    color: $teal-700;
+    border-color: $teal-200;
+}
+
+.icon-btn-ds.is-disabled {
+    color: $grey-300;
+    border-color: $grey-100;
+    cursor: not-allowed;
+}
+
+.icon-btn-ds--destructive.is-active {
+    background: $red-100;
+    color: $red-600;
+    border-color: $red-200;
+}
+
+.icon-btn-ds--destructive.is-hover {
+    background: $red-100;
+    color: $red-600;
+}

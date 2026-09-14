@@ -1,0 +1,11 @@
+# Dependencies
+/node_modules/
+
+# Build output (Twig render + Webpack Encore build) — fully generated
+/public/
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.local

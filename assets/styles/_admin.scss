@@ -1,0 +1,26 @@
+// ==========================================================================
+// admin.html — bare "you've left the DS" placeholder screen
+// ==========================================================================
+
+.admin-placeholder {
+    text-align: center;
+    max-width: 360px;
+    padding: map-get($ds-spacers, "4xl");
+}
+
+.admin-placeholder__icon {
+    width: 48px;
+    height: 48px;
+    color: $grey-400;
+    margin: 0 auto map-get($ds-spacers, xl);
+}
+
+.admin-placeholder__title {
+    color: $grey-800;
+    margin-bottom: map-get($ds-spacers, sm);
+}
+
+.admin-placeholder__subtitle {
+    color: $grey-500;
+    margin-bottom: map-get($ds-spacers, "3xl");
+}

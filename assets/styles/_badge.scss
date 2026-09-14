@@ -1,0 +1,58 @@
+// ==========================================================================
+// Badge — pill (filled soft) and badge (outline) variants, plus semantic
+// color pairs. Radius is always "full" (9999px) — same pill shape as the
+// "PRO" badge in the profile dropdown.
+// ==========================================================================
+
+.badge-ds {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px map-get($ds-spacers, lg);
+    border-radius: map-get($ds-radii, full);
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.badge-ds--pill {
+    background: $teal-100;
+    color: $teal-800;
+}
+
+.badge-ds--outline {
+    background: #fff;
+    color: $teal-700;
+    border-color: $teal-300;
+}
+
+.badge-ds--gray {
+    background: #fff;
+    color: $grey-700;
+    border-color: $grey-300;
+}
+
+.badge-ds--brand {
+    background: $teal-100;
+    color: $teal-800;
+    border-color: $teal-200;
+}
+
+.badge-ds--error {
+    background: $red-100;
+    color: $red-700;
+    border-color: $red-200;
+}
+
+.badge-ds--warning {
+    background: $orange-100;
+    color: $orange-700;
+    border-color: $orange-200;
+}
+
+.badge-ds--success {
+    background: $green-100;
+    color: $green-700;
+    border-color: $green-200;
+}

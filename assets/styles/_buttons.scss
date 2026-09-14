@@ -1,0 +1,217 @@
+// ==========================================================================
+// DS Buttons — Primary / Secondary / Tertiary / Destructive / Link
+//
+// Each documentation cell on buttons.html is a STATIC representation of a
+// state (Default/Hover/Disabled/Loading) — the state name is the button's
+// own label, per the Figma fix ("state labels sit on the button label area,
+// not as separate captions"). State classes (.is-hover/.is-disabled/
+// .is-loading) force the visual style rather than relying on real :hover,
+// since every state must be visible at once in the grid.
+//
+// Colors/sizing synced from Figma's Buttons page (node 5415:3, "Variants &
+// States" section) — corner radius is radius-sm (6px, not radius-md), and
+// button height is 40px across every variant.
+// ==========================================================================
+
+.btn-ds {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: map-get($ds-spacers, sm);
+    height: 40px;
+    padding: 0 map-get($ds-spacers, xl);
+    border-radius: map-get($ds-radii, sm);
+    border: 1px solid transparent;
+    font-family: $font-family-sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-ds__spinner {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    animation: btn-ds-spin 0.8s linear infinite;
+}
+
+@keyframes btn-ds-spin {
+    to { transform: rotate(360deg); }
+}
+
+// --- Primary ---------------------------------------------------------------
+.btn-ds--primary {
+    background: $teal-500;
+    color: #fff;
+
+    &.is-hover { background: $teal-600; }
+    &.is-disabled { background: $teal-200; color: $grey-500; cursor: not-allowed; }
+    &.is-loading { background: $teal-600; color: #fff; }
+}
+
+// --- Secondary (outline) ----------------------------------------------------
+.btn-ds--secondary {
+    background: #fff;
+    color: $teal-600;
+    border-color: $teal-500;
+
+    &.is-hover { background: $teal-100; border-color: $teal-500; }
+    &.is-disabled { background: #fff; color: $grey-400; border-color: $grey-200; cursor: not-allowed; }
+    &.is-loading { background: $teal-100; border-color: $teal-500; }
+}
+
+// --- Tertiary (ghost) --------------------------------------------------------
+.btn-ds--tertiary {
+    background: transparent;
+    color: $teal-600;
+
+    &.is-hover { background: $teal-100; }
+    &.is-disabled { color: $grey-400; cursor: not-allowed; }
+    &.is-loading { background: $teal-100; }
+}
+
+// --- Destructive · Primary ----------------------------------------------------
+.btn-ds--destructive {
+    background: $red-500;
+    color: #fff;
+
+    &.is-hover { background: $red-600; }
+    &.is-disabled { background: $teal-200; color: $grey-500; cursor: not-allowed; }
+    &.is-loading { background: $red-600; color: #fff; }
+}
+
+// --- Destructive · Secondary (outline, now with a soft fill on hover/loading) --
+.btn-ds--destructive-secondary {
+    background: #fff;
+    color: $red-800;
+    border-color: $red-500;
+
+    &.is-hover { background: $red-100; border-color: $red-500; }
+    &.is-disabled { background: #fff; color: $grey-400; border-color: $grey-200; cursor: not-allowed; }
+    &.is-loading { background: $red-100; border-color: $red-500; }
+}
+
+// --- Link ----------------------------------------------------------------------
+.btn-ds--link {
+    height: auto;
+    padding: 0;
+    background: transparent;
+    color: $teal-600;
+
+    &.is-hover { color: $teal-800; text-decoration: underline; }
+    &.is-disabled { color: $grey-400; cursor: not-allowed; }
+    &.is-loading { color: $grey-400; }
+}
+
+// ==========================================================================
+// "Show code" pattern (Buttons page)
+//
+// Every variant gets a small inert "Rodyti kodą" toggle under its state
+// row. Only Buttons/Primary is wired up for real (Alpine): clicking it
+// reveals a code panel with a copy-to-clipboard header and a scrollable
+// code body. There is deliberately no way to collapse it again short of a
+// page reload — see templates/buttons.html.twig.
+// ==========================================================================
+
+.btn-demo__divider {
+    height: 1px;
+    background: $grey-200;
+    border: none;
+    margin: map-get($ds-spacers, xl) 0;
+}
+
+.show-code-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: map-get($ds-spacers, xs);
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: $font-family-sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    color: $grey-600;
+    cursor: pointer;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover { color: $grey-800; }
+
+    &[disabled],
+    &.is-inert {
+        cursor: default;
+    }
+}
+
+.code-panel {
+    margin-top: map-get($ds-spacers, xl);
+    background: #fff;
+    border: 1px solid $grey-200;
+    border-radius: map-get($ds-radii, lg);
+    overflow: hidden;
+}
+
+.code-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 46px;
+    padding: 0 map-get($ds-spacers, xl);
+    background: $grey-100;
+}
+
+.code-panel__label {
+    font-family: $font-family-sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: $grey-600;
+    text-transform: uppercase;
+}
+
+.code-panel__copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    color: $grey-600;
+    cursor: pointer;
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover { background: $grey-200; color: $grey-800; }
+}
+
+.code-panel__body {
+    max-height: 130px;
+    overflow-y: auto;
+    padding: map-get($ds-spacers, xl);
+    background: $grey-100;
+
+    &::-webkit-scrollbar { width: 6px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+        background-color: $grey-300;
+        border-radius: map-get($ds-radii, full);
+    }
+    scrollbar-width: thin;
+    scrollbar-color: $grey-300 transparent;
+}
+
+.code-panel__code {
+    margin: 0;
+    font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 20px;
+    color: $grey-800;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

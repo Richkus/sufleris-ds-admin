@@ -1,0 +1,62 @@
+// ==========================================================================
+// Cards — DS doesn't have a dedicated Card component yet (per the "Trūksta
+// bazinio komponento" pill on cards.html); this is the reference pattern.
+// Border + shadow are load-bearing — an earlier bug flattened them, don't
+// repeat that.
+// ==========================================================================
+
+.card-ds {
+    border: 1px solid $grey-200;
+    border-radius: map-get($ds-radii, lg);
+    padding: map-get($ds-spacers, "2xl");
+    background: #fff;
+    box-shadow: 0 1px 2px rgba($grey-900, 0.06), 0 1px 3px rgba($grey-900, 0.04);
+}
+
+.card-ds__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: map-get($ds-spacers, lg);
+}
+
+.card-ds__title-row {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    flex-wrap: wrap;
+}
+
+.card-ds__title {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+    color: $grey-900;
+}
+
+.card-ds__meta {
+    color: $grey-500;
+    margin-top: map-get($ds-spacers, xxs);
+}
+
+.card-ds__kebab {
+    color: $grey-400;
+    flex: 0 0 auto;
+
+    svg { width: 18px; height: 18px; }
+}
+
+.card-ds__divider {
+    height: 1px;
+    background: $grey-200;
+    border: none;
+    margin: map-get($ds-spacers, lg) 0;
+}
+
+.card-ds__body {
+    color: $grey-600;
+}
+
+.card-ds__footer {
+    margin-top: map-get($ds-spacers, xl);
+}

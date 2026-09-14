@@ -1,0 +1,19 @@
+// ==========================================================================
+// typography.html — live specimens of the type ramp
+// ==========================================================================
+
+.type-specimen {
+    padding: map-get($ds-spacers, xl) 0;
+    border-bottom: 1px solid $grey-100;
+}
+
+.type-specimen__sample {
+    color: $grey-900;
+    margin-bottom: map-get($ds-spacers, xs);
+}
+
+.type-specimen__caption {
+    font-size: 13px;
+    line-height: 18px;
+    color: $grey-500;
+}

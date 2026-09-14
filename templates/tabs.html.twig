@@ -1,0 +1,61 @@
+{% set currentPage = 'tabs' %}
+{% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Tabs — {{ parent() }}{% endblock %}
+
+{% set items = ['My details', 'Profile', 'Password', 'Team', 'Plan', 'Billing', 'Email'] %}
+
+{% macro tabRow(modifier, items, activeIndex, notifIndex) %}
+    <div class="tabs-ds tabs-ds--{{ modifier }}">
+        {% for item in items %}
+            <span class="tabs-ds__item {{ loop.index0 == activeIndex ? 'is-active' }}">
+                {{ item }}
+                {% if loop.index0 == notifIndex %}<span class="tabs-ds__count">2</span>{% endif %}
+            </span>
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+{% block content %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Tabs',
+        subtitle: 'Kortelės viduje arba puslapio viršuje leidžia perjungti tarp kelių susijusio turinio vaizdų. Naudokite, kai vartotojui reikia matyti tik vieną kategoriją vienu metu.',
+        pill: { label: 'Bazinis (Untitled UI)', variant: 'basic' },
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Variants &amp; States</h2>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Type</div>
+
+            <div class="mb-ds-xl">
+                {{ _self.tabRow('brand', items, 0, 5) }}
+                <div class="type-specimen__caption mt-ds-xs">Button brand</div>
+            </div>
+
+            <div class="mb-ds-xl">
+                {{ _self.tabRow('underline', items, 0, 5) }}
+                <div class="type-specimen__caption mt-ds-xs">Underline</div>
+            </div>
+
+            <div class="mb-ds-xl">
+                {{ _self.tabRow('bordered', items, 0, 5) }}
+                <div class="type-specimen__caption mt-ds-xs">Button border</div>
+            </div>
+
+            <div class="mb-ds-xl">
+                {{ _self.tabRow('gray', items, 0, 5) }}
+                <div class="type-specimen__caption mt-ds-xs">Button gray</div>
+            </div>
+
+            <div>
+                {{ _self.tabRow('minimal', items, 0, 5) }}
+                <div class="type-specimen__caption mt-ds-xs">Button minimal</div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="ds-figma-link">{{ icons.icon('external-link', 14) }} Figmoje</a>
+{% endblock %}

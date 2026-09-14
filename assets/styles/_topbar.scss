@@ -1,0 +1,74 @@
+// ==========================================================================
+// Nav/Top bar
+// ==========================================================================
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    flex: 0 0 auto;
+    padding: 0 32px;
+    border-bottom: 1px solid $grey-200;
+    position: relative;
+    z-index: 20;
+}
+
+.topbar__wordmark {
+    display: flex;
+    align-items: baseline;
+    gap: map-get($ds-spacers, md);
+    text-decoration: none;
+    color: inherit;
+}
+
+.topbar__wordmark-brand {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    color: $teal-400;
+}
+
+.topbar__wordmark-sub {
+    font-size: 11px;
+    line-height: 15px;
+    color: $grey-600;
+}
+
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, md);
+}
+
+.topbar__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: $grey-500;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: map-get($ds-radii, xs);
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    &:hover,
+    &.is-active {
+        color: $teal-700;
+        background: $teal-100;
+    }
+}
+
+.topbar__profile-wrap {
+    position: relative;
+}

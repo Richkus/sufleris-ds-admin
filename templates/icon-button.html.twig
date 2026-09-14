@@ -1,0 +1,60 @@
+{% set currentPage = 'icon-button' %}
+{% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Icon Button — {{ parent() }}{% endblock %}
+
+{% macro stateCell(sizeClass, bordered, destructive) %}
+    {% import "partials/_icons.html.twig" as icons %}
+    {% set base = 'icon-btn-ds ' ~ sizeClass ~ (bordered ? ' icon-btn-ds--bordered') ~ (destructive ? ' icon-btn-ds--destructive') %}
+    <div class="text-center">
+        <button type="button" class="{{ base }}">{{ icons.icon('bookmark', 18) }}</button>
+        <div class="type-specimen__caption mt-ds-xs">Default</div>
+    </div>
+    <div class="text-center">
+        <button type="button" class="{{ base }} is-hover">{{ icons.icon('bookmark', 18) }}</button>
+        <div class="type-specimen__caption mt-ds-xs">Hover</div>
+    </div>
+    <div class="text-center">
+        <button type="button" class="{{ base }} is-active">{{ icons.icon('bookmark', 18) }}</button>
+        <div class="type-specimen__caption mt-ds-xs">Active</div>
+    </div>
+    <div class="text-center">
+        <button type="button" class="{{ base }} is-disabled" disabled>{{ icons.icon('bookmark', 18) }}</button>
+        <div class="type-specimen__caption mt-ds-xs">Disabled</div>
+    </div>
+{% endmacro %}
+
+{% block content %}
+    {% import _self as this %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Icon Button',
+        subtitle: 'Kvadratinis, tik ikoną turintis mygtukas — naudojamas toolbar\'uose, lentelių eilutėse ir kitur, kur reikia kompaktiško veiksmo be teksto.',
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Variants &amp; States</h2>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Icon button / 40</div>
+            <div class="ds-group__row">{{ this.stateCell('icon-btn-ds--40', false, false) }}</div>
+        </div>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Icon button / 32 — su border</div>
+            <div class="ds-group__row">{{ this.stateCell('icon-btn-ds--32', true, false) }}</div>
+        </div>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Icon button / 32 — be border</div>
+            <div class="ds-group__row">{{ this.stateCell('icon-btn-ds--32', false, false) }}</div>
+        </div>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Destructive &middot; Secondary</div>
+            <div class="ds-group__row">{{ this.stateCell('icon-btn-ds--32', true, true) }}</div>
+        </div>
+    </section>
+
+    <a href="#" class="ds-figma-link">{{ icons.icon('external-link', 14) }} Figmoje</a>
+{% endblock %}

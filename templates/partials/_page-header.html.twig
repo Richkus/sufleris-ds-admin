@@ -1,0 +1,22 @@
+{#
+    Shared page pattern: big bold title (+ optional status pill), one grey
+    subtitle line, then a divider. Include with:
+
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Buttons',
+        subtitle: 'Mygtukai suaktyvina...',
+        pill: { label: 'Production', variant: 'production' },
+    } %}
+
+    `pill` is optional; `variant` is one of production|basic|missing.
+#}
+<div class="ds-page__header">
+    <div class="ds-page__title-row">
+        <h1 class="mb-0">{{ title }}</h1>
+        {% if pill is defined and pill %}
+            <span class="ds-status-pill ds-status-pill--{{ pill.variant|default('production') }}">{{ pill.label }}</span>
+        {% endif %}
+    </div>
+    <p class="ds-page__subtitle mb-0">{{ subtitle }}</p>
+</div>
+<hr class="ds-page__divider">

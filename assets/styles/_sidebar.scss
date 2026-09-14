@@ -1,0 +1,112 @@
+// ==========================================================================
+// Nav/Sidebar — flat grouped structure (Foundations / Components / Patterns /
+// Pages · Templates), synced from Figma's Nav/Sidebar master (5377:2).
+//
+// The menu is long (30+ rows) so the sidebar scrolls internally with a thin
+// custom scrollbar, independent from the page content column.
+// ==========================================================================
+
+.sidebar {
+    flex: 0 0 280px;
+    width: 280px;
+    height: 100%;
+    min-height: 0;
+    border-right: 1px solid $grey-200;
+    overflow-y: auto;
+
+    // Thin grey scrollbar — WebKit/Blink.
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $grey-300;
+        border-radius: map-get($ds-radii, full);
+    }
+
+    // Thin grey scrollbar — Firefox.
+    scrollbar-width: thin;
+    scrollbar-color: $grey-300 transparent;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    padding: map-get($ds-spacers, "2xl") map-get($ds-spacers, xl) map-get($ds-spacers, "2xl") map-get($ds-spacers, lg);
+}
+
+.sidebar__section + .sidebar__section {
+    margin-top: map-get($ds-spacers, "3xl");
+}
+
+.sidebar__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 map-get($ds-spacers, lg);
+    height: 19px;
+    background: transparent;
+    border: none;
+    font-family: $font-family-sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 700;
+    color: $grey-800;
+    cursor: pointer;
+}
+
+.sidebar__chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 7px;
+    color: $grey-600;
+    flex: 0 0 auto;
+    transition: transform 0.15s ease;
+
+    &.is-collapsed {
+        transform: rotate(-90deg);
+    }
+}
+
+.sidebar__section-items {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, xs);
+    margin-top: map-get($ds-spacers, xs);
+}
+
+.sidebar__item {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 map-get($ds-spacers, lg);
+    font-family: $font-family-sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: $grey-800;
+    text-decoration: none;
+    border-radius: map-get($ds-radii, sm);
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: $grey-100;
+    }
+
+    &.is-active {
+        background: $teal-100;
+        color: $teal-800;
+        font-weight: 600;
+    }
+
+    &.is-disabled {
+        color: $grey-400;
+        pointer-events: none;
+        cursor: default;
+    }
+}

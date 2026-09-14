@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mokesčių Sufleris — DS Admin{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/build/app.css">
+    {% endblock %}
+</head>
+<body>
+    {% set isBare = bare is defined and bare %}
+    <div class="app-page {{ isBare ? 'app-page--bare' }}">
+        <div class="app-shell">
+            {% if not isBare %}
+                {% include "partials/_topbar.html.twig" %}
+            {% endif %}
+            <div class="app-shell__body">
+                {% if not isBare %}
+                    {% include "partials/_sidebar.html.twig" %}
+                {% endif %}
+                <main class="app-content {{ isBare ? 'app-content--bare' }} {{ contentClass|default('') }}">
+                    {% block content %}{% endblock %}
+                    {% if not isBare %}
+                        {% include "partials/_footer.html.twig" %}
+                    {% endif %}
+                </main>
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {# Encore's enableSingleRuntimeChunk() splits the webpack runtime
+           into its own file — it MUST load before app.js or the module
+           system silently no-ops (Alpine never initializes). #}
+        <script src="/build/runtime.js"></script>
+        <script src="/build/app.js"></script>
+    {% endblock %}
+</body>
+</html>

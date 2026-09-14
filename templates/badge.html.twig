@@ -1,0 +1,59 @@
+{% set currentPage = 'badge' %}
+{% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Badge — {{ parent() }}{% endblock %}
+
+{% block content %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Badge',
+        subtitle: 'Ženkliukas trumpai žymi statusui, kategorijai ar skaičiui pažymėti. Spalva nurodo reikšmę (pvz. Success/Error/Warning), forma — kontekstą (pill vs badge).',
+        pill: { label: 'Bazinis (Untitled UI)', variant: 'basic' },
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Variants &amp; States</h2>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Type</div>
+            <div class="ds-group__row">
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--pill">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Pill color</div>
+                </div>
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--outline">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Badge color</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ds-group">
+            <div class="ds-group__label">Semantinės spalvos</div>
+            <div class="ds-group__row">
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--gray">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Gray</div>
+                </div>
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--brand">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Brand</div>
+                </div>
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--error">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Error</div>
+                </div>
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--warning">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Warning</div>
+                </div>
+                <div class="text-center">
+                    <span class="badge-ds badge-ds--success">Label</span>
+                    <div class="type-specimen__caption mt-ds-xs">Success</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="ds-figma-link">{{ icons.icon('external-link', 14) }} Figmoje</a>
+{% endblock %}

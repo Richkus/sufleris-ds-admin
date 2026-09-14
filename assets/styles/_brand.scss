@@ -1,0 +1,72 @@
+// ==========================================================================
+// brand.html — logo usage tiles + download CTA
+// ==========================================================================
+
+.logo-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 254px;
+    height: 160px;
+    border-radius: map-get($ds-radii, md);
+}
+
+.logo-tile--light {
+    background: $grey-100;
+
+    .logo-tile__wordmark { color: $teal-400; }
+}
+
+.logo-tile--mid {
+    background: $teal-300;
+
+    .logo-tile__wordmark { color: #fff; }
+}
+
+.logo-tile--dark {
+    background: $teal-700;
+
+    .logo-tile__wordmark { color: #fff; }
+}
+
+.logo-tile__wordmark {
+    text-align: center;
+    line-height: 1.1;
+}
+
+.logo-tile__eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 2px;
+}
+
+.logo-tile__word {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+// CTA: square-ish rounded corners (sm), NOT a pill — a specific Figma fix.
+.btn-ds-download {
+    display: inline-flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl);
+    border: 1px solid $grey-300;
+    border-radius: map-get($ds-radii, sm);
+    background: #fff;
+    color: $grey-800;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover {
+        background: $grey-100;
+        color: $grey-900;
+    }
+}

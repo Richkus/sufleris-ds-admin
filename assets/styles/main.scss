@@ -1,0 +1,31 @@
+// ==========================================================================
+// Main stylesheet entry point
+//
+// Tvarka yra svarbi:
+//   1. tokenai / Bootstrap kintamųjų perrašymai
+//   2. Bootstrap 5 (naudoja aukščiau apibrėžtus kintamuosius)
+//   3. projekto partial'ai (komponentai, puslapiai)
+// ==========================================================================
+
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+
+@import "typography";
+@import "utilities";
+@import "layout";
+@import "topbar";
+@import "sidebar";
+@import "profile-dropdown";
+@import "page";
+@import "buttons";
+@import "icon-button";
+@import "inputs";
+@import "cards";
+@import "badge";
+@import "tabs";
+@import "colors-page";
+@import "spacing-page";
+@import "typography-page";
+@import "wellcome";
+@import "brand";
+@import "admin";

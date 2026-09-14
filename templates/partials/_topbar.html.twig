@@ -1,0 +1,26 @@
+{% import "partials/_icons.html.twig" as icons %}
+
+<header class="topbar" x-data="{ profileOpen: false }">
+    <a href="index.html" class="topbar__wordmark">
+        <span class="topbar__wordmark-brand">Sufleris</span>
+        <span class="topbar__wordmark-sub">DS.V.3</span>
+    </a>
+
+    <div class="topbar__actions">
+        <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
+        <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
+
+        <div class="topbar__profile-wrap">
+            <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" title="Profilis">
+                {{ icons.icon('user-circle', 20) }}
+            </button>
+
+            <div x-show="profileOpen" x-cloak @click.outside="profileOpen = false"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100">
+                {% include "partials/_profile-dropdown.html.twig" %}
+            </div>
+        </div>
+    </div>
+</header>

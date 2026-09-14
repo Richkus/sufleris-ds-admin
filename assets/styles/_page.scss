@@ -1,0 +1,118 @@
+// ==========================================================================
+// Shared content-page pattern: title + status pill, subtitle, divider,
+// section headings, and the bordered "Variants & States" grouping box used
+// by every component page.
+// ==========================================================================
+
+.ds-page__header {
+    margin-bottom: map-get($ds-spacers, "3xl");
+}
+
+.ds-page__title-row {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, lg);
+    margin-bottom: map-get($ds-spacers, sm);
+}
+
+.ds-page__subtitle {
+    color: $grey-600;
+    max-width: 62ch;
+}
+
+.ds-page__divider {
+    height: 1px;
+    background: $grey-200;
+    border: none;
+    margin: map-get($ds-spacers, "3xl") 0;
+}
+
+.ds-status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: map-get($ds-spacers, xxs) map-get($ds-spacers, lg);
+    border-radius: map-get($ds-radii, full);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ds-status-pill--production {
+    background: $teal-100;
+    color: $teal-800;
+}
+
+.ds-status-pill--basic {
+    background: $teal-100;
+    color: $teal-800;
+}
+
+.ds-status-pill--missing {
+    background: $orange-100;
+    color: $orange-700;
+}
+
+.ds-section {
+    margin-bottom: map-get($ds-spacers, "4xl");
+}
+
+.ds-section__title {
+    margin-bottom: map-get($ds-spacers, xl);
+}
+
+.ds-group {
+    border: 1px solid $grey-200;
+    border-radius: map-get($ds-radii, lg);
+    padding: map-get($ds-spacers, "3xl");
+}
+
+.ds-group + .ds-group {
+    margin-top: map-get($ds-spacers, "3xl");
+}
+
+.ds-group__label {
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 700;
+    color: $grey-900;
+    margin-bottom: map-get($ds-spacers, xl);
+}
+
+.ds-group__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map-get($ds-spacers, xl);
+}
+
+.ds-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: map-get($ds-spacers, xl);
+    font-size: 13px;
+    line-height: 18px;
+    color: $grey-600;
+}
+
+.ds-figma-link {
+    display: inline-flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    padding: map-get($ds-spacers, md) map-get($ds-spacers, lg);
+    border: 1px solid $grey-200;
+    border-radius: map-get($ds-radii, sm);
+    color: $grey-700;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: map-get($ds-spacers, "3xl");
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover {
+        background: $grey-100;
+        color: $grey-900;
+    }
+}

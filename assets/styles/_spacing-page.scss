@@ -1,0 +1,67 @@
+// ==========================================================================
+// spacing.html — spacing scale + corner radius specimens
+// ==========================================================================
+
+.spacing-row {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, xl);
+    padding: map-get($ds-spacers, sm) 0;
+    border-bottom: 1px solid $grey-100;
+}
+
+.spacing-row__name {
+    width: 120px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $grey-900;
+    flex: 0 0 auto;
+}
+
+.spacing-row__track {
+    width: 140px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.spacing-row__bar {
+    height: 20px;
+    background: $teal-500;
+    border-radius: map-get($ds-radii, xxs);
+}
+
+.spacing-row__value {
+    color: $grey-500;
+    font-size: 13px;
+}
+
+.radius-grid {
+    display: flex;
+    gap: map-get($ds-spacers, xl);
+    flex-wrap: wrap;
+}
+
+.radius-swatch {
+    width: 96px;
+    text-align: center;
+}
+
+.radius-swatch__box {
+    width: 96px;
+    height: 96px;
+    background: $teal-100;
+    border: 1.5px solid $teal-500;
+    margin-bottom: map-get($ds-spacers, sm);
+}
+
+.radius-swatch__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: $grey-900;
+}
+
+.radius-swatch__value {
+    font-size: 12px;
+    color: $grey-500;
+}

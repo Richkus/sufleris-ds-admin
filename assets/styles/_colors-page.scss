@@ -1,0 +1,46 @@
+// ==========================================================================
+// colors.html — full palette grid
+// ==========================================================================
+
+.color-family {
+    margin-bottom: map-get($ds-spacers, "3xl");
+}
+
+.color-family__title {
+    margin-bottom: map-get($ds-spacers, lg);
+}
+
+.color-swatch-row {
+    display: flex;
+    gap: map-get($ds-spacers, sm);
+    flex-wrap: wrap;
+}
+
+.color-swatch {
+    width: 82px;
+}
+
+.color-swatch__chip {
+    width: 82px;
+    height: 64px;
+    border-radius: map-get($ds-radii, sm);
+    border: 1px solid rgba($grey-900, 0.06);
+    margin-bottom: map-get($ds-spacers, sm);
+}
+
+.color-swatch__step {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    color: $grey-900;
+}
+
+.color-swatch__hex {
+    font-size: 11px;
+    line-height: 15px;
+    color: $grey-500;
+}
+
+.color-swatch--soft .color-swatch__chip {
+    height: 48px;
+}

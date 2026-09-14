@@ -1,0 +1,70 @@
+// ==========================================================================
+// Inputs (Untitled UI base component — not yet a dedicated Sufleris V.3
+// component, per the Figma frame's status pill).
+// ==========================================================================
+
+.input-ds-field {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, sm);
+}
+
+.input-ds-label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: $grey-900;
+
+    .input-ds-required { color: $red-500; margin-left: 2px; }
+}
+
+.input-ds-box {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    height: 44px;
+    padding: 0 map-get($ds-spacers, lg);
+    border: 1px solid $grey-300;
+    border-radius: map-get($ds-radii, sm);
+    background: #fff;
+    color: $grey-900;
+    font-size: 16px;
+
+    svg { width: 18px; height: 18px; flex: 0 0 auto; color: $grey-400; }
+}
+
+.input-ds-box__text {
+    flex: 1 1 auto;
+    color: $grey-900;
+}
+
+.input-ds-box--placeholder .input-ds-box__text { color: $grey-400; }
+
+.input-ds-box.is-focused {
+    border-color: $teal-600;
+    box-shadow: 0 0 0 4px rgba($teal-500, 0.15);
+}
+
+.input-ds-box.is-disabled {
+    background: $grey-100;
+    border-color: $grey-200;
+    color: $grey-400;
+
+    .input-ds-box__text { color: $grey-400; }
+}
+
+.input-ds-box.is-error {
+    border-color: $red-500;
+
+    svg:last-child { color: $red-500; }
+}
+
+.input-ds-hint {
+    font-size: 13px;
+    line-height: 18px;
+    color: $grey-500;
+}
+
+.input-ds-hint.is-error {
+    color: $red-500;
+}

@@ -1,0 +1,51 @@
+// ==========================================================================
+// Custom DS utility classes
+//
+// Bootstrap's own utility generator doesn't know about the full DS palette
+// (only the theme-color subset) or the custom spacing/radius scales, so
+// those are generated here from the SCSS token maps in _variables.scss.
+// Component/page partials should reach for these classes (or the token
+// variables directly) instead of ever hardcoding a hex/px value.
+// ==========================================================================
+
+// Alpine.js: hide un-initialized `x-show` content until Alpine boots.
+[x-cloak] { display: none !important; }
+
+// --- Full palette background / text / border utilities -------------------
+@each $family, $steps in $ds-colors {
+    @each $step, $value in $steps {
+        .bg-ds-#{$family}-#{$step} { background-color: $value !important; }
+        .text-ds-#{$family}-#{$step} { color: $value !important; }
+        .border-ds-#{$family}-#{$step} { border-color: $value !important; }
+    }
+}
+
+@each $name, $value in $ds-soft-tints {
+    .bg-ds-#{$name} { background-color: $value !important; }
+    .text-ds-#{$name} { color: $value !important; }
+    .border-ds-#{$name} { border-color: $value !important; }
+}
+
+// --- Spacing utilities (gap / padding / margin) ---------------------------
+@each $key, $value in $ds-spacers {
+    .gap-ds-#{$key} { gap: $value !important; }
+    .p-ds-#{$key} { padding: $value !important; }
+    .px-ds-#{$key} { padding-left: $value !important; padding-right: $value !important; }
+    .py-ds-#{$key} { padding-top: $value !important; padding-bottom: $value !important; }
+    .pt-ds-#{$key} { padding-top: $value !important; }
+    .pb-ds-#{$key} { padding-bottom: $value !important; }
+    .m-ds-#{$key} { margin: $value !important; }
+    .mb-ds-#{$key} { margin-bottom: $value !important; }
+    .mt-ds-#{$key} { margin-top: $value !important; }
+
+    // Used by spacing.html specimens — a box sized to the token value
+    .spacing-swatch--#{$key} {
+        width: $value;
+        height: 32px;
+    }
+}
+
+// --- Corner radius utilities ----------------------------------------------
+@each $key, $value in $ds-radii {
+    .radius-ds-#{$key} { border-radius: $value !important; }
+}

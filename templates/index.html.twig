@@ -1,0 +1,17 @@
+{% set currentPage = 'wellcome' %}
+{% set contentClass = 'app-content--flush' %}
+{% extends "base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Wellcome — {{ parent() }}{% endblock %}
+
+{% block content %}
+    <section class="hero-ds">
+        <h1 class="hero-ds__title">Mokesčių SUFLERIO dizaino sistema</h1>
+        <p class="hero-ds__subtitle ds-text-md">Čia sudėjom viską, ko reikia MS dizainui kurti ir naudoti :)</p>
+        <div class="hero-ds__actions">
+            <a href="https://github.com/" class="hero-pill">{{ icons.icon('github', 20) }} GitHub</a>
+            <a href="https://www.figma.com/" class="hero-pill">{{ icons.icon('figma', 20) }} Figma</a>
+        </div>
+    </section>
+{% endblock %}

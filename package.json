@@ -1,0 +1,24 @@
+{
+  "name": "sufleris-ds-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mokesčių Sufleris — Design System admin section (Twig + SCSS/Bootstrap 5 via Webpack Encore + Alpine.js)",
+  "scripts": {
+    "render": "node scripts/render-twig.js",
+    "dev": "npm run render && encore dev",
+    "watch": "npm run render && encore dev --watch",
+    "build": "npm run render && encore production"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^4.7.0",
+    "sass": "^1.79.4",
+    "sass-loader": "^14.2.1",
+    "twing": "^6.1.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.3",
+    "bootstrap": "^5.3.3"
+  }
+}

@@ -1,0 +1,30 @@
+// ==========================================================================
+// Typography — DS type ramp (Open Sans)
+//
+// Generuojama iš $ds-type-ramp map'o (_variables.scss). Puslapiuose visada
+// naudojamos šios klasės (.ds-h1 .. .ds-h5, .ds-text-md ir t.t.) — dydžiai
+// ir eilučių aukščiai niekada nerašomi tiesiogiai Twig/HTML per style="".
+// ==========================================================================
+
+@each $key, $props in $ds-type-ramp {
+    .ds-#{$key} {
+        font-family: $font-family-sans-serif;
+        font-size: map-get($props, size);
+        line-height: map-get($props, line-height);
+        font-weight: map-get($props, weight);
+        margin: 0;
+    }
+}
+
+// Patogumo aliasai, atitinkantys HTML antraščių tag'us puslapiuose
+h1, .h1 { @extend .ds-h1; }
+h2, .h2 { @extend .ds-h2; }
+h3, .h3 { @extend .ds-h3; }
+h4, .h4 { @extend .ds-h4; }
+h5, .h5 { @extend .ds-h5; }
+
+body {
+    font-family: $font-family-sans-serif;
+    @extend .ds-text-md;
+    color: $grey-900;
+}

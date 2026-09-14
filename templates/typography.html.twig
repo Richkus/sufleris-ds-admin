@@ -1,0 +1,39 @@
+{% set currentPage = 'typography' %}
+{% extends "base.html.twig" %}
+
+{% block title %}Typography — {{ parent() }}{% endblock %}
+
+{% set ramp = [
+    { class: 'ds-h1', tag: 'Heading / H1', sample: 'Antraštė H1 — 23px Bold', caption: '23px · line-height 32px · Bold 700' },
+    { class: 'ds-h2', tag: 'Heading / H2', sample: 'Antraštė H2 — 20px Bold', caption: '20px · line-height 30px · Bold 700' },
+    { class: 'ds-h3', tag: 'Heading / H3', sample: 'Antraštė H3 — 18px Bold', caption: '18px · line-height 30px · Bold 700' },
+    { class: 'ds-h4', tag: 'Heading / H4', sample: 'Antraštė H4 — 16px Bold', caption: '16px · line-height 26px · Bold 700' },
+    { class: 'ds-h5', tag: 'Heading / H5', sample: 'Antraštė H5 — 14px Bold', caption: '14px · line-height 21px · Bold 700' },
+    { class: 'ds-text-md', tag: 'Text md/Regular', sample: 'Pagrindinis tekstas — Text md/Regular', caption: '16px · line-height 24px · Regular 400' },
+    { class: 'ds-text-lg', tag: 'Text lg/Medium', sample: 'Didesnis tekstas — Text lg/Medium', caption: '18px · line-height 28px · SemiBold 600' },
+    { class: 'ds-text-btn', tag: 'Text/Button', sample: 'Mygtuko tekstas — Text/Button', caption: '15px · line-height 22px · SemiBold 600' },
+    { class: 'ds-text-intro', tag: 'Body intro', sample: 'Įžanginė pastraipa — Body intro', caption: '15px · line-height 23px · Regular 400' },
+] %}
+
+{% block content %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Typography',
+        subtitle: 'Šriftas, dydžiai ir teksto stiliai, naudojami visame produkte.',
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Šriftas</h2>
+        <p class="ds-text-md text-ds-grey-600">Pagrindinis šriftas visoje produkto DS — Open Sans (Regular 400 / SemiBold 600 / Bold 700).</p>
+    </section>
+
+    <hr class="ds-page__divider">
+
+    <section class="ds-section">
+        {% for style in ramp %}
+            <div class="type-specimen">
+                <div class="type-specimen__sample {{ style.class }}">{{ style.sample }}</div>
+                <div class="type-specimen__caption">{{ style.tag }} &middot; {{ style.caption }}</div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

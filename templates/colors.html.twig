@@ -1,0 +1,93 @@
+{% set currentPage = 'colors' %}
+{% extends "base.html.twig" %}
+
+{% block title %}Colors — {{ parent() }}{% endblock %}
+
+{% set steps = [100, 200, 300, 400, 500, 600, 700, 800, 900] %}
+
+{% set brandFamilies = [
+    { key: 'teal', label: 'Teal (primary)', hex: ['#f2f7f8', '#dbe9ea', '#94bcbf', '#70a6aa', '#4c9095', '#437f83', '#3a6d71', '#315c5f', '#284b4d'] },
+    { key: 'salmon', label: 'Salmon (accent)', hex: ['#ffe8e8', '#ffd1d1', '#ffbaba', '#ff9393', '#ff6565', '#d95656', '#b24747', '#8c3838', '#662828'] },
+    { key: 'purple', label: 'Purple (accent)', hex: ['#f4e5f0', '#eacbe0', '#dfb2d1', '#cd87b8', '#b85399', '#9c4782', '#813a6b', '#652e54', '#4a213d'] },
+] %}
+
+{% set neutralFamilies = [
+    { key: 'grey', label: 'Grey', hex: ['#f2f5f5', '#e3e8e8', '#cdd5d6', '#abb9ba', '#899d9f', '#6c8284', '#556768', '#405359', '#272f30'] },
+] %}
+
+{% set statusFamilies = [
+    { key: 'red', label: 'Red (error)', hex: ['#fadedc', '#f4bcb8', '#ee928c', '#e55c52', '#d92d20', '#c8291e', '#a02118', '#781912', '#50100c'] },
+    { key: 'green', label: 'Green (success)', hex: ['#e3f2eb', '#c7e5d7', '#a4d5be', '#79c19e', '#4fab7f', '#3f8865', '#2f654b', '#204634', '#132a1f'] },
+    { key: 'blue', label: 'Blue (info)', hex: ['#e1e9f4', '#c3d2e9', '#9eb7dc', '#80a0d1', '#628ac6', '#406db0', '#315387', '#233c61', '#16253c'] },
+    { key: 'orange', label: 'Orange (warning)', hex: ['#fcead9', '#fad6b3', '#f7bc83', '#f4a85d', '#f19132', '#e0770f', '#ac5b0c', '#7c4208', '#4c2905'] },
+] %}
+
+{% set softTints = [
+    { key: 'sage', label: 'Sage', hex: '#e1ece2' },
+    { key: 'sky', label: 'Sky', hex: '#e5f0fe' },
+    { key: 'peach', label: 'Peach', hex: '#fcf1e2' },
+    { key: 'blush', label: 'Blush', hex: '#f6e1e0' },
+    { key: 'lilac', label: 'Lilac', hex: '#f4e6ef' },
+] %}
+
+{% macro swatchRow(family, steps) %}
+    <div class="color-family">
+        <h5 class="color-family__title">{{ family.label }}</h5>
+        <div class="color-swatch-row">
+            {% for i in 0..8 %}
+                <div class="color-swatch">
+                    <div class="color-swatch__chip bg-ds-{{ family.key }}-{{ steps[i] }}"></div>
+                    <div class="color-swatch__step">{{ steps[i] }}</div>
+                    <div class="color-swatch__hex">{{ family.hex[i] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% block content %}
+    {% include "partials/_page-header.html.twig" with {
+        title: 'Colors',
+        subtitle: 'Pilna spalvų paletė — brand, neutralios ir status spalvos su visais atspalviais.',
+    } %}
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Brand / Identity</h2>
+        {% for family in brandFamilies %}
+            {{ _self.swatchRow(family, steps) }}
+        {% endfor %}
+    </section>
+
+    <hr class="ds-page__divider">
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Neutral</h2>
+        {% for family in neutralFamilies %}
+            {{ _self.swatchRow(family, steps) }}
+        {% endfor %}
+    </section>
+
+    <hr class="ds-page__divider">
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Status &amp; Feedback</h2>
+        {% for family in statusFamilies %}
+            {{ _self.swatchRow(family, steps) }}
+        {% endfor %}
+    </section>
+
+    <hr class="ds-page__divider">
+
+    <section class="ds-section">
+        <h2 class="ds-section__title">Soft accent tints</h2>
+        <div class="color-swatch-row">
+            {% for tint in softTints %}
+                <div class="color-swatch color-swatch--soft">
+                    <div class="color-swatch__chip bg-ds-{{ tint.key }}"></div>
+                    <div class="color-swatch__step">{{ tint.label }}</div>
+                    <div class="color-swatch__hex">{{ tint.hex }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

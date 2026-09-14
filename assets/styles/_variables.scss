@@ -1,0 +1,256 @@
+// ==========================================================================
+// Mokesčių Sufleris DS — design tokens
+//
+// Šis failas apibrėžia VISUS spalvų, tarpų, kampų suapvalinimo ir
+// tipografijos kintamuosius kaip SCSS tokenus. Komponentų/puslapių SCSS
+// failuose HEX spalvos ir raw px reikšmės NIEKADA nerašomos tiesiogiai —
+// naudojami šie kintamieji, iš jų sugeneruotos Bootstrap/DS utility klasės,
+// arba SCSS map'ai (žr. $ds-colors / $ds-spacers / $ds-radii žemiau).
+//
+// Bootstrap kintamųjų perrašymai turi būti PRIEŠ `@import "bootstrap"`
+// (žr. main.scss) — tai standartinis Bootstrap SCSS customization pattern.
+//
+// Reikšmės ištrauktos iš Figma DS bylos (ZkRyyI5TEHeg7IuUAz4HxW) — jų
+// perrašinėti/apytiksliai vesti iš naujo NEREIKIA, tik palaikyti sutapimą.
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Teal (primary) — pagrindinė prekės ženklo paletė
+// --------------------------------------------------------------------------
+$teal-100: #f2f7f8;
+$teal-200: #dbe9ea;
+$teal-300: #94bcbf;
+$teal-400: #70a6aa;
+$teal-500: #4c9095;
+$teal-600: #437f83;
+$teal-700: #3a6d71;
+$teal-800: #315c5f;
+$teal-900: #284b4d;
+
+// --------------------------------------------------------------------------
+// Salmon (accent)
+// --------------------------------------------------------------------------
+$salmon-100: #ffe8e8;
+$salmon-200: #ffd1d1;
+$salmon-300: #ffbaba;
+$salmon-400: #ff9393;
+$salmon-500: #ff6565;
+$salmon-600: #d95656;
+$salmon-700: #b24747;
+$salmon-800: #8c3838;
+$salmon-900: #662828;
+
+// --------------------------------------------------------------------------
+// Purple (accent)
+// --------------------------------------------------------------------------
+$purple-100: #f4e5f0;
+$purple-200: #eacbe0;
+$purple-300: #dfb2d1;
+$purple-400: #cd87b8;
+$purple-500: #b85399;
+$purple-600: #9c4782;
+$purple-700: #813a6b;
+$purple-800: #652e54;
+$purple-900: #4a213d;
+
+// --------------------------------------------------------------------------
+// Grey (neutral)
+// --------------------------------------------------------------------------
+$grey-100: #f2f5f5;
+$grey-200: #e3e8e8;
+$grey-300: #cdd5d6;
+$grey-400: #abb9ba;
+$grey-500: #899d9f;
+$grey-600: #6c8284;
+$grey-700: #556768;
+$grey-800: #405359;
+$grey-900: #272f30;
+
+// --------------------------------------------------------------------------
+// Red (error)
+// --------------------------------------------------------------------------
+$red-100: #fadedc;
+$red-200: #f4bcb8;
+$red-300: #ee928c;
+$red-400: #e55c52;
+$red-500: #d92d20;
+$red-600: #c8291e;
+$red-700: #a02118;
+$red-800: #781912;
+$red-900: #50100c;
+
+// --------------------------------------------------------------------------
+// Green (success)
+// --------------------------------------------------------------------------
+$green-100: #e3f2eb;
+$green-200: #c7e5d7;
+$green-300: #a4d5be;
+$green-400: #79c19e;
+$green-500: #4fab7f;
+$green-600: #3f8865;
+$green-700: #2f654b;
+$green-800: #204634;
+$green-900: #132a1f;
+
+// --------------------------------------------------------------------------
+// Blue (info)
+// --------------------------------------------------------------------------
+$blue-100: #e1e9f4;
+$blue-200: #c3d2e9;
+$blue-300: #9eb7dc;
+$blue-400: #80a0d1;
+$blue-500: #628ac6;
+$blue-600: #406db0;
+$blue-700: #315387;
+$blue-800: #233c61;
+$blue-900: #16253c;
+
+// --------------------------------------------------------------------------
+// Orange (warning)
+// --------------------------------------------------------------------------
+$orange-100: #fcead9;
+$orange-200: #fad6b3;
+$orange-300: #f7bc83;
+$orange-400: #f4a85d;
+$orange-500: #f19132;
+$orange-600: #e0770f;
+$orange-700: #ac5b0c;
+$orange-800: #7c4208;
+$orange-900: #4c2905;
+
+// --------------------------------------------------------------------------
+// Soft accent tints (500-ekvivalentas, be skalės)
+// --------------------------------------------------------------------------
+$sage: #e1ece2;
+$sky: #e5f0fe;
+$peach: #fcf1e2;
+$blush: #f6e1e0;
+$lilac: #f4e6ef;
+
+// --------------------------------------------------------------------------
+// Semantinės / būsenos spalvos
+// --------------------------------------------------------------------------
+$danger-500: $red-500;
+
+// --------------------------------------------------------------------------
+// Visų DS spalvų paletė, kaip vienas SCSS map'as — naudojama _utilities.scss
+// utility klasių generavimui (.bg-ds-*, .text-ds-*, .border-ds-*) ir bet
+// kur, kur reikia iteruoti per visą paletę (pvz. colors.html specimenai).
+// --------------------------------------------------------------------------
+$ds-colors: (
+    "teal": (100: $teal-100, 200: $teal-200, 300: $teal-300, 400: $teal-400, 500: $teal-500, 600: $teal-600, 700: $teal-700, 800: $teal-800, 900: $teal-900),
+    "salmon": (100: $salmon-100, 200: $salmon-200, 300: $salmon-300, 400: $salmon-400, 500: $salmon-500, 600: $salmon-600, 700: $salmon-700, 800: $salmon-800, 900: $salmon-900),
+    "purple": (100: $purple-100, 200: $purple-200, 300: $purple-300, 400: $purple-400, 500: $purple-500, 600: $purple-600, 700: $purple-700, 800: $purple-800, 900: $purple-900),
+    "grey": (100: $grey-100, 200: $grey-200, 300: $grey-300, 400: $grey-400, 500: $grey-500, 600: $grey-600, 700: $grey-700, 800: $grey-800, 900: $grey-900),
+    "red": (100: $red-100, 200: $red-200, 300: $red-300, 400: $red-400, 500: $red-500, 600: $red-600, 700: $red-700, 800: $red-800, 900: $red-900),
+    "green": (100: $green-100, 200: $green-200, 300: $green-300, 400: $green-400, 500: $green-500, 600: $green-600, 700: $green-700, 800: $green-800, 900: $green-900),
+    "blue": (100: $blue-100, 200: $blue-200, 300: $blue-300, 400: $blue-400, 500: $blue-500, 600: $blue-600, 700: $blue-700, 800: $blue-800, 900: $blue-900),
+    "orange": (100: $orange-100, 200: $orange-200, 300: $orange-300, 400: $orange-400, 500: $orange-500, 600: $orange-600, 700: $orange-700, 800: $orange-800, 900: $orange-900),
+);
+
+$ds-soft-tints: (
+    "sage": $sage,
+    "sky": $sky,
+    "peach": $peach,
+    "blush": $blush,
+    "lilac": $lilac,
+);
+
+// --------------------------------------------------------------------------
+// Spacing skalė (spacing-xxs .. spacing-4xl)
+// --------------------------------------------------------------------------
+$ds-spacers: (
+    "xxs": 2px,
+    "xs": 4px,
+    "sm": 6px,
+    "md": 8px,
+    "lg": 12px,
+    "xl": 16px,
+    "2xl": 20px,
+    "3xl": 24px,
+    "4xl": 32px,
+);
+
+// --------------------------------------------------------------------------
+// Kampų suapvalinimo skalė (radius-none .. radius-full)
+// --------------------------------------------------------------------------
+$ds-radii: (
+    "none": 0px,
+    "xxs": 2px,
+    "xs": 4px,
+    "sm": 6px,
+    "md": 8px,
+    "lg": 10px,
+    "xl": 12px,
+    "2xl": 16px,
+    "3xl": 20px,
+    "full": 9999px,
+);
+
+// ==========================================================================
+// Tipografija
+// ==========================================================================
+$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+// Type ramp (dydis / eilutės aukštis / svoris) — naudojama _typography.scss
+$ds-type-ramp: (
+    "h1": (size: 23px, line-height: 32px, weight: 700),
+    "h2": (size: 20px, line-height: 30px, weight: 700),
+    "h3": (size: 18px, line-height: 30px, weight: 700),
+    "h4": (size: 16px, line-height: 26px, weight: 700),
+    "h5": (size: 14px, line-height: 21px, weight: 700),
+    "text-md": (size: 16px, line-height: 24px, weight: 400),
+    "text-lg": (size: 18px, line-height: 28px, weight: 600),
+    "text-btn": (size: 15px, line-height: 22px, weight: 600),
+    "text-intro": (size: 15px, line-height: 23px, weight: 400),
+);
+
+// ==========================================================================
+// Bootstrap kintamųjų perrašymai (PRIVALO būti prieš `@import "bootstrap"`)
+// ==========================================================================
+$primary: $teal-600;
+$secondary: $grey-600;
+$success: $green-600;
+$info: $blue-500;
+$warning: $orange-500;
+$danger: $danger-500;
+$light: $grey-100;
+$dark: $grey-900;
+
+$body-color: $grey-900;
+$body-bg: #ffffff;
+$border-color: $grey-200;
+
+$link-color: $teal-700;
+$link-hover-color: $teal-900;
+
+$border-radius: map-get($ds-radii, "md");
+$border-radius-sm: map-get($ds-radii, "xs");
+$border-radius-lg: map-get($ds-radii, "lg");
+
+// Papildomos DS akcentinės spalvos registruojamos kaip pilnavertės Bootstrap
+// temos spalvos — automatiškai sugeneruojamos utility klasės
+// (pvz. bg-salmon, text-accent-purple, btn-outline-salmon ir t.t.)
+//
+// Pastaba: raktas negali būti "purple" (ar "teal") — tai susikirstų su
+// Bootstrap'o paties bazinės `$colors` map raktu (žr. bootstrap/scss/_variables.scss),
+// dėl ko atsirastų dubliuotas ir vienas kitą "šešėliuojantis" --bs-purple kintamasis.
+$custom-colors: (
+    "salmon": $salmon-500,
+    "accent-purple": $purple-500,
+);
+
+$theme-colors: map-merge(
+    (
+        "primary": $primary,
+        "secondary": $secondary,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark,
+    ),
+    $custom-colors
+);
