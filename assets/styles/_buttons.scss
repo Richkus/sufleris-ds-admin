@@ -120,6 +120,22 @@
     // Pushes it to the end of .ds-group__row's flex line, flush with the
     // state buttons rather than on its own row.
     margin-left: auto;
+    // .ds-group__row centers items on the 40px button row's cross-axis by
+    // default — that leaves the (much shorter) toggle floating above the
+    // buttons' baseline. Pin it to the row's bottom instead, closer to
+    // the group box's bottom border, per the Figma reference.
+    align-self: flex-end;
+    position: relative;
+    // Fixed footprint sized to the wider "Kodas" (icon+label) state — see
+    // the two crossfading spans below. Without a fixed size, the button
+    // resized the instant Alpine flipped display:none on the outgoing
+    // span (not animated, since only opacity transitions), which read as
+    // the toggle/close icon "jumping" during the crossfade.
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 61px;
+    height: 18px;
     background: none;
     border: none;
     padding: 0;
@@ -131,6 +147,12 @@
     cursor: pointer;
 
     span {
+        // Both states overlay the same top-right anchor (rather than
+        // sitting side by side in normal flow) so the crossfade never
+        // shifts the button's own box or the icon's position.
+        position: absolute;
+        top: 0;
+        right: 0;
         display: inline-flex;
         align-items: center;
         gap: map-get($ds-spacers, xs);
@@ -165,9 +187,7 @@
 }
 
 .code-panel__copy {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     width: 30px;
     height: 22px;
     padding: 0;
@@ -176,6 +196,17 @@
     border-radius: map-get($ds-radii, sm);
     color: $grey-600;
     cursor: pointer;
+
+    span {
+        // Both icon states overlay the exact same centered spot instead
+        // of sitting side by side during the crossfade — otherwise the
+        // "centered" icon visibly shifts while its sibling is fading out.
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     svg { width: 14px; height: 14px; }
 
