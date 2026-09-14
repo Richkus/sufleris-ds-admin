@@ -82,10 +82,16 @@
         </a>
     </div>
 
-    <div class="sidebar__nav" x-data="{ open: { foundations: true, components: true, patterns: true, pages: true } }">
+    {#
+        dsSidebarState() (assets/js/app.js) persists expand/collapse per
+        section in localStorage — all expanded on a first visit, then
+        whatever the user last left open/closed sticks on later visits
+        instead of resetting every page load.
+    #}
+    <div class="sidebar__nav" x-data="dsSidebarState()">
         {% for section in sections %}
             <div class="sidebar__section">
-                <button type="button" class="sidebar__section-header" @click="open.{{ section.key }} = !open.{{ section.key }}" :aria-expanded="open.{{ section.key }}.toString()">
+                <button type="button" class="sidebar__section-header" @click="toggleSection('{{ section.key }}')" :aria-expanded="open.{{ section.key }}.toString()">
                     <span>{{ section.label }}</span>
                     <span class="sidebar__chevron" :class="{ 'is-collapsed': !open.{{ section.key }} }">{{ icons.chevronSm() }}</span>
                 </button>

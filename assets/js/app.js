@@ -134,4 +134,27 @@ window.dsSetShell = function dsSetShell(version) {
     Alpine.store('shell').current = version;
 };
 
+/**
+ * Sidebar section expand/collapse state (see _sidebar.html.twig) — all
+ * sections start expanded on a first visit (nothing in localStorage
+ * yet), then whatever the user last left open/closed sticks on later
+ * visits/page loads instead of always resetting back to all-expanded.
+ */
+window.dsSidebarState = function dsSidebarState() {
+    const defaults = { foundations: true, components: true, patterns: true, pages: true };
+    let saved = {};
+    try {
+        saved = JSON.parse(localStorage.getItem('ds-sidebar-sections') || '{}');
+    } catch (e) {}
+    return {
+        open: { ...defaults, ...saved },
+        toggleSection(key) {
+            this.open[key] = !this.open[key];
+            try {
+                localStorage.setItem('ds-sidebar-sections', JSON.stringify(this.open));
+            } catch (e) {}
+        },
+    };
+};
+
 Alpine.start();
