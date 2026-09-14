@@ -7,14 +7,18 @@
 
 {% block content %}
     <section class="hero-ds">
-        <div class="hero-ds__illustrations">
-            {% include "partials/_wellcome-illustrations.html.twig" %}
-        </div>
-        <h1 class="hero-ds__title">Mokesčių SUFLERIO dizaino sistema</h1>
-        <p class="hero-ds__subtitle ds-text-md">Čia sudėjom viską, ko reikia MS dizainui kurti ir naudoti :)</p>
-        <div class="hero-ds__actions">
-            <a href="https://github.com/" class="hero-pill">{{ icons.icon('github', 20) }} GitHub</a>
-            <a href="https://www.figma.com/" class="hero-pill">{{ icons.icon('figma', 20) }} Figma</a>
+        <div class="hero-ds__row">
+            <div class="hero-ds__content">
+                <h1 class="hero-ds__title">Mokesčių SUFLERIO dizaino sistema</h1>
+                <p class="hero-ds__subtitle ds-text-md">Čia sudėjom viską, ko reikia MS dizainui kurti ir naudoti :)</p>
+                <div class="hero-ds__actions">
+                    <a href="https://github.com/" class="hero-pill">{{ icons.icon('github', 20) }} GitHub</a>
+                    <a href="https://www.figma.com/" class="hero-pill">{{ icons.icon('figma', 20) }} Figma</a>
+                </div>
+            </div>
+            <div class="hero-ds__illustrations">
+                {% include "partials/_wellcome-illustrations.html.twig" %}
+            </div>
         </div>
     </section>
 {% endblock %}

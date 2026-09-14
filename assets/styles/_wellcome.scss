@@ -18,7 +18,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     // ~128px side gutter (Figma: text starts ~133px into the hero) — wider
     // than the standard page padding since this banner spans full-width.
     padding: map-get($ds-spacers, "4xl") calc(#{map-get($ds-spacers, "4xl")} * 4);
@@ -28,6 +27,28 @@
         linear-gradient(90deg, rgba($teal-700, 0.08) 1px, transparent 1px);
     background-size: 64px 64px;
     overflow: hidden;
+}
+
+// Text column + illustrations, side by side. A real flex row (not two
+// independently-positioned layers) so the two can never overlap — an
+// earlier version absolutely-positioned the illustrations by eye, which
+// looked right at the widths it was tested at but visibly overlapped the
+// subtitle around ~1100-1200px, since nothing coordinated the two. Both
+// sides shrink together (flex-shrink) as the hero narrows instead.
+.hero-ds__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: map-get($ds-spacers, "3xl");
+    width: 100%;
+}
+
+.hero-ds__content {
+    // Willing to shrink (and let the title/subtitle wrap) before ever
+    // encroaching on .hero-ds__illustrations' space — flex-basis 480px
+    // matches .hero-ds__title's own max-width below.
+    flex: 0 1 480px;
+    min-width: 0;
 }
 
 .hero-ds__title {
@@ -84,17 +105,14 @@
 
 // Decorative illustration cluster (document/coins, people, calendar/
 // calculator groups + scattered shapes) — see
-// partials/_wellcome-illustrations.html.twig. Floated to the right of the
-// text column, vertically centered on the hero regardless of its height
-// (position: absolute + top: 50%/translateY, not a fixed px offset, so it
-// re-centers with the text on any viewport) and hidden below ~1100px
-// where it would otherwise start overlapping the title/buttons.
+// partials/_wellcome-illustrations.html.twig. A flex sibling of
+// .hero-ds__content (not absolutely positioned), so it shrinks in step
+// with the text column as the hero narrows and can't overlap it; only
+// hidden below a genuinely tight width where even a small illustration
+// would crowd a heavily-wrapped title.
 .hero-ds__illustrations {
-    position: absolute;
-    top: 50%;
-    right: clamp(#{map-get($ds-spacers, "4xl")}, 8vw, calc(#{map-get($ds-spacers, "4xl")} * 3));
-    transform: translateY(-50%);
-    width: clamp(220px, 22vw, 329px);
+    flex: 0 1 329px;
+    min-width: 140px;
     pointer-events: none;
 
     svg {
@@ -103,7 +121,7 @@
         height: auto;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 760px) {
         display: none;
     }
 }
