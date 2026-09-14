@@ -11,10 +11,9 @@
 <div class="toast-stack" x-data>
     <template x-for="toast in $store.toasts.items" :key="toast.id">
         <div class="toast-item"
-             x-transition:enter="toast-item--transition"
-             x-transition:enter-start="toast-item--enter-start"
-             x-transition:leave="toast-item--transition"
-             x-transition:leave-end="toast-item--leave-end">
+             x-show="toast.visible"
+             x-transition:enter.opacity.scale.95.duration.220ms
+             x-transition:leave.opacity.scale.95.duration.180ms>
             <svg class="toast-item__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             <span class="toast-item__message" x-text="toast.message"></span>
             <button type="button" class="toast-item__close" @click="$store.toasts.remove(toast.id)" aria-label="Uždaryti">&times;</button>

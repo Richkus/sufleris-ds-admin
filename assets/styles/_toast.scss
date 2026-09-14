@@ -28,7 +28,6 @@
     box-shadow: 0 4px 12px rgba($grey-900, 0.18);
     font-size: 13px;
     line-height: 18px;
-    transition: transform 200ms ease, opacity 200ms ease;
 }
 
 .toast-item__icon {
@@ -53,19 +52,4 @@
     &:hover {
         color: #fff;
     }
-}
-
-// Alpine x-transition classes (see _toast-stack.html.twig)
-.toast-item--transition {
-    transition: transform 200ms ease, opacity 200ms ease;
-}
-
-.toast-item--enter-start {
-    opacity: 0;
-    transform: translateY(8px) scale(0.96);
-}
-
-.toast-item--leave-end {
-    opacity: 0;
-    transform: translateY(-4px) scale(0.98);
 }

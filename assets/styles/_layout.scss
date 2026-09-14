@@ -91,7 +91,16 @@
     // ...but the footer still reads as the same 820px column as everywhere
     // else — it doesn't inherit app-content's padding here (that's 0), so
     // it needs its own gutter + centering.
+    //
+    // width: 100% is required alongside margin:auto here — without it, this
+    // flex-column child (a plain block with auto side-margins) doesn't
+    // stretch to fill the cross axis per the flexbox spec (an auto margin
+    // on the cross axis disables stretch), so it shrinks-to-fit instead and
+    // ends up narrower/off-center at any viewport under ~884px. Matches
+    // the same width:100% + max-width + margin:auto pattern already used
+    // by .app-content__inner above.
     .ds-footer-wrap {
+        width: 100%;
         max-width: calc(820px + #{map-get($ds-spacers, "4xl")} * 2);
         margin-left: auto;
         margin-right: auto;
