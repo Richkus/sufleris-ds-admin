@@ -83,23 +83,30 @@
 // width next to the sidebar, not the 820px column every other page uses) —
 // opt this page out of the cap/centering entirely.
 .app-content__inner--flush {
+    position: relative;
     padding: 0;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
 
-    // ...but the footer still reads as the same 820px column as everywhere
-    // else — it doesn't inherit app-content's padding here (that's 0), so
-    // it needs its own gutter + centering.
+    // The footer overlays the hero's background/pattern instead of sitting
+    // in a separate white strip below it — .hero-ds (flex: 1 1 auto, see
+    // _wellcome.scss) is left as the sole flex child, so it still fills
+    // this whole box; the footer is pulled out of that flow and pinned on
+    // top, bottom-anchored.
     //
-    // width: 100% is required alongside margin:auto here — without it, this
-    // flex-column child (a plain block with auto side-margins) doesn't
-    // stretch to fill the cross axis per the flexbox spec (an auto margin
-    // on the cross axis disables stretch), so it shrinks-to-fit instead and
-    // ends up narrower/off-center at any viewport under ~884px. Matches
-    // the same width:100% + max-width + margin:auto pattern already used
-    // by .app-content__inner above.
+    // width: 100% is required alongside margin:auto here — without it,
+    // an absolutely-positioned block with auto side-margins still
+    // shrinks-to-fit its content rather than filling the left/right:0
+    // containing block, so it'd end up narrower/off-center. Matches the
+    // same width:100% + max-width + margin:auto pattern used by
+    // .app-content__inner above.
     .ds-footer-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
         width: 100%;
         max-width: calc(820px + #{map-get($ds-spacers, "4xl")} * 2);
         margin-left: auto;
