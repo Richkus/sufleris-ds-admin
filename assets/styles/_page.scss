@@ -96,8 +96,19 @@
     color: $grey-600;
 }
 
+// Muted/desaturated so the emoji reads as a quiet signature, not a
+// colorful attention-grabber next to the rest of the footer text.
+.ds-footer__emoji {
+    filter: grayscale(1);
+    opacity: 0.45;
+}
+
 .ds-figma-link {
     display: inline-flex;
+    // .app-content is a flex column (see _layout.scss) — without this,
+    // a direct-child inline-flex element still stretches to the full
+    // cross-axis width by default (align-items: stretch).
+    align-self: flex-start;
     align-items: center;
     gap: map-get($ds-spacers, sm);
     padding: map-get($ds-spacers, md) map-get($ds-spacers, lg);

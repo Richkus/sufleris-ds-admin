@@ -109,24 +109,19 @@
 // ==========================================================================
 // "Show code" pattern (Buttons page)
 //
-// Every variant gets a small inert "Rodyti kodą" toggle under its state
-// row. Only Buttons/Primary is wired up for real (Alpine): clicking it
-// reveals a code panel with a copy-to-clipboard header and a scrollable
-// code body. There is deliberately no way to collapse it again short of a
-// page reload — see templates/buttons.html.twig.
+// Every variant gets a "Rodyti kodą" / "Uždaryti" toggle under its state
+// row (right-aligned) that expands/collapses a code panel with a
+// copy-to-clipboard header and a scrollable, syntax-highlighted code
+// body — see templates/buttons.html.twig.
 // ==========================================================================
 
-.btn-demo__divider {
-    height: 1px;
-    background: $grey-200;
-    border: none;
-    margin: map-get($ds-spacers, xl) 0;
+.btn-demo__toggle-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: map-get($ds-spacers, xl);
 }
 
 .show-code-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: map-get($ds-spacers, xs);
     background: none;
     border: none;
     padding: 0;
@@ -136,6 +131,12 @@
     font-weight: 600;
     color: $grey-600;
     cursor: pointer;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: map-get($ds-spacers, xs);
+    }
 
     svg { width: 16px; height: 16px; }
 

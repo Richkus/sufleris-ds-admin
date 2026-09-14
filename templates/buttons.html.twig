@@ -40,14 +40,13 @@
             <div class="ds-group__label">Primary</div>
             <div class="ds-group__row">{{ _self.stateButton('primary', 'Primary') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            {# Collapsed: plain "Rodyti kodą" link. No way back once clicked —
-               intentional, matches the Figma prototype (reload to reset). #}
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
@@ -81,12 +80,13 @@
             <div class="ds-group__label">Secondary</div>
             <div class="ds-group__row">{{ _self.stateButton('secondary', 'Secondary') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
@@ -120,12 +120,13 @@
             <div class="ds-group__label">Tertiary</div>
             <div class="ds-group__row">{{ _self.stateButton('tertiary', 'Tertiary') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
@@ -159,12 +160,13 @@
             <div class="ds-group__label">Destructive &middot; Primary</div>
             <div class="ds-group__row">{{ _self.stateButton('destructive', 'Destructive') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
@@ -198,12 +200,13 @@
             <div class="ds-group__label">Destructive &middot; Secondary</div>
             <div class="ds-group__row">{{ _self.stateButton('destructive-secondary', 'Destructive Secondary') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
@@ -237,12 +240,13 @@
             <div class="ds-group__label">Link</div>
             <div class="ds-group__row">{{ _self.stateButton('link', 'Link') }}</div>
 
-            <hr class="btn-demo__divider">
-
-            <button type="button" class="show-code-toggle" x-show="!expanded"
-                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
-                {{ icons.icon('code', 16) }} Rodyti kodą
-            </button>
+            <div class="btn-demo__toggle-row">
+                <button type="button" class="show-code-toggle"
+                        @click="expanded = !expanded; if (expanded) $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
+                    <span x-show="!expanded">{{ icons.icon('code', 16) }} Rodyti kodą</span>
+                    <span x-show="expanded" x-cloak>{{ icons.icon('x', 16) }} Uždaryti</span>
+                </button>
+            </div>
 
             <div class="code-panel" x-show="expanded" x-cloak>
                 <div class="code-panel__header">
