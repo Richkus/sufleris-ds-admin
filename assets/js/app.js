@@ -10,7 +10,25 @@ import './../styles/main.scss';
 
 import Alpine from 'alpinejs';
 
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markup';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
 window.Alpine = Alpine;
+window.Prism = Prism;
+
+// Prism's line-numbers plugin measures each <pre>'s rendered height to
+// place the gutter numbers, so it must run AFTER layout/fonts are ready,
+// not just after DOMContentLoaded — a code panel that's still `x-show`
+// hidden (display:none) at that point gets measured as 0-height and the
+// numbers land wrong. Re-run highlighting once, on next tick, so any
+// panel already visible on load is correct; panels revealed later via
+// "Rodyti kodą" call `Prism.highlightAllUnder(...)` themselves (see the
+// button page's inline `@click` handler).
+window.addEventListener('load', () => {
+    requestAnimationFrame(() => Prism.highlightAll());
+});
 
 /**
  * Global toast store — anything on any page can call

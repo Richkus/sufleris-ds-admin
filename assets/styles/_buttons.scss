@@ -214,4 +214,50 @@
     color: $grey-800;
     white-space: pre-wrap;
     word-break: break-word;
+
+    // Prism's line-numbers plugin supplies the gutter positioning
+    // (padding-left, the counter, absolute .line-numbers-rows); this just
+    // re-colors its default border/number color to match DS tokens
+    // instead of Prism's own hardcoded grey.
+    &.line-numbers .line-numbers-rows {
+        border-right-color: $grey-200;
+    }
+
+    .line-numbers-rows > span::before {
+        color: $grey-400;
+    }
+}
+
+// Prism token colors — no prebuilt Prism theme is imported (see app.js),
+// so every color here is intentional and drawn from the DS palette
+// instead of a generic syntax-theme default.
+.token.tag,
+.token.tag .token.class-name {
+    color: $blue-600;
+}
+
+.token.attr-name {
+    color: $teal-700;
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+    color: $green-600;
+}
+
+.token.punctuation {
+    color: $grey-500;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: $grey-400;
+    font-style: italic;
+}
+
+.token.boolean,
+.token.number {
+    color: $purple-600;
 }

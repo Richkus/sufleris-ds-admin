@@ -54,7 +54,8 @@
 
             {# Collapsed: plain "Rodyti kodą" link. No way back once clicked —
                intentional, matches the Figma prototype (reload to reset). #}
-            <button type="button" class="show-code-toggle" x-show="!expanded" @click="expanded = true">
+            <button type="button" class="show-code-toggle" x-show="!expanded"
+                    @click="expanded = true; $nextTick(() => Prism.highlightAllUnder($el.closest('.ds-group')))">
                 {{ icons.icon('code', 16) }} Rodyti kodą
             </button>
 
@@ -67,12 +68,12 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code">&lt;button class=&quot;btn btn-primary&quot;&gt;Default&lt;/button&gt;
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-primary&quot;&gt;Default&lt;/button&gt;
 &lt;button class=&quot;btn btn-primary btn-hover&quot;&gt;Hover&lt;/button&gt;
 &lt;button class=&quot;btn btn-primary&quot; disabled&gt;Disabled&lt;/button&gt;
 &lt;button class=&quot;btn btn-primary btn-loading&quot;&gt;
   &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</pre>
+&lt;/button&gt;</code></pre>
                 </div>
             </div>
         </div>

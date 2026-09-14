@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "alpinejs": "^3.14.3",
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "prismjs": "^1.30.0"
   }
 }
