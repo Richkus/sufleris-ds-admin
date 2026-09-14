@@ -35,12 +35,20 @@
 // looked right at the widths it was tested at but visibly overlapped the
 // subtitle around ~1100-1200px, since nothing coordinated the two. Both
 // sides shrink together (flex-shrink) as the hero narrows instead.
+//
+// max-width caps it at the Figma source's own hero width (1160px) and
+// centers it — without a cap, justify-content: space-between pushes the
+// two ever further apart with no upper bound as the viewport grows past
+// that, so on a very wide screen the composition visibly fell apart into
+// two disconnected corners instead of reading as one hero.
 .hero-ds__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: map-get($ds-spacers, "3xl");
     width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
 }
 
 .hero-ds__content {
