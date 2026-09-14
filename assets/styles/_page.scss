@@ -24,7 +24,9 @@
 
 .ds-page__divider {
     height: 1px;
-    background: $grey-200;
+    // Bumped from grey-200 — at 1px tall on white it read as barely
+    // there; grey-300 keeps it subtle while actually being visible.
+    background: $grey-300;
     border: none;
     margin: map-get($ds-spacers, "3xl") 0;
 }
