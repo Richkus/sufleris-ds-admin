@@ -57,7 +57,9 @@
                     <main class="app-content">
                         <div class="app-content__inner {{ contentClass|default('') }}">
                             {{ block('content') }}
-                            {% include "partials/_footer.html.twig" %}
+                            {% if not (hideFooter is defined and hideFooter) %}
+                                {% include "partials/_footer.html.twig" %}
+                            {% endif %}
                         </div>
                     </main>
                 {% endif %}
