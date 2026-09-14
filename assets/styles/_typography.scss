@@ -26,5 +26,8 @@ h5, .h5 { @extend .ds-h5; }
 body {
     font-family: $font-family-sans-serif;
     @extend .ds-text-md;
-    color: $grey-900;
+    // Also the default color for h1-h5 (see the aliases above) and any
+    // other title text without its own explicit color — grey-900 read as
+    // near-black, grey-800 is the correct "neutral 800" title color.
+    color: $grey-800;
 }
