@@ -66,8 +66,24 @@
     }
 }
 
+// Wellcome's hero is a full-bleed banner in Figma (spans the entire content
+// width next to the sidebar, not the 820px column every other page uses) —
+// opt this page out of the cap/centering entirely.
 .app-content--flush {
     padding: 0;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+
+    // ...but the footer still reads as the same 820px column as everywhere
+    // else — it doesn't inherit app-content's padding here (that's 0), so
+    // it needs its own gutter + centering.
+    .ds-footer-wrap {
+        max-width: calc(820px + #{map-get($ds-spacers, "4xl")} * 2);
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 map-get($ds-spacers, "4xl") map-get($ds-spacers, "4xl");
+    }
 }
 
 .app-content--bare {

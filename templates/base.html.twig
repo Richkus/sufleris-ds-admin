@@ -6,7 +6,10 @@
     <title>{% block title %}Mokesčių Sufleris — DS Admin{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    {# Enriqueta is used ONLY for the Wellcome hero headline (index.html) —
+       a deliberate one-off serif accent per the Figma source, distinct from
+       the site-wide Open Sans. #}
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
