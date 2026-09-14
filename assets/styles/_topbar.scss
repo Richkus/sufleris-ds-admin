@@ -72,3 +72,59 @@
 .topbar__profile-wrap {
     position: relative;
 }
+
+// Experimental V.1/V.2/V.3 layout switcher dropdown — see
+// _shell-switcher.html.twig for why this exists. .sidebar__v2-actions
+// (V.2 only, see _layout.scss) overrides the menu to open
+// upward-and-rightward instead, same reasoning as .profile-dropdown
+// there.
+.shell-switcher {
+    position: relative;
+}
+
+.shell-switcher__menu {
+    position: absolute;
+    top: calc(100% + #{map-get($ds-spacers, sm)});
+    right: 0;
+    width: 140px;
+    background: $body-bg;
+    border: 1px solid $grey-200;
+    border-radius: map-get($ds-radii, lg);
+    box-shadow: 0 12px 32px rgba($grey-900, 0.14), 0 2px 8px rgba($grey-900, 0.08);
+    z-index: 50;
+    padding: map-get($ds-spacers, xs);
+}
+
+.shell-switcher__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md);
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    font-family: $font-family-sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: $grey-700;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: $grey-100;
+    }
+
+    &.is-active {
+        color: $teal-700;
+    }
+}
+
+.shell-switcher__check {
+    display: flex;
+    flex: 0 0 auto;
+    color: $teal-600;
+
+    svg { width: 16px; height: 16px; }
+}

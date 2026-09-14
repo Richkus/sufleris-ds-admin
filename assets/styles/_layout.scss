@@ -188,12 +188,13 @@ html.shell-v2 {
         gap: map-get($ds-spacers, md);
         flex: 0 0 auto;
         padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl);
-        // .profile-dropdown normally opens downward-and-leftward
-        // (right: 0) from an icon near the topbar's right edge. That
-        // icon now sits near the bottom-LEFT of the viewport instead, so
-        // unchanged it would run off both the bottom and the left edge —
-        // open upward-and-rightward instead.
-        .profile-dropdown {
+        // .profile-dropdown and .shell-switcher__menu both normally open
+        // downward-and-leftward (right: 0) from icons near the topbar's
+        // right edge. Those icons now sit near the bottom-LEFT of the
+        // viewport instead, so unchanged they'd run off both the bottom
+        // and the left edge — open upward-and-rightward instead.
+        .profile-dropdown,
+        .shell-switcher__menu {
             top: auto;
             right: auto;
             left: 0;

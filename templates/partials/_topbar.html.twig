@@ -7,17 +7,7 @@
     </a>
 
     <div class="topbar__actions">
-        {#
-            Experimental — lets us pace-check the alternate "V.2" shell
-            (sidebar tint, no card/shadow around content, see Figma
-            5638:14930) live across real pages instead of only in Figma,
-            without maintaining a second copy of the site. Toggles a class
-            on <html> (see the inline script in base.html.twig for the
-            flash-of-wrong-shell prevention) persisted in localStorage by
-            window.dsToggleShell (assets/js/app.js). Remove this button
-            (and the shell-v2 styles) once we've decided either way.
-        #}
-        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="Layoutas (V.1 → V.2 → V.3)">{{ icons.icon('layout', 20) }}</button>
+        {% include "partials/_shell-switcher.html.twig" %}
         <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
 

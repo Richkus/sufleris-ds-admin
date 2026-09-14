@@ -104,11 +104,11 @@
 
     <div class="sidebar__v2-actions" x-data="{ profileOpen: false }">
         {#
-            Without this, V.2 has no way back to the default (V.1)
-            shell — the real toggle button lives in .topbar, which this
-            variant hides entirely.
+            Without this, V.2 has no way back to the other shells — the
+            real switcher lives in .topbar, which this variant hides
+            entirely.
         #}
-        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="Layoutas (V.1 → V.2 → V.3)">{{ icons.icon('layout', 20) }}</button>
+        {% include "partials/_shell-switcher.html.twig" %}
         <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
         <div class="topbar__profile-wrap">

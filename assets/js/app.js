@@ -98,27 +98,40 @@ window.dsCopy = function dsCopy(text, message) {
 };
 
 /**
- * Experimental shell cycle (see the topbar/sidebar buttons in
+ * Experimental shell switcher (see the V.1/V.2/V.3 dropdown in
  * _topbar.html.twig/_sidebar.html.twig and the flash-prevention inline
- * script in base.html.twig) — cycles V.1 (default) -> V.2 (Figma
- * 5638:14930: no topbar, sidebar/content as floating rounded cards) ->
- * V.3 (Figma 5644:845: topbar always visible, standard sidebar/content
- * chrome — currently matches V.1 visually since that Figma frame is a
- * fresh duplicate with no edits yet; kept as its own class so it can
- * diverge later without touching V.1) -> back to V.1. Persisted
- * per-browser so it survives navigating between the site's separate
- * static pages.
+ * script in base.html.twig) — V.1 is the default, V.2 is Figma
+ * 5638:14930 (no topbar, sidebar/content as floating rounded cards),
+ * V.3 is Figma 5644:845 (topbar always visible, standard sidebar/
+ * content chrome — currently matches V.1 visually since that Figma
+ * frame is a fresh duplicate with no edits yet; kept as its own class
+ * so it can diverge later without touching V.1). Persisted per-browser
+ * so it survives navigating between the site's separate static pages.
  */
 const DS_SHELL_VERSIONS = ['v1', 'v2', 'v3'];
 
-window.dsToggleShell = function dsToggleShell() {
-    const current = DS_SHELL_VERSIONS.find((v) => document.documentElement.classList.contains(`shell-${v}`)) || 'v1';
-    const next = DS_SHELL_VERSIONS[(DS_SHELL_VERSIONS.indexOf(current) + 1) % DS_SHELL_VERSIONS.length];
+// A shared store (not per-component x-data) so the topbar's and the
+// sidebar's V.2 switcher instances agree on which version is checked —
+// each is a separate Alpine component, so local state read once at init
+// wouldn't pick up a change made through the other instance without a
+// full page reload.
+Alpine.store('shell', {
+    current: (() => {
+        try {
+            return localStorage.getItem('ds-shell') || 'v1';
+        } catch (e) {
+            return 'v1';
+        }
+    })(),
+});
+
+window.dsSetShell = function dsSetShell(version) {
     DS_SHELL_VERSIONS.forEach((v) => document.documentElement.classList.remove(`shell-${v}`));
-    if (next !== 'v1') document.documentElement.classList.add(`shell-${next}`);
+    if (version !== 'v1') document.documentElement.classList.add(`shell-${version}`);
     try {
-        localStorage.setItem('ds-shell', next);
+        localStorage.setItem('ds-shell', version);
     } catch (e) {}
+    Alpine.store('shell').current = version;
 };
 
 Alpine.start();
