@@ -14,16 +14,17 @@
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
     {#
-        Experimental "flat" shell toggle (see the topbar button in
-        _topbar.html.twig) — applies the saved choice to <html> before
-        anything paints, so there's no flash of the wrong shell on load.
-        Must run synchronously in <head>, before body/CSS render.
+        Experimental "V.2" shell toggle (see the topbar/sidebar buttons
+        in _topbar.html.twig/_sidebar.html.twig) — applies the saved
+        choice to <html> before anything paints, so there's no flash of
+        the wrong shell on load. Must run synchronously in <head>,
+        before body/CSS render.
     #}
     <script>
         (function () {
             try {
-                if (localStorage.getItem('ds-shell') === 'flat') {
-                    document.documentElement.classList.add('shell-flat');
+                if (localStorage.getItem('ds-shell') === 'v2') {
+                    document.documentElement.classList.add('shell-v2');
                 }
             } catch (e) {}
         })();

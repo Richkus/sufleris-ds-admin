@@ -69,13 +69,13 @@
 
 <nav class="sidebar">
     {#
-        Only shown in the experimental "flat" shell (html.shell-flat, see
+        Only shown in the experimental "V.2" shell (html.shell-v2, see
         _topbar.html.twig/app.js) — that variant hides the real topbar
         entirely and relocates the wordmark + icon actions here, matching
-        Figma 5638:14930. Duplicated (not moved) so the default shell is
-        untouched; hidden via CSS the rest of the time.
+        Figma 5638:14930. Duplicated (not moved) so the default (V.1)
+        shell is untouched; hidden via CSS the rest of the time.
     #}
-    <div class="sidebar__flat-header">
+    <div class="sidebar__v2-header">
         <a href="index.html" class="topbar__wordmark">
             <span class="topbar__wordmark-brand">Sufleris</span>
             <span class="topbar__wordmark-sub">DS.V.3</span>
@@ -102,13 +102,13 @@
         {% endfor %}
     </div>
 
-    <div class="sidebar__flat-actions" x-data="{ profileOpen: false }">
+    <div class="sidebar__v2-actions" x-data="{ profileOpen: false }">
         {#
-            Without this, the flat shell has no way back to the card
+            Without this, V.2 has no way back to the default (V.1)
             shell — the real toggle button lives in .topbar, which this
             variant hides entirely.
         #}
-        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="Layout eksperimentas">{{ icons.icon('layout', 20) }}</button>
+        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="V.2 layoutas">{{ icons.icon('layout', 20) }}</button>
         <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
         <div class="topbar__profile-wrap">

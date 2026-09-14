@@ -123,17 +123,17 @@
 }
 
 // ==========================================================================
-// Experimental "flat" shell (Figma 5638:14930) — content area is plain
+// Experimental "V.2" shell (Figma 5638:14930) — content area is plain
 // white with no card/shadow, and the sidebar becomes its own floating
 // grey-100 rounded card (with the wordmark + settings/home/profile icons
 // relocated into it, top and bottom — see _sidebar.html.twig) instead of
 // a full-height column under a separate topbar. Toggled via the topbar
 // button in _topbar.html.twig; see app.js (window.dsToggleShell) and the
 // flash-prevention script in base.html.twig. Remove this whole block
-// (and the toggle, and the flat-header/flat-actions markup) once we've
+// (and the toggle, and the v2-header/v2-actions markup) once we've
 // decided whether to keep it.
 // ==========================================================================
-html.shell-flat {
+html.shell-v2 {
     .app-page {
         background: $body-bg;
         padding: 0;
@@ -145,7 +145,7 @@ html.shell-flat {
         box-shadow: none;
     }
 
-    // The real topbar is replaced by .sidebar__flat-header/-actions below.
+    // The real topbar is replaced by .sidebar__v2-header/-actions below.
     .topbar {
         display: none;
     }
@@ -160,13 +160,13 @@ html.shell-flat {
         border-right: none;
         border-radius: map-get($ds-radii, "3xl");
         background: $grey-100;
-        // No overflow: hidden — .sidebar__flat-actions' profile dropdown
+        // No overflow: hidden — .sidebar__v2-actions' profile dropdown
         // (see below) needs to escape this box; its children are already
         // inset from the edges by their own padding so the rounded
         // corners still read cleanly without clipping.
     }
 
-    .sidebar__flat-header {
+    .sidebar__v2-header {
         display: block;
         flex: 0 0 auto;
         // Left padding matches the nav items' own left offset exactly —
@@ -182,7 +182,7 @@ html.shell-flat {
         overflow-y: auto;
     }
 
-    .sidebar__flat-actions {
+    .sidebar__v2-actions {
         display: flex;
         align-items: center;
         gap: map-get($ds-spacers, md);
@@ -219,8 +219,33 @@ html.shell-flat {
 
     // Same reasoning for the relocated topbar icon buttons (hover is
     // teal-100 by default).
-    .sidebar__flat-actions .topbar__icon-btn:hover,
-    .sidebar__flat-actions .topbar__icon-btn.is-active {
+    .sidebar__v2-actions .topbar__icon-btn:hover,
+    .sidebar__v2-actions .topbar__icon-btn.is-active {
         background: $grey-200;
+    }
+
+    // Wellcome's hero fills .app-content__inner--flush edge to edge — in
+    // V.2 it should read as its own floating rounded card too, matching
+    // the sidebar, rather than a plain full-bleed edge-to-edge panel.
+    // The inset/margin goes on the *container*, not .hero-ds itself,
+    // so .ds-footer-wrap (an absolutely-positioned sibling of .hero-ds,
+    // pinned to this same container's edges) automatically follows the
+    // new smaller bounding box and keeps overlaying the card correctly —
+    // giving .hero-ds its own margin would leave the footer sitting
+    // outside/below the rounded card instead of on top of it.
+    .app-content__inner--flush {
+        // width: auto overrides the base class's width: 100% — with both
+        // set, the box would be 100% of the available space PLUS this
+        // margin on top, overflowing past the container's edge instead
+        // of insetting. auto lets the flex item's default stretch
+        // behavior account for the margin correctly (same lesson as
+        // .app-content__inner's own margin: auto centering elsewhere in
+        // this file).
+        width: auto;
+        margin: 9px 12px 9px 0;
+    }
+
+    .hero-ds {
+        border-radius: map-get($ds-radii, "3xl");
     }
 }

@@ -8,16 +8,16 @@
 
     <div class="topbar__actions">
         {#
-            Experimental — lets us pace-check the alternate "flat" shell
+            Experimental — lets us pace-check the alternate "V.2" shell
             (sidebar tint, no card/shadow around content, see Figma
             5638:14930) live across real pages instead of only in Figma,
             without maintaining a second copy of the site. Toggles a class
             on <html> (see the inline script in base.html.twig for the
             flash-of-wrong-shell prevention) persisted in localStorage by
             window.dsToggleShell (assets/js/app.js). Remove this button
-            (and the shell-flat styles) once we've decided either way.
+            (and the shell-v2 styles) once we've decided either way.
         #}
-        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="Layout eksperimentas">{{ icons.icon('layout', 20) }}</button>
+        <button type="button" class="topbar__icon-btn" onclick="window.dsToggleShell()" title="V.2 layoutas">{{ icons.icon('layout', 20) }}</button>
         <a href="admin.html" class="topbar__icon-btn" title="MS Admin">{{ icons.icon('settings', 20) }}</a>
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" title="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
 

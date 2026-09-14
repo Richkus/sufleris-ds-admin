@@ -31,11 +31,11 @@
     scrollbar-color: $grey-300 transparent;
 }
 
-// Hidden by default — only shown in the experimental "flat" shell, see
-// the html.shell-flat block in _layout.scss and the comment in
+// Hidden by default — only shown in the experimental "V.2" shell, see
+// the html.shell-v2 block in _layout.scss and the comment in
 // _sidebar.html.twig.
-.sidebar__flat-header,
-.sidebar__flat-actions {
+.sidebar__v2-header,
+.sidebar__v2-actions {
     display: none;
 }
 

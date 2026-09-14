@@ -98,16 +98,16 @@ window.dsCopy = function dsCopy(text, message) {
 };
 
 /**
- * Experimental shell toggle (see the topbar button in _topbar.html.twig
- * and the flash-prevention inline script in base.html.twig) — flips
- * between the default "card" shell and the alternate "flat" shell from
- * Figma 5638:14930, persisted per-browser so it survives navigating
- * between the site's separate static pages.
+ * Experimental shell toggle (see the topbar/sidebar buttons in
+ * _topbar.html.twig/_sidebar.html.twig and the flash-prevention inline
+ * script in base.html.twig) — flips between the default "V.1" shell and
+ * the alternate "V.2" shell from Figma 5638:14930, persisted per-browser
+ * so it survives navigating between the site's separate static pages.
  */
 window.dsToggleShell = function dsToggleShell() {
-    const isFlat = document.documentElement.classList.toggle('shell-flat');
+    const isV2 = document.documentElement.classList.toggle('shell-v2');
     try {
-        localStorage.setItem('ds-shell', isFlat ? 'flat' : 'card');
+        localStorage.setItem('ds-shell', isV2 ? 'v2' : 'v1');
     } catch (e) {}
 };
 
