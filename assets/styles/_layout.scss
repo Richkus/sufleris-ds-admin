@@ -232,7 +232,8 @@ html.shell-v2 {
     }
 
     .sidebar__item.is-active {
-        background: $teal-200;
+        background: rgba($teal-500, 0.7);
+        color: #fff;
     }
 
     // Same reasoning for the relocated topbar icon buttons (hover is
