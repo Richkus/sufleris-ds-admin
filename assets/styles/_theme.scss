@@ -48,31 +48,39 @@
 
 // V.3 dark theme — subtle, not pure black/white (same idea as Tailwind's
 // slate-900 surfaces + slate-100 text rather than #000/#fff): a soft,
-// slightly teal-tinted dark ramp so it still feels like this brand's
-// neutral scale rather than a generic dark-mode import. Brand/accent
-// colors (teal buttons, status colors, swatches) are left as-is — see the
-// note above.
+// teal-tinted dark ramp so it still feels like this brand's neutral scale
+// rather than a generic dark-mode import. Brand/accent colors (teal
+// buttons, status colors, swatches) are left as-is — see the note above.
+//
+// Defined in hsl(), not hex, and NOT derived from $teal-900 — $teal-900
+// (#284b4d) is only ~23% lightness, nowhere near dark enough for a page
+// background, and every step below it in the brand scale is a fixed,
+// discrete token, not a dial you can turn further. hsl() sidesteps that:
+// take the brand's own teal hue (~190°) and choose lightness/saturation
+// freely, so the ramp can go as dark as a background needs while staying
+// visibly teal — turn --hue below to retint, or nudge the lightness
+// values to taste.
 html.shell-v3 {
-    --ds-bg-page: #10181a;
-    --ds-bg-shell: #161f22;
-    --ds-bg-surface: #1c2629;
-    --ds-bg-surface-hover: #263134;
-    --ds-border: #2b3538;
-    --ds-border-strong: #3a464a;
-    --ds-text-title: #e6edee;
-    --ds-text-body: #e6edee;
-    --ds-text-muted: #93a6a8;
-    --ds-text-faint: #5c7275;
+    $hue: 190;
+    --ds-bg-page: hsl(#{$hue}, 38%, 6%);
+    --ds-bg-shell: hsl(#{$hue}, 34%, 9%);
+    --ds-bg-surface: hsl(#{$hue}, 30%, 13%);
+    --ds-bg-surface-hover: hsl(#{$hue}, 28%, 17%);
+    --ds-border: hsl(#{$hue}, 22%, 23%);
+    --ds-border-strong: hsl(#{$hue}, 20%, 29%);
+    --ds-text-title: hsl(#{$hue}, 18%, 93%);
+    --ds-text-body: hsl(#{$hue}, 18%, 93%);
+    --ds-text-muted: hsl(#{$hue}, 14%, 66%);
+    --ds-text-faint: hsl(#{$hue}, 12%, 46%);
     // Lighter teal (reads on dark) + a dark teal-tinted wash instead of
     // the near-white teal-100 — same idea, different weight for a dark
     // surface.
     --ds-accent: #{$teal-300};
-    --ds-accent-bg: #20393c;
-    // Dark teal-tinted hero surface (distinct from the neutral
-    // --ds-bg-surface, keeping the hero feeling brand-colored rather than
-    // just another dark panel) + a light teal for its text/grid, since
-    // #005a5a would be near-unreadable on a dark background.
-    --ds-hero-bg: #16282a;
+    --ds-accent-bg: hsl(#{$hue}, 40%, 19%);
+    // Hero surface sits a bit more saturated than the neutral
+    // bg-surface steps above — keeps it reading as a brand-colored
+    // banner rather than just another dark panel.
+    --ds-hero-bg: hsl(#{$hue}, 45%, 13%);
     --ds-hero-text: #{$teal-100};
-    --ds-hero-grid: rgba(#{$teal-300}, 0.12);
+    --ds-hero-grid: rgba(#{$teal-300}, 0.14);
 }
