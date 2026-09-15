@@ -19,11 +19,21 @@
         choice to <html> before anything paints, so there's no flash of
         the wrong shell on load. Must run synchronously in <head>,
         before body/CSS render.
+
+        Also reads ?shell=v2|v3|v4 from the URL (and persists it to
+        localStorage so it sticks past this one page) — mainly so a
+        specific variant can be linked/captured directly (e.g. for a
+        screenshot or a design-review link) without having to open the
+        DialKit widget and click through it by hand first.
     #}
     <script>
         (function () {
             try {
-                var v = localStorage.getItem('ds-shell');
+                var fromUrl = new URLSearchParams(location.search).get('shell');
+                var v = (fromUrl === 'v2' || fromUrl === 'v3' || fromUrl === 'v4' || fromUrl === 'v1')
+                    ? fromUrl
+                    : localStorage.getItem('ds-shell');
+                if (fromUrl) localStorage.setItem('ds-shell', fromUrl);
                 if (v === 'v2' || v === 'v3' || v === 'v4') {
                     document.documentElement.classList.add('shell-' + v);
                 }
