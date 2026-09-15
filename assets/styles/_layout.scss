@@ -127,11 +127,11 @@
 // white with no card/shadow, and the sidebar becomes its own floating
 // grey-100 rounded card (with the wordmark + settings/home/profile icons
 // relocated into it, top and bottom — see _sidebar.html.twig) instead of
-// a full-height column under a separate topbar. Toggled via the topbar
-// button in _topbar.html.twig; see app.js (window.dsToggleShell) and the
+// a full-height column under a separate topbar. Picked via the DialKit
+// widget (_dial-kit.html.twig); see app.js (window.dsSetShell) and the
 // flash-prevention script in base.html.twig. Remove this whole block
-// (and the toggle, and the v2-header/v2-actions markup) once we've
-// decided whether to keep it.
+// (and the v2-header/v2-actions markup) once we've decided whether to
+// keep it.
 // ==========================================================================
 html.shell-v2 {
     .app-page {
@@ -188,13 +188,12 @@ html.shell-v2 {
         gap: map-get($ds-spacers, md);
         flex: 0 0 auto;
         padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl);
-        // .profile-dropdown and .shell-switcher__menu both normally open
-        // downward-and-leftward (right: 0) from icons near the topbar's
-        // right edge. Those icons now sit near the bottom-LEFT of the
-        // viewport instead, so unchanged they'd run off both the bottom
-        // and the left edge — open upward-and-rightward instead.
-        .profile-dropdown,
-        .shell-switcher__menu {
+        // .profile-dropdown normally opens downward-and-leftward
+        // (right: 0) from an icon near the topbar's right edge. That
+        // icon now sits near the bottom-LEFT of the viewport instead, so
+        // unchanged it would run off both the bottom and the left edge —
+        // open upward-and-rightward instead.
+        .profile-dropdown {
             top: auto;
             right: auto;
             left: 0;
@@ -271,11 +270,18 @@ html.shell-v2 {
 // goes edge-to-edge: no outer page padding, no card border/radius/
 // shadow around it. Same idea as .app-page--bare below, just kept as
 // its own scope since bare pages also drop the topbar/sidebar entirely,
-// which V.3 does not. Part of the same V.1/V.2/V.3 switcher as the
-// html.shell-v2 block above — see app.js (window.dsSetShell) and the
+// which V.3 does not.
+//
+// V.4 is V.3's dark counterpart — same edge-to-edge structure, just with
+// _theme.scss's dark tokens on top (see html.shell-v4 there) — so it
+// shares this structural block rather than repeating it.
+//
+// Part of the V.1/V.2/V.3/V.4 switcher — see the DialKit widget
+// (_dial-kit.html.twig), app.js (window.dsSetShell), and the
 // flash-prevention script in base.html.twig.
 // ==========================================================================
-html.shell-v3 {
+html.shell-v3,
+html.shell-v4 {
     .app-page {
         padding: 0;
     }

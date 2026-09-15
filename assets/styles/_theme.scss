@@ -4,7 +4,7 @@
 // A layer on top of the raw $grey-*/$teal-*/etc. palette in _variables.scss
 // — components reference var(--ds-bg-page) etc. instead of a literal SCSS
 // color, so a theme can remap what those roles mean without touching every
-// component file. Currently only used for V.3's dark theme (html.shell-v3
+// component file. Currently only used for V.4's dark theme (html.shell-v4
 // below), but kept general on purpose: worth having regardless of dark
 // mode specifically, since "what background does a card sit on" is a
 // question every component asks and hardcoding the light answer
@@ -46,11 +46,13 @@
     --ds-hero-grid: rgba(#{$teal-700}, 0.08);
 }
 
-// V.3 dark theme — subtle, not pure black/white (same idea as Tailwind's
+// V.4 dark theme — subtle, not pure black/white (same idea as Tailwind's
 // slate-900 surfaces + slate-100 text rather than #000/#fff): a soft,
 // teal-tinted dark ramp so it still feels like this brand's neutral scale
 // rather than a generic dark-mode import. Brand/accent colors (teal
 // buttons, status colors, swatches) are left as-is — see the note above.
+// V.3 itself stays the plain light/edge-to-edge shell (see _layout.scss)
+// — V.4 reuses that same edge-to-edge structure and only swaps the theme.
 //
 // Defined in hsl(), not hex, and NOT derived from $teal-900 — $teal-900
 // (#284b4d) is only ~23% lightness, nowhere near dark enough for a page
@@ -60,7 +62,7 @@
 // freely, so the ramp can go as dark as a background needs while staying
 // visibly teal — turn --hue below to retint, or nudge the lightness
 // values to taste.
-html.shell-v3 {
+html.shell-v4 {
     $hue: 190;
     --ds-bg-page: hsl(#{$hue}, 38%, 6%);
     --ds-bg-shell: hsl(#{$hue}, 34%, 9%);

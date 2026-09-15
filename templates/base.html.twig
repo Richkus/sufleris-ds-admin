@@ -14,17 +14,17 @@
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
     {#
-        Experimental shell cycle (V.1 default / V.2 / V.3 — see the
-        topbar/sidebar buttons in _topbar.html.twig/_sidebar.html.twig)
-        — applies the saved choice to <html> before anything paints, so
-        there's no flash of the wrong shell on load. Must run
-        synchronously in <head>, before body/CSS render.
+        Experimental shell switcher (V.1 default / V.2 / V.3 / V.4 — see
+        the DialKit widget in _dial-kit.html.twig) — applies the saved
+        choice to <html> before anything paints, so there's no flash of
+        the wrong shell on load. Must run synchronously in <head>,
+        before body/CSS render.
     #}
     <script>
         (function () {
             try {
                 var v = localStorage.getItem('ds-shell');
-                if (v === 'v2' || v === 'v3') {
+                if (v === 'v2' || v === 'v3' || v === 'v4') {
                     document.documentElement.classList.add('shell-' + v);
                 }
             } catch (e) {}
@@ -68,6 +68,7 @@
     </div>
 
     {% include "partials/_toast-stack.html.twig" %}
+    {% include "partials/_dial-kit.html.twig" %}
 
     {% block javascripts %}
         {# Encore's enableSingleRuntimeChunk() splits the webpack runtime

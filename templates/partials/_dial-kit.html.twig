@@ -1,0 +1,43 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    A small always-on-screen "live controls" widget (fixed, bottom-right)
+    — one place to hold whatever live-tunable parameters this prototype
+    needs, rather than scattering each one into whatever chrome it
+    happens to affect. That's what the layout switcher used to be: an
+    icon in the topbar, awkwardly duplicated into the sidebar for V.2's
+    topbar-less layout. This replaces both.
+
+    Only one control group for now (Layoutas). Add more
+    <div class="dial-kit__group"> blocks here as more live-tunable
+    things come up — it's built to hold more, not just this one.
+
+    Included once in base.html.twig (outside the isBare check, so it's
+    available on admin.html too), not per-shell like the old switcher —
+    it's fixed-positioned and independent of the topbar/sidebar chrome,
+    so it doesn't need a shell-specific duplicate.
+#}
+<div class="dial-kit" x-data="{ open: false }">
+    <div x-show="open" x-cloak @click.outside="open = false"
+         x-transition.opacity.scale.95.duration.150ms class="dial-kit__panel">
+        <div class="dial-kit__panel-title">
+            <span class="dial-kit__live-dot"></span>
+            Live
+        </div>
+
+        <div class="dial-kit__group">
+            <div class="dial-kit__group-label">Layoutas</div>
+            {% for version, label in { v1: 'V.1', v2: 'V.2', v3: 'V.3', v4: 'V.4 (dark)' } %}
+                <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.shell.current === '{{ version }}' }"
+                        @click="window.dsSetShell('{{ version }}')">
+                    <span>{{ label }}</span>
+                    <span class="dial-kit__check" x-show="$store.shell.current === '{{ version }}'">{{ icons.icon('check', 16) }}</span>
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="button" class="dial-kit__trigger" :class="{ 'is-active': open }" @click="open = !open"
+            :data-tooltip="open ? false : 'Live valdikliai'" aria-label="Live valdikliai">
+        {{ icons.icon('sliders', 20) }}
+    </button>
+</div>

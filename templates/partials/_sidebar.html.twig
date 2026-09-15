@@ -109,13 +109,7 @@
     </div>
 
     <div class="sidebar__v2-actions" x-data="{ profileOpen: false }">
-        {#
-            Without this, V.2 has no way back to the other shells — the
-            real switcher lives in .topbar, which this variant hides
-            entirely.
-        #}
-        {% include "partials/_shell-switcher.html.twig" %}
-        <a href="admin.html" class="topbar__icon-btn" data-tooltip="MS Admin" aria-label="MS Admin">{{ icons.icon('settings', 20) }}</a>
+        <a href="admin.html" class="topbar__icon-btn" data-tooltip="MS Admin" aria-label="MS Admin">{{ icons.icon('dashboard', 20) }}</a>
         <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" data-tooltip="Mokesčių Sufleris" aria-label="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
         <div class="topbar__profile-wrap">
             <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" :data-tooltip="profileOpen ? false : 'Profilis'" aria-label="Profilis">

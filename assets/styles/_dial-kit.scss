@@ -1,0 +1,113 @@
+// ==========================================================================
+// DialKit-style "live controls" widget — fixed bottom-right, present on
+// every page/shell version. See templates/partials/_dial-kit.html.twig.
+// ==========================================================================
+
+.dial-kit {
+    position: fixed;
+    right: map-get($ds-spacers, "2xl");
+    bottom: map-get($ds-spacers, "2xl");
+    z-index: 200;
+}
+
+.dial-kit__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: map-get($ds-radii, full);
+    background: var(--ds-bg-shell);
+    border: 1px solid var(--ds-border);
+    color: var(--ds-text-muted);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba($grey-900, 0.16), 0 1px 3px rgba($grey-900, 0.08);
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+
+    svg { width: 20px; height: 20px; }
+
+    &:hover,
+    &.is-active {
+        color: var(--ds-accent);
+        border-color: var(--ds-accent);
+        transform: translateY(-1px);
+    }
+}
+
+.dial-kit__panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + #{map-get($ds-spacers, lg)});
+    width: 180px;
+    background: var(--ds-bg-shell);
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, lg);
+    box-shadow: 0 12px 32px rgba($grey-900, 0.18), 0 2px 8px rgba($grey-900, 0.1);
+    padding: map-get($ds-spacers, sm);
+}
+
+.dial-kit__panel-title {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, xs);
+    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md) map-get($ds-spacers, xs);
+    font-family: $font-family-sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ds-text-faint);
+}
+
+.dial-kit__live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $green-500;
+    flex: 0 0 auto;
+}
+
+.dial-kit__group-label {
+    padding: 0 map-get($ds-spacers, md);
+    margin-bottom: map-get($ds-spacers, xxs);
+    font-family: $font-family-sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-text-faint);
+}
+
+.dial-kit__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md);
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    font-family: $font-family-sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ds-text-muted);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: var(--ds-bg-surface-hover);
+    }
+
+    &.is-active {
+        color: var(--ds-accent);
+    }
+}
+
+.dial-kit__check {
+    display: flex;
+    flex: 0 0 auto;
+    color: var(--ds-accent);
+
+    svg { width: 16px; height: 16px; }
+}

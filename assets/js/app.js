@@ -98,23 +98,21 @@ window.dsCopy = function dsCopy(text, message) {
 };
 
 /**
- * Experimental shell switcher (see the V.1/V.2/V.3 dropdown in
- * _topbar.html.twig/_sidebar.html.twig and the flash-prevention inline
- * script in base.html.twig) — V.1 is the default, V.2 is Figma
- * 5638:14930 (no topbar, sidebar/content as floating rounded cards),
- * V.3 is Figma 5644:845 (topbar always visible, standard sidebar/
- * content chrome — currently matches V.1 visually since that Figma
- * frame is a fresh duplicate with no edits yet; kept as its own class
- * so it can diverge later without touching V.1). Persisted per-browser
+ * Experimental shell switcher (see the DialKit widget in
+ * _dial-kit.html.twig and the flash-prevention inline script in
+ * base.html.twig) — V.1 is the default, V.2 is Figma 5638:14930 (no
+ * topbar, sidebar/content as floating rounded cards), V.3 is Figma
+ * 5644:845 (topbar always visible, standard sidebar/content chrome,
+ * edge-to-edge — matches V.1 visually apart from that), V.4 is V.3's
+ * dark theme (see html.shell-v4 in _theme.scss). Persisted per-browser
  * so it survives navigating between the site's separate static pages.
  */
-const DS_SHELL_VERSIONS = ['v1', 'v2', 'v3'];
+const DS_SHELL_VERSIONS = ['v1', 'v2', 'v3', 'v4'];
 
-// A shared store (not per-component x-data) so the topbar's and the
-// sidebar's V.2 switcher instances agree on which version is checked —
-// each is a separate Alpine component, so local state read once at init
-// wouldn't pick up a change made through the other instance without a
-// full page reload.
+// A shared store, not per-component x-data — there's only one DialKit
+// widget now (unlike the old per-shell duplicated switcher), but this
+// still needs to be readable from anywhere (e.g. a future control could
+// live in its own component) without re-deriving it from localStorage.
 Alpine.store('shell', {
     current: (() => {
         try {
