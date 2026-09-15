@@ -16,6 +16,23 @@
     <svg class="btn-ds__spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>
 {% endmacro %}
 
+{#
+    Single source of truth for the "Show code" samples below — built from
+    the SAME class pattern (and the SAME spinner markup, via _self.spinner())
+    that stateButton() actually renders above. Previously each of the 6
+    groups hand-typed its own generic Bootstrap-ish sample ("btn btn-primary",
+    "btn-outline-danger", <span class="spinner">...) that didn't match the
+    real btn-ds/btn-ds--variant markup at all, and drifted further out of
+    sync every time the component changed. Callers apply |e for the
+    HTML-escaped <pre><code> display and |e('js') for the Alpine `code:`
+    clipboard string — see the two call sites per group below.
+#}
+{% macro buttonCode(variant) %}<button type="button" class="btn-ds btn-ds--{{ variant }}">Default</button>
+<button type="button" class="btn-ds btn-ds--{{ variant }} is-disabled" disabled>Disabled</button>
+<button type="button" class="btn-ds btn-ds--{{ variant }} is-loading">
+  {{ _self.spinner() }} Loading
+</button>{% endmacro %}
+
 {% block content %}
     {% include "partials/_page-header.html.twig" with {
         title: 'Buttons',
@@ -29,7 +46,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-primary&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-primary&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-primary btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('primary'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -54,11 +71,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-primary&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-primary&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-primary btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('primary'))|e }}</code></pre>
                 </div>
             </div>
         </div>
@@ -66,7 +79,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-secondary&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-secondary&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-secondary btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('secondary'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -91,11 +104,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-secondary&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-secondary&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-secondary btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('secondary'))|e }}</code></pre>
                 </div>
             </div>
         </div>
@@ -103,7 +112,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-tertiary&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-tertiary&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-tertiary btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('tertiary'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -128,11 +137,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-tertiary&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-tertiary&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-tertiary btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('tertiary'))|e }}</code></pre>
                 </div>
             </div>
         </div>
@@ -140,7 +145,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-danger&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-danger&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-danger btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('destructive'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -165,11 +170,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-danger&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-danger&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-danger btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('destructive'))|e }}</code></pre>
                 </div>
             </div>
         </div>
@@ -177,7 +178,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-outline-danger&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-outline-danger&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-outline-danger btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('destructive-secondary'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -202,11 +203,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-outline-danger&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-outline-danger&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-outline-danger btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('destructive-secondary'))|e }}</code></pre>
                 </div>
             </div>
         </div>
@@ -214,7 +211,7 @@
         <div class="ds-group" x-data="{
                 expanded: false,
                 copied: false,
-                code: '&lt;button class=&quot;btn btn-link&quot;&gt;Default&lt;/button&gt;\n&lt;button class=&quot;btn btn-link&quot; disabled&gt;Disabled&lt;/button&gt;\n&lt;button class=&quot;btn btn-link btn-loading&quot;&gt;\n  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading\n&lt;/button&gt;',
+                code: '{{ ('' ~ _self.buttonCode('link'))|e('js') }}',
                 copyCode() {
                     navigator.clipboard.writeText(this.code).catch(() => {});
                     this.copied = true;
@@ -239,11 +236,7 @@
                     </button>
                 </div>
                 <div class="code-panel__body">
-                    <pre class="code-panel__code line-numbers"><code class="language-markup">&lt;button class=&quot;btn btn-link&quot;&gt;Default&lt;/button&gt;
-&lt;button class=&quot;btn btn-link&quot; disabled&gt;Disabled&lt;/button&gt;
-&lt;button class=&quot;btn btn-link btn-loading&quot;&gt;
-  &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Loading
-&lt;/button&gt;</code></pre>
+                    <pre class="code-panel__code line-numbers"><code class="language-markup">{{ ('' ~ _self.buttonCode('link'))|e }}</code></pre>
                 </div>
             </div>
         </div>
