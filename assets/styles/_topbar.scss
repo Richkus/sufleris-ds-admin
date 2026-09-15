@@ -99,6 +99,22 @@
     border-color: var(--ds-accent);
 }
 
+// The generic [data-tooltip] below centers the tooltip on the trigger —
+// fine for icons with room on both sides, but the home icon sits close
+// to the topbar's right edge, so its (longer) tooltip text overflowed
+// the viewport. Anchor it to the icon's own right edge instead, same
+// fix as the DialKit trigger/V.2 sidebar home link (see _dial-kit.scss,
+// _layout.scss html.shell-v2).
+.topbar__icon-btn--badged[data-tooltip]::after {
+    left: auto;
+    right: 0;
+    transform: translate(0, -4px);
+}
+
+.topbar__icon-btn--badged[data-tooltip]:hover::after {
+    transform: translate(0, 0);
+}
+
 .topbar__profile-wrap {
     position: relative;
 }
