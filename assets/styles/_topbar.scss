@@ -9,7 +9,7 @@
     height: 55px;
     flex: 0 0 auto;
     padding: 0 32px;
-    border-bottom: 1px solid $grey-200;
+    border-bottom: 1px solid var(--ds-border);
     position: relative;
     z-index: 20;
 }
@@ -33,7 +33,7 @@
 .topbar__wordmark-sub {
     font-size: 11px;
     line-height: 15px;
-    color: $grey-600;
+    color: var(--ds-text-muted);
 }
 
 .topbar__actions {
@@ -48,7 +48,7 @@
     justify-content: center;
     width: 24px;
     height: 24px;
-    color: $grey-500;
+    color: var(--ds-text-faint);
     background: transparent;
     border: none;
     padding: 0;
@@ -64,8 +64,8 @@
 
     &:hover,
     &.is-active {
-        color: $teal-700;
-        background: $teal-100;
+        color: var(--ds-accent);
+        background: var(--ds-accent-bg);
     }
 }
 
@@ -121,8 +121,8 @@
     top: calc(100% + #{map-get($ds-spacers, sm)});
     right: 0;
     width: 140px;
-    background: $body-bg;
-    border: 1px solid $grey-200;
+    background: var(--ds-bg-shell);
+    border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, lg);
     box-shadow: 0 12px 32px rgba($grey-900, 0.14), 0 2px 8px rgba($grey-900, 0.08);
     z-index: 50;
@@ -141,24 +141,24 @@
     font-family: $font-family-sans-serif;
     font-size: 13px;
     font-weight: 600;
-    color: $grey-700;
+    color: var(--ds-text-muted);
     text-align: left;
     cursor: pointer;
     transition: background-color 0.15s ease, color 0.15s ease;
 
     &:hover {
-        background: $grey-100;
+        background: var(--ds-bg-surface-hover);
     }
 
     &.is-active {
-        color: $teal-700;
+        color: var(--ds-accent);
     }
 }
 
 .shell-switcher__check {
     display: flex;
     flex: 0 0 auto;
-    color: $teal-600;
+    color: var(--ds-accent);
 
     svg { width: 16px; height: 16px; }
 }

@@ -29,5 +29,8 @@ body {
     // Also the default color for h1-h5 (see the aliases above) and any
     // other title text without its own explicit color — grey-900 read as
     // near-black, grey-800 is the correct "neutral 800" title color.
-    color: $grey-800;
+    // var(--ds-text-body), not a literal $grey-800, so V.3's dark theme
+    // (_theme.scss) can remap it.
+    color: var(--ds-text-body);
+    background: var(--ds-bg-page);
 }

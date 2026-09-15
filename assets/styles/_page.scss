@@ -16,7 +16,7 @@
 }
 
 .ds-page__subtitle {
-    color: $grey-600;
+    color: var(--ds-text-muted);
     // No max-width — should read the full 820px content-column width
     // (.app-content__inner already caps that), not an arbitrary narrower
     // line-length constraint on top of it.
@@ -26,7 +26,7 @@
     height: 1px;
     // Bumped from grey-200 — at 1px tall on white it read as barely
     // there; grey-300 keeps it subtle while actually being visible.
-    background: $grey-300;
+    background: var(--ds-border-strong);
     border: none;
     margin: map-get($ds-spacers, "3xl") 0;
 }
@@ -66,7 +66,7 @@
 }
 
 .ds-group {
-    border: 1px solid $grey-200;
+    border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, lg);
     padding: map-get($ds-spacers, "3xl");
 }
@@ -79,7 +79,7 @@
     font-size: 14px;
     line-height: 19px;
     font-weight: 700;
-    color: $grey-800;
+    color: var(--ds-text-title);
     margin-bottom: map-get($ds-spacers, xl);
 }
 
@@ -97,7 +97,7 @@
     gap: map-get($ds-spacers, xl);
     font-size: 13px;
     line-height: 18px;
-    color: $grey-400;
+    color: var(--ds-text-faint);
 }
 
 // Muted/desaturated so the emoji reads as a quiet signature, not a
@@ -116,9 +116,9 @@
     align-items: center;
     gap: map-get($ds-spacers, sm);
     padding: map-get($ds-spacers, md) map-get($ds-spacers, lg);
-    border: 1px solid $grey-200;
+    border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, sm);
-    color: $grey-700;
+    color: var(--ds-text-muted);
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
@@ -127,7 +127,7 @@
     svg { width: 14px; height: 14px; }
 
     &:hover {
-        background: $grey-100;
-        color: $grey-900;
+        background: var(--ds-bg-surface-hover);
+        color: var(--ds-text-title);
     }
 }

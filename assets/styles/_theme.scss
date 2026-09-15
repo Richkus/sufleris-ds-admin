@@ -1,0 +1,78 @@
+// ==========================================================================
+// Semantic theme tokens (CSS custom properties)
+//
+// A layer on top of the raw $grey-*/$teal-*/etc. palette in _variables.scss
+// — components reference var(--ds-bg-page) etc. instead of a literal SCSS
+// color, so a theme can remap what those roles mean without touching every
+// component file. Currently only used for V.3's dark theme (html.shell-v3
+// below), but kept general on purpose: worth having regardless of dark
+// mode specifically, since "what background does a card sit on" is a
+// question every component asks and hardcoding the light answer
+// everywhere is exactly what made adding a second theme this invasive.
+//
+// Not exhaustive — covers shell chrome, generic surfaces (cards, group
+// boxes, code panels), borders, and text roles, since those are shared by
+// nearly every page. Component-specific brand colors (button fills, badge
+// colors, swatch colors) are deliberately NOT tokenized here — they're
+// brand-colored either way, dark or light, same as most products' dark
+// modes still show colorful primary buttons.
+// ==========================================================================
+
+:root {
+    --ds-bg-page: #{$teal-200};
+    --ds-bg-shell: #{$body-bg};
+    --ds-bg-surface: #{$grey-100};
+    --ds-bg-surface-hover: #{$grey-200};
+    --ds-border: #{$grey-200};
+    --ds-border-strong: #{$grey-300};
+    --ds-text-title: #{$grey-800};
+    --ds-text-body: #{$grey-800};
+    --ds-text-muted: #{$grey-600};
+    --ds-text-faint: #{$grey-400};
+    // Interactive teal accent (hover/active text + its background wash)
+    // — kept separate from the brand $teal-* scale used directly for
+    // buttons/badges/swatches, because a teal tuned for contrast against
+    // white (teal-700 text, teal-100 wash) doesn't carry over to a dark
+    // surface: dark-on-dark text and a near-white hover wash would both
+    // misbehave there. See the dark override below.
+    --ds-accent: #{$teal-700};
+    --ds-accent-bg: #{$teal-100};
+    // Wellcome hero — its own dedicated tokens rather than reusing the
+    // generic surface/text ones, since the hero is a deliberately
+    // brand-colored banner (see _wellcome.scss's own notes on #005a5a
+    // being a one-off, not a token oversight), not a neutral surface.
+    --ds-hero-bg: #{$teal-100};
+    --ds-hero-text: #005a5a;
+    --ds-hero-grid: rgba(#{$teal-700}, 0.08);
+}
+
+// V.3 dark theme — subtle, not pure black/white (same idea as Tailwind's
+// slate-900 surfaces + slate-100 text rather than #000/#fff): a soft,
+// slightly teal-tinted dark ramp so it still feels like this brand's
+// neutral scale rather than a generic dark-mode import. Brand/accent
+// colors (teal buttons, status colors, swatches) are left as-is — see the
+// note above.
+html.shell-v3 {
+    --ds-bg-page: #10181a;
+    --ds-bg-shell: #161f22;
+    --ds-bg-surface: #1c2629;
+    --ds-bg-surface-hover: #263134;
+    --ds-border: #2b3538;
+    --ds-border-strong: #3a464a;
+    --ds-text-title: #e6edee;
+    --ds-text-body: #e6edee;
+    --ds-text-muted: #93a6a8;
+    --ds-text-faint: #5c7275;
+    // Lighter teal (reads on dark) + a dark teal-tinted wash instead of
+    // the near-white teal-100 — same idea, different weight for a dark
+    // surface.
+    --ds-accent: #{$teal-300};
+    --ds-accent-bg: #20393c;
+    // Dark teal-tinted hero surface (distinct from the neutral
+    // --ds-bg-surface, keeping the hero feeling brand-colored rather than
+    // just another dark panel) + a light teal for its text/grid, since
+    // #005a5a would be near-unreadable on a dark background.
+    --ds-hero-bg: #16282a;
+    --ds-hero-text: #{$teal-100};
+    --ds-hero-grid: rgba(#{$teal-300}, 0.12);
+}

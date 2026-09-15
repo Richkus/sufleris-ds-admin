@@ -21,10 +21,10 @@
     // ~128px side gutter (Figma: text starts ~133px into the hero) — wider
     // than the standard page padding since this banner spans full-width.
     padding: map-get($ds-spacers, "4xl") calc(#{map-get($ds-spacers, "4xl")} * 4);
-    background-color: $teal-100;
+    background-color: var(--ds-hero-bg);
     background-image:
-        linear-gradient(rgba($teal-700, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba($teal-700, 0.08) 1px, transparent 1px);
+        linear-gradient(var(--ds-hero-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ds-hero-grid) 1px, transparent 1px);
     background-size: 64px 64px;
     overflow: hidden;
 }
@@ -69,8 +69,10 @@
     line-height: 1.2;
     // Also a deliberate one-off: this exact teal doesn't sit on our 100-900
     // scale (it's more saturated than teal-800) — taken directly from the
-    // Figma hero, not a token oversight.
-    color: #005a5a;
+    // Figma hero, not a token oversight. var(--ds-hero-text) so V.3's dark
+    // theme can swap it for a light teal (the light-mode #005a5a would be
+    // near-unreadable on a dark hero background).
+    color: var(--ds-hero-text);
     max-width: 480px;
     margin-bottom: map-get($ds-spacers, "xl");
 }
@@ -78,7 +80,7 @@
 .hero-ds__subtitle {
     font-size: 17px;
     line-height: 1.5;
-    color: #005a5a;
+    color: var(--ds-hero-text);
     margin-bottom: map-get($ds-spacers, "3xl");
     max-width: 50ch;
 }

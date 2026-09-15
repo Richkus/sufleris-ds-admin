@@ -6,10 +6,10 @@
 // ==========================================================================
 
 .card-ds {
-    border: 1px solid $grey-200;
+    border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, lg);
     padding: map-get($ds-spacers, "2xl");
-    background: #fff;
+    background: var(--ds-bg-shell);
     box-shadow: 0 1px 2px rgba($grey-900, 0.06), 0 1px 3px rgba($grey-900, 0.04);
 }
 
@@ -31,16 +31,16 @@
     font-size: 18px;
     line-height: 26px;
     font-weight: 700;
-    color: $grey-800;
+    color: var(--ds-text-title);
 }
 
 .card-ds__meta {
-    color: $grey-500;
+    color: var(--ds-text-muted);
     margin-top: map-get($ds-spacers, xxs);
 }
 
 .card-ds__kebab {
-    color: $grey-400;
+    color: var(--ds-text-faint);
     flex: 0 0 auto;
 
     svg { width: 18px; height: 18px; }
@@ -48,13 +48,13 @@
 
 .card-ds__divider {
     height: 1px;
-    background: $grey-200;
+    background: var(--ds-border);
     border: none;
     margin: map-get($ds-spacers, lg) 0;
 }
 
 .card-ds__body {
-    color: $grey-600;
+    color: var(--ds-text-muted);
 }
 
 .card-ds__footer {
