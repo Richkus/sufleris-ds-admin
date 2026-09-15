@@ -202,15 +202,20 @@ html.shell-v2 {
 
         // Same reasoning for the icon hover tooltips (see [data-tooltip]
         // in _topbar.scss) — they'd normally open downward, running off
-        // the bottom of the viewport here.
+        // the bottom of the viewport here. Also left-anchored instead of
+        // centered: this row sits near the sidebar's LEFT edge, so a
+        // centered tooltip with any real length of text (e.g. "Mokesčių
+        // Sufleris (naujame lange)") ran off the left edge of the
+        // viewport instead.
         [data-tooltip]::after {
             top: auto;
+            left: 0;
             bottom: calc(100% + #{map-get($ds-spacers, sm)});
-            transform: translate(-50%, 4px);
+            transform: translate(0, 4px);
         }
 
         [data-tooltip]:hover::after {
-            transform: translate(-50%, 0);
+            transform: translate(0, 0);
         }
     }
 

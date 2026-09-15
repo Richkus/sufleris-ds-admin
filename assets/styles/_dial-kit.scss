@@ -32,6 +32,25 @@
         border-color: var(--ds-accent);
         transform: translateY(-1px);
     }
+
+    // The generic [data-tooltip] in _topbar.scss centers the tooltip on
+    // the trigger and opens it downward — fine for topbar icons, but
+    // this trigger sits in the bottom-right corner, so a centered
+    // tooltip runs off the right edge and a downward one runs off the
+    // bottom. Anchor it to the trigger's own right edge and open it
+    // upward instead — it can't overflow either edge that way,
+    // regardless of how long the tooltip text is.
+    &[data-tooltip]::after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: calc(100% + #{map-get($ds-spacers, sm)});
+        transform: translate(0, 4px);
+    }
+
+    &[data-tooltip]:hover::after {
+        transform: translate(0, 0);
+    }
 }
 
 .dial-kit__panel {

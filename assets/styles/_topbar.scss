@@ -69,6 +69,36 @@
     }
 }
 
+// Small "opens externally" badge overlaid on an icon button (currently
+// just the home/production-site link) — signals "leaves the DS, opens
+// in a new tab" up front, not only via the tooltip after hovering.
+// .topbar__icon-btn is already position: relative (every icon button
+// carries data-tooltip, see [data-tooltip] above) — the badge positions
+// against that same box, no extra wrapper rule needed.
+.topbar__icon-btn__badge {
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--ds-bg-shell);
+    border: 1px solid var(--ds-border);
+    color: var(--ds-text-faint);
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    svg { width: 8px; height: 8px; }
+}
+
+.topbar__icon-btn--badged:hover .topbar__icon-btn__badge,
+.topbar__icon-btn--badged.is-active .topbar__icon-btn__badge {
+    color: var(--ds-accent);
+    border-color: var(--ds-accent);
+}
+
 .topbar__profile-wrap {
     position: relative;
 }

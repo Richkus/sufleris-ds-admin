@@ -110,7 +110,10 @@
 
     <div class="sidebar__v2-actions" x-data="{ profileOpen: false }">
         <a href="admin.html" class="topbar__icon-btn" data-tooltip="MS Admin" aria-label="MS Admin">{{ icons.icon('dashboard', 20) }}</a>
-        <a href="https://www.mokesciu-sufleris.lt/" class="topbar__icon-btn" data-tooltip="Mokesčių Sufleris" aria-label="Mokesčių Sufleris">{{ icons.icon('home', 20) }}</a>
+        <a href="https://www.mokesciu-sufleris.lt/" target="_blank" rel="noopener noreferrer" class="topbar__icon-btn topbar__icon-btn--badged" data-tooltip="Mokesčių Sufleris (naujame lange)" aria-label="Mokesčių Sufleris (atsidaro naujame lange)">
+            {{ icons.icon('home', 20) }}
+            <span class="topbar__icon-btn__badge">{{ icons.icon('arrow-up-right', 8) }}</span>
+        </a>
         <div class="topbar__profile-wrap">
             <button type="button" class="topbar__icon-btn" :class="{ 'is-active': profileOpen }" @click="profileOpen = !profileOpen" :data-tooltip="profileOpen ? false : 'Profilis'" aria-label="Profilis">
                 {{ icons.icon('user-circle', 20) }}

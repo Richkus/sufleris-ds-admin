@@ -58,13 +58,13 @@
     font-size: 12px;
     line-height: 16px;
     font-weight: 700;
-    color: $grey-900;
+    color: var(--ds-text-title);
 }
 
 .color-swatch__hex {
     font-size: 11px;
     line-height: 15px;
-    color: $grey-500;
+    color: var(--ds-text-muted);
 }
 
 .color-swatch--soft .color-swatch__chip {
