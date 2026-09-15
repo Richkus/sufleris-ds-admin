@@ -71,7 +71,7 @@
     gap: map-get($ds-spacers, xs);
     padding: map-get($ds-spacers, sm) map-get($ds-spacers, md) map-get($ds-spacers, xs);
     font-family: $font-family-sans-serif;
-    font-size: 11px;
+    font-size: ds-ramp("caption", size);
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -90,7 +90,7 @@
     padding: 0 map-get($ds-spacers, md);
     margin-bottom: map-get($ds-spacers, xxs);
     font-family: $font-family-sans-serif;
-    font-size: 11px;
+    font-size: ds-ramp("caption", size);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -107,7 +107,7 @@
     border: none;
     border-radius: map-get($ds-radii, sm);
     font-family: $font-family-sans-serif;
-    font-size: 13px;
+    font-size: ds-ramp("text-sm", size);
     font-weight: 600;
     color: var(--ds-text-muted);
     text-align: left;

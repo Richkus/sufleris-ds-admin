@@ -55,15 +55,15 @@
 }
 
 .color-swatch__step {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: ds-ramp("text-xs", size);
+    line-height: ds-ramp("text-xs", line-height);
     font-weight: 700;
     color: var(--ds-text-title);
 }
 
 .color-swatch__hex {
-    font-size: 11px;
-    line-height: 15px;
+    font-size: ds-ramp("caption", size);
+    line-height: ds-ramp("caption", line-height);
     color: var(--ds-text-muted);
 }
 

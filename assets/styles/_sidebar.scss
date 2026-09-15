@@ -94,8 +94,8 @@
     height: 34px;
     padding: 0 map-get($ds-spacers, lg);
     font-family: $font-family-sans-serif;
-    font-size: 13px;
-    line-height: 18px;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
     font-weight: 400;
     color: var(--ds-text-body);
     text-decoration: none;

@@ -36,7 +36,7 @@
     align-items: center;
     padding: map-get($ds-spacers, xxs) map-get($ds-spacers, lg);
     border-radius: map-get($ds-radii, full);
-    font-size: 12px;
+    font-size: ds-ramp("text-xs", size);
     line-height: 18px;
     font-weight: 600;
     white-space: nowrap;
@@ -95,8 +95,8 @@
     align-items: center;
     justify-content: space-between;
     gap: map-get($ds-spacers, xl);
-    font-size: 13px;
-    line-height: 18px;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
     color: var(--ds-text-faint);
 }
 

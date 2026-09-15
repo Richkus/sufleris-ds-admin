@@ -33,7 +33,7 @@
 
 .spacing-row__value {
     color: $grey-500;
-    font-size: 13px;
+    font-size: ds-ramp("text-sm", size);
 }
 
 .radius-grid {
@@ -56,12 +56,12 @@
 }
 
 .radius-swatch__name {
-    font-size: 13px;
+    font-size: ds-ramp("text-sm", size);
     font-weight: 600;
     color: $grey-900;
 }
 
 .radius-swatch__value {
-    font-size: 12px;
+    font-size: ds-ramp("text-xs", size);
     color: $grey-500;
 }

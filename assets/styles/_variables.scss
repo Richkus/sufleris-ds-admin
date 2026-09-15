@@ -204,7 +204,21 @@ $ds-type-ramp: (
     "text-lg": (size: 18px, line-height: 28px, weight: 600),
     "text-btn": (size: 15px, line-height: 22px, weight: 600),
     "text-intro": (size: 15px, line-height: 23px, weight: 400),
+    // UI/label tier — for interface chrome (tooltips, badges, meta labels,
+    // captions), not for reading content. Never extended below "caption":
+    // ~11px is the practical legibility floor for Open Sans at this weight.
+    "text-sm": (size: 13px, line-height: 18px, weight: 400),
+    "text-xs": (size: 12px, line-height: 16px, weight: 400),
+    "caption": (size: 11px, line-height: 15px, weight: 400),
 );
+
+// Reads a single property (size / line-height / weight) out of a
+// $ds-type-ramp entry — for partials that need just the token value
+// (e.g. mixed into a rule alongside color/weight overrides) rather than
+// the full .ds-#{key} utility class from _typography.scss.
+@function ds-ramp($key, $prop) {
+    @return map-get(map-get($ds-type-ramp, $key), $prop);
+}
 
 // ==========================================================================
 // Bootstrap kintamųjų perrašymai (PRIVALO būti prieš `@import "bootstrap"`)

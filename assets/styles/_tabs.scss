@@ -36,7 +36,7 @@
     border-radius: map-get($ds-radii, full);
     background: $grey-100;
     color: $grey-600;
-    font-size: 12px;
+    font-size: ds-ramp("text-xs", size);
     font-weight: 600;
 }
 

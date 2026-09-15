@@ -9,8 +9,8 @@
     align-items: center;
     padding: 2px map-get($ds-spacers, lg);
     border-radius: map-get($ds-radii, full);
-    font-size: 13px;
-    line-height: 18px;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
     font-weight: 600;
     border: 1px solid transparent;
     white-space: nowrap;

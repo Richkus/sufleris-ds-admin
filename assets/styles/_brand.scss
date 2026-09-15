@@ -36,7 +36,7 @@
 
 .logo-tile__eyebrow {
     display: block;
-    font-size: 11px;
+    font-size: ds-ramp("caption", size);
     font-weight: 700;
     letter-spacing: 0.2em;
     margin-bottom: 2px;

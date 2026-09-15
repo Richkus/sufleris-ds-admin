@@ -13,7 +13,7 @@
 }
 
 .type-specimen__caption {
-    font-size: 13px;
-    line-height: 18px;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
     color: $grey-500;
 }
