@@ -10,8 +10,12 @@
 #}
 <aside class="content-sidebar">
     <div class="content-sidebar__header">
-        <a href="content-concept.html" class="content-sidebar__logo" :class="{ 'is-hidden': sidebarCollapsed }">
-            <img src="build/images/sufleris-logo.svg" alt="Mokesčių SUFLERIS" class="content-sidebar__logo-img">
+        <a href="content-concept.html" class="content-sidebar__logo">
+            <span class="content-sidebar__logo-text" x-show="!sidebarCollapsed">
+                <span class="content-sidebar__logo-eyebrow">Mokesčių</span>
+                <span class="content-sidebar__logo-word">SUFLERIS</span>
+            </span>
+            <span class="content-sidebar__logo-collapsed" x-show="sidebarCollapsed" x-cloak>MS</span>
         </a>
         <button type="button" class="content-sidebar__collapse" @click="toggleSidebar()"
                 :data-tooltip="sidebarCollapsed ? 'Išskleisti meniu' : 'Suskleisti meniu'"

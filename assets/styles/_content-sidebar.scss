@@ -39,21 +39,33 @@
     display: flex;
     align-items: center;
     min-width: 0;
-    overflow: hidden;
-
-    &.is-hidden {
-        // Hides (rather than unmounts) so the collapse width transition
-        // doesn't visibly pop the logo away mid-animation.
-        opacity: 0;
-        pointer-events: none;
-    }
+    text-decoration: none;
 }
 
-.content-sidebar__logo-img {
-    // Real logo asset exported from the Figma reference (node
-    // 5669:2458/1795, "Logo"), not a text-based approximation.
-    height: 21px;
-    width: auto;
+.content-sidebar__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+.content-sidebar__logo-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(#fff, 0.85);
+}
+
+.content-sidebar__logo-word {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.content-sidebar__logo-collapsed {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
 }
 
 .content-sidebar__collapse {
@@ -67,15 +79,14 @@
     background: transparent;
     border: none;
     border-radius: map-get($ds-radii, xs);
-    color: var(--ds-text-muted);
+    color: #fff;
     cursor: pointer;
     transition: color 0.15s ease, background-color 0.15s ease;
 
     svg { width: 18px; height: 18px; }
 
     &:hover {
-        color: $teal-700;
-        background: rgba(#fff, 0.6);
+        background: rgba(#fff, 0.2);
     }
 }
 

@@ -13,6 +13,10 @@
     padding: 0 map-get($ds-spacers, "2xl");
     background: var(--ds-bg-shell);
     border-bottom: 1px solid var(--ds-border);
+    // Rounds the seam where the main column meets the sidebar — the
+    // curve reveals .content-shell's own teal fill (matches the
+    // sidebar) instead of a hard right-angle corner.
+    border-top-left-radius: map-get($ds-radii, "3xl");
 }
 
 .content-topbar__search {

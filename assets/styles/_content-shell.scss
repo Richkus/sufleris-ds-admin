@@ -7,7 +7,10 @@
 .content-shell {
     display: flex;
     height: 100vh;
-    background: var(--ds-bg-page);
+    // Matches the sidebar's own fill — the topbar's rounded top-left
+    // corner (below) reveals this color in the curve, so it needs to
+    // read as a continuous teal field, not a color seam.
+    background: $teal-300;
 }
 
 .content-shell__main {
@@ -34,4 +37,8 @@
 .content-shell__content {
     flex: 1 1 auto;
     min-width: 0;
+    // Explicit — .content-shell's own background is teal (matches the
+    // sidebar, for the topbar's rounded-corner cutout below), so this
+    // needs its own opaque fill rather than inheriting that through.
+    background: var(--ds-bg-page);
 }
