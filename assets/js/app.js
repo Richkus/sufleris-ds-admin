@@ -133,6 +133,32 @@ window.dsSetShell = function dsSetShell(version) {
 };
 
 /**
+ * Global "show code" toggle (DialKit widget, "Kodas" group) — controls
+ * whether the per-component "Kodas" toggle button AND its code panel
+ * render at all, site-wide, on every page/shell. Off means the block is
+ * not just collapsed but absent next to the component entirely (see the
+ * `x-show="... && $store.devTools.showCode"` bindings in buttons.html.twig).
+ * Defaults to shown (true) when nothing is saved yet.
+ */
+Alpine.store('devTools', {
+    showCode: (() => {
+        try {
+            const saved = localStorage.getItem('ds-show-code');
+            return saved === null ? true : saved === '1';
+        } catch (e) {
+            return true;
+        }
+    })(),
+});
+
+window.dsSetShowCode = function dsSetShowCode(value) {
+    Alpine.store('devTools').showCode = value;
+    try {
+        localStorage.setItem('ds-show-code', value ? '1' : '0');
+    } catch (e) {}
+};
+
+/**
  * Sidebar section expand/collapse state (see _sidebar.html.twig) — all
  * sections start expanded on a first visit (nothing in localStorage
  * yet), then whatever the user last left open/closed sticks on later

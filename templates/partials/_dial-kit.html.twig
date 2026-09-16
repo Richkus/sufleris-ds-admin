@@ -30,9 +30,28 @@
                 <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.shell.current === '{{ version }}' }"
                         @click="window.dsSetShell('{{ version }}')">
                     <span>{{ label }}</span>
-                    <span class="dial-kit__check" x-show="$store.shell.current === '{{ version }}'">{{ icons.icon('check', 16) }}</span>
+                    <span class="dial-kit__check" x-show="$store.shell.current === '{{ version }}'">{{ icons.icon('check', 14) }}</span>
                 </button>
             {% endfor %}
+        </div>
+
+        <div class="dial-kit__divider"></div>
+
+        {#
+            Global "show code" switch — hides the per-component "Kodas"
+            toggle + code panel everywhere (all pages/shells), not just
+            collapses it. See window.dsSetShowCode / $store.devTools in
+            app.js and the x-show bindings in buttons.html.twig.
+        #}
+        <div class="dial-kit__group">
+            <div class="dial-kit__group-label">Kodas</div>
+            <button type="button" class="dial-kit__toggle-row" @click="window.dsSetShowCode(!$store.devTools.showCode)">
+                <span>Rodyti kodą</span>
+                <span class="dial-kit__eye">
+                    <span x-show="$store.devTools.showCode">{{ icons.icon('eye', 16) }}</span>
+                    <span x-show="!$store.devTools.showCode" x-cloak>{{ icons.icon('eye-off', 16) }}</span>
+                </span>
+            </button>
         </div>
     </div>
 

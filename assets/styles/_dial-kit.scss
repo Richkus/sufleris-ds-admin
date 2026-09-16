@@ -53,29 +53,32 @@
     }
 }
 
+// Styled after Figma's own right-hand inspector panel (Design/Prototype
+// tabs, "Page"/"Styles"/"Export" rows) per the user's reference — small,
+// dense rows, thin 1px separators instead of hover-pill buttons, neutral
+// greys throughout (color is reserved for the active-state checkmark
+// only, same restraint as Figma's own accent-blue usage in that panel).
 .dial-kit__panel {
     position: absolute;
     right: 0;
     bottom: calc(100% + #{map-get($ds-spacers, lg)});
-    width: 180px;
+    width: 176px;
     background: var(--ds-bg-shell);
     border: 1px solid var(--ds-border);
-    border-radius: map-get($ds-radii, lg);
-    box-shadow: 0 12px 32px rgba($grey-900, 0.18), 0 2px 8px rgba($grey-900, 0.1);
-    padding: map-get($ds-spacers, sm);
+    border-radius: map-get($ds-radii, md);
+    box-shadow: 0 8px 24px rgba($grey-900, 0.14), 0 1px 3px rgba($grey-900, 0.08);
+    padding: map-get($ds-spacers, xs);
 }
 
 .dial-kit__panel-title {
     display: flex;
     align-items: center;
     gap: map-get($ds-spacers, xs);
-    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md) map-get($ds-spacers, xs);
+    padding: map-get($ds-spacers, xs) map-get($ds-spacers, sm);
     font-family: $font-family-sans-serif;
-    font-size: ds-ramp("caption", size);
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ds-text-faint);
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 600;
+    color: var(--ds-text-muted);
 }
 
 .dial-kit__live-dot {
@@ -86,15 +89,19 @@
     flex: 0 0 auto;
 }
 
+.dial-kit__divider {
+    height: 1px;
+    background: var(--ds-border);
+    margin: map-get($ds-spacers, xs) 0;
+}
+
 .dial-kit__group-label {
-    padding: 0 map-get($ds-spacers, md);
+    padding: 0 map-get($ds-spacers, sm);
     margin-bottom: map-get($ds-spacers, xxs);
     font-family: $font-family-sans-serif;
-    font-size: ds-ramp("caption", size);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--ds-text-faint);
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 600;
+    color: var(--ds-text-muted);
 }
 
 .dial-kit__option {
@@ -102,24 +109,28 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md);
+    padding: map-get($ds-spacers, xs) map-get($ds-spacers, sm);
     background: transparent;
     border: none;
-    border-radius: map-get($ds-radii, sm);
+    border-bottom: 1px solid var(--ds-border);
     font-family: $font-family-sans-serif;
-    font-size: ds-ramp("text-sm", size);
-    font-weight: 600;
-    color: var(--ds-text-muted);
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 400;
+    color: var(--ds-text-body);
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease;
+
+    &:last-child {
+        border-bottom: none;
+    }
 
     &:hover {
         background: var(--ds-bg-surface-hover);
     }
 
     &.is-active {
-        color: var(--ds-accent);
+        font-weight: 600;
     }
 }
 
@@ -128,5 +139,36 @@
     flex: 0 0 auto;
     color: var(--ds-accent);
 
-    svg { width: 16px; height: 16px; }
+    svg { width: 14px; height: 14px; }
+}
+
+// "Rodyti kodą" row (Kodas group) — same row chrome as .dial-kit__option
+// (border/hover), styled as a toggle rather than a selectable list item.
+.dial-kit__toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: map-get($ds-spacers, xs) map-get($ds-spacers, sm);
+    background: transparent;
+    border: none;
+    font-family: $font-family-sans-serif;
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 400;
+    color: var(--ds-text-body);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: var(--ds-bg-surface-hover);
+    }
+}
+
+.dial-kit__eye {
+    display: flex;
+    flex: 0 0 auto;
+    color: var(--ds-text-muted);
+
+    svg { width: 15px; height: 15px; }
 }
