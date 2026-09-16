@@ -9,7 +9,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: $teal-100;
+    // Figma's sidebar fill is #99cccc — closest step in our teal scale
+    // is $teal-300 (#94bcbf), not the near-white $teal-100 used in the
+    // first pass (too far from the reference's actual saturation).
+    background: $teal-300;
     border-right: 1px solid var(--ds-border);
     // No overflow:hidden — the collapse relies on Alpine x-show to hide
     // labels/lists (not CSS clipping), and clipping would also cut off
@@ -35,46 +38,22 @@
 .content-sidebar__logo {
     display: flex;
     align-items: center;
-    gap: map-get($ds-spacers, sm);
-    text-decoration: none;
-    color: inherit;
     min-width: 0;
-}
+    overflow: hidden;
 
-.content-sidebar__logo-mark {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: map-get($ds-radii, sm);
-    background: $teal-600;
-    color: #fff;
-    font-weight: 700;
-    font-size: 12px;
-}
-
-.content-sidebar__logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.15;
-    white-space: nowrap;
-
-    .is-sidebar-collapsed & {
-        display: none;
+    &.is-hidden {
+        // Hides (rather than unmounts) so the collapse width transition
+        // doesn't visibly pop the logo away mid-animation.
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
-.content-sidebar__logo-eyebrow {
-    font-size: ds-ramp("caption", size);
-    color: var(--ds-text-muted);
-}
-
-.content-sidebar__logo-word {
-    font-size: 15px;
-    font-weight: 700;
-    color: $teal-700;
+.content-sidebar__logo-img {
+    // Real logo asset exported from the Figma reference (node
+    // 5669:2458/1795, "Logo"), not a text-based approximation.
+    height: 21px;
+    width: auto;
 }
 
 .content-sidebar__collapse {
@@ -115,9 +94,10 @@
     height: 38px;
     padding: 0 map-get($ds-spacers, md);
     border-radius: map-get($ds-radii, sm);
-    color: $teal-800;
+    // #0f5354 in the reference — closest step in our scale is $teal-900.
+    color: $teal-900;
     text-decoration: none;
-    font-size: ds-ramp("text-sm", size);
+    font-size: ds-ramp("text-intro", size);
     font-weight: 600;
     white-space: nowrap;
     transition: background-color 0.15s ease;
@@ -159,6 +139,11 @@
 .content-sidebar__section {
     display: flex;
     flex-direction: column;
+    // Figma stacks these as text lines with a 34px line-height (a fake-gap
+    // trick for a single text block) — closest we can do cleanly with real
+    // separate links is an explicit gap; $ds-spacers "xl" (16px) is the
+    // nearest token to the reference's own literal gap-[17px] elsewhere.
+    gap: map-get($ds-spacers, xl);
 
     & + .content-sidebar__pro-label {
         margin-top: map-get($ds-spacers, xl);
@@ -170,10 +155,10 @@
     align-items: center;
     justify-content: space-between;
     gap: map-get($ds-spacers, sm);
-    height: 32px;
-    color: var(--ds-text-body);
+    color: $teal-900;
     text-decoration: none;
-    font-size: ds-ramp("text-sm", size);
+    font-size: ds-ramp("text-intro", size);
+    line-height: ds-ramp("text-intro", line-height);
     white-space: nowrap;
 
     &:hover {
@@ -186,10 +171,28 @@
     }
 }
 
+// "155" — filled pill (bg #77a7a7 -> closest is $teal-400), white text.
+.content-sidebar__count--pill {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    padding: 0 map-get($ds-spacers, sm);
+    border-radius: map-get($ds-radii, full);
+    background: $teal-400;
+    color: #fff;
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 700;
+}
+
+// "14 566" — plain text, no pill, 54% opacity per the reference.
 .content-sidebar__count {
     flex: 0 0 auto;
-    color: var(--ds-text-faint);
-    font-size: ds-ramp("caption", size);
+    color: $teal-900;
+    opacity: 0.54;
+    font-size: ds-ramp("text-xs", size);
+    font-weight: 700;
 }
 
 .content-sidebar__pro-label {
@@ -197,7 +200,7 @@
     align-items: center;
     gap: map-get($ds-spacers, sm);
     margin-bottom: map-get($ds-spacers, sm);
-    color: var(--ds-text-muted);
+    color: $teal-900;
     font-size: ds-ramp("text-sm", size);
     font-weight: 600;
 }

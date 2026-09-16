@@ -49,16 +49,20 @@
 
     p {
         margin: 0;
-        font-size: ds-ramp("h4", size);
-        font-weight: 700;
-        line-height: ds-ramp("h4", line-height);
-        color: var(--ds-text-title);
+        // Figma: 18px SemiBold, -0.52px tracking, #405359 (=$grey-800
+        // exactly), line-height 27 — matches our "text-lg" token
+        // (18/28/600) almost exactly, not h4 (16/26/700).
+        font-size: ds-ramp("text-lg", size);
+        font-weight: ds-ramp("text-lg", weight);
+        line-height: ds-ramp("text-lg", line-height);
+        letter-spacing: -0.52px;
+        color: $grey-800;
     }
 }
 
 .ai-panel__sparkle {
     display: flex;
-    color: $salmon-500;
+    color: $teal-500;
 
     svg { width: 22px; height: 22px; }
 }
@@ -74,23 +78,25 @@
     display: flex;
     align-items: flex-start;
     gap: map-get($ds-spacers, md);
-    padding: map-get($ds-spacers, md);
-    background: var(--ds-bg-page);
-    border: 1px solid var(--ds-border);
-    border-radius: map-get($ds-radii, lg);
-    color: var(--ds-text-body);
+    padding: map-get($ds-spacers, sm) map-get($ds-spacers, md);
+    background: transparent;
+    border: none;
+    // Figma: radius-md (8px) — no visible border/fill at rest, only a
+    // hover state (not a bordered card as first built).
+    border-radius: map-get($ds-radii, md);
+    color: $grey-800;
     font-family: $font-family-sans-serif;
     font-size: ds-ramp("text-sm", size);
-    line-height: ds-ramp("text-sm", line-height);
+    line-height: 20px;
+    font-weight: 500;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transition: background-color 0.15s ease;
 
     svg { flex: 0 0 auto; margin-top: 1px; color: var(--ds-text-muted); }
 
     &:hover {
         background: var(--ds-bg-surface-hover);
-        border-color: var(--ds-border-strong);
     }
 }
 

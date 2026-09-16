@@ -18,16 +18,14 @@
 .content-topbar__search {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: map-get($ds-spacers, sm);
     flex: 1 1 auto;
-    max-width: 420px;
+    max-width: 454px;
     height: 42px;
-    padding: 0 map-get($ds-spacers, xs) 0 map-get($ds-spacers, lg);
+    padding: 0 map-get($ds-spacers, xs) 0 map-get($ds-spacers, xl);
     border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, full);
-    color: var(--ds-text-faint);
-
-    svg { flex: 0 0 auto; }
 }
 
 .content-topbar__search-input {
@@ -37,50 +35,60 @@
     outline: none;
     background: transparent;
     font-family: $font-family-sans-serif;
-    font-size: ds-ramp("text-sm", size);
+    // 15px in the reference (Open Sans Regular), placeholder color
+    // #95acb2 -> closest step is $teal-300.
+    font-size: ds-ramp("text-intro", size);
     color: var(--ds-text-body);
 
     &::placeholder {
-        color: var(--ds-text-faint);
+        color: $teal-300;
     }
 }
 
+// Plain text+icon inside the search pill in the reference, not a
+// separate filled button — "Ieškoti" in #00555a (closest: $teal-900).
 .content-topbar__search-submit {
     flex: 0 0 auto;
-    height: 32px;
-    padding: 0 map-get($ds-spacers, lg);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 100%;
+    padding: 0 map-get($ds-spacers, lg) 0 map-get($ds-spacers, sm);
     border: none;
-    border-radius: map-get($ds-radii, full);
-    background: $teal-600;
-    color: #fff;
+    background: transparent;
+    color: $teal-900;
     font-size: ds-ramp("text-sm", size);
-    font-weight: 600;
+    font-weight: 400;
     cursor: pointer;
 
+    svg { flex: 0 0 auto; }
+
     &:hover {
-        background: $teal-700;
+        color: $teal-700;
     }
 }
 
+// Solid filled pill (reference: bg #77a7a7 / border #447777 / white
+// text) — closest steps are $teal-400 / $teal-600.
 .content-topbar__ask {
     display: flex;
     align-items: center;
     gap: map-get($ds-spacers, sm);
     flex: 0 0 auto;
-    height: 42px;
+    height: 39px;
     padding: 0 map-get($ds-spacers, xl);
-    border: 1px solid $teal-700;
+    border: 1px solid $teal-600;
     border-radius: map-get($ds-radii, full);
-    background: transparent;
-    color: $teal-700;
+    background: $teal-400;
+    color: #fff;
     font-size: ds-ramp("text-sm", size);
-    font-weight: 600;
+    font-weight: 400;
     white-space: nowrap;
     cursor: pointer;
     transition: background-color 0.15s ease;
 
     &:hover {
-        background: $teal-100;
+        background: $teal-500;
     }
 }
 

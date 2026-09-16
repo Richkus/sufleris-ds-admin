@@ -10,12 +10,8 @@
 #}
 <aside class="content-sidebar">
     <div class="content-sidebar__header">
-        <a href="content-concept.html" class="content-sidebar__logo">
-            <span class="content-sidebar__logo-mark">MS</span>
-            <span class="content-sidebar__logo-text">
-                <span class="content-sidebar__logo-eyebrow">Mokesčių</span>
-                <span class="content-sidebar__logo-word">SUFLERIS</span>
-            </span>
+        <a href="content-concept.html" class="content-sidebar__logo" :class="{ 'is-hidden': sidebarCollapsed }">
+            <img src="build/images/sufleris-logo.svg" alt="Mokesčių SUFLERIS" class="content-sidebar__logo-img">
         </a>
         <button type="button" class="content-sidebar__collapse" @click="toggleSidebar()"
                 :data-tooltip="sidebarCollapsed ? 'Išskleisti meniu' : 'Suskleisti meniu'"
@@ -33,10 +29,10 @@
 
     <div class="content-sidebar__scroll" x-show="!sidebarCollapsed" x-collapse>
         <nav class="content-sidebar__section">
-            <a href="#" class="content-sidebar__link">Šiandien SUFLERYJE</a>
+            <a href="#" class="content-sidebar__link">Šiandien DUFLERYJE</a>
             <a href="content-concept.html" class="content-sidebar__link is-active">
                 <span>Mokesčių naujienos</span>
-                <span class="content-sidebar__count">155</span>
+                <span class="content-sidebar__count--pill">155</span>
             </a>
             <a href="#" class="content-sidebar__link">
                 <span>Praktinės situacijos</span>
