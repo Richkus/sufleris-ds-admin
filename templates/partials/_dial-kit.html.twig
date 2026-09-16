@@ -37,10 +37,11 @@
         First-visit-only coachmark pointing at the trigger below — "you
         can tweak things here if you need to". Shown once ever (per
         browser, via localStorage 'ds-onboarding-seen'); dismissing it
-        (X) OR opening the trigger itself both mark it seen, so it never
-        reappears once the widget's been discovered either way.
+        (X), clicking outside it, OR opening the trigger itself all mark
+        it seen, so it never reappears once the widget's been discovered
+        any of those ways.
     #}
-    <div x-show="showOnboarding" x-cloak
+    <div x-show="showOnboarding" x-cloak @click.outside="if (showOnboarding) dismissOnboarding()"
          x-transition:enter.opacity.scale.90.duration.400ms.delay.120ms
          x-transition:leave.opacity.scale.95.duration.200ms
          class="dial-kit__coachmark">

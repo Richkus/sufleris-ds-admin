@@ -210,12 +210,12 @@
     flex: 0 0 auto;
     width: 40px;
     height: 40px;
+    // The source PNG is the exact circular composition exported straight
+    // from the Figma reference (orange disc + photo crop baked in) — no
+    // CSS ring/mask needed, this just guards against a non-square image
+    // ever being swapped in later.
     border-radius: 50%;
     object-fit: cover;
-    // A ring in the DS accent tint (instead of the reference's solid
-    // orange disc) — ties the photo back to the same accent used for
-    // the trigger's active/hover states elsewhere in this widget.
-    box-shadow: 0 0 0 3px var(--ds-accent-bg);
 }
 
 .dial-kit__coachmark-text {
