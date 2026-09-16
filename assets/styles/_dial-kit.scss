@@ -178,16 +178,16 @@
     position: absolute;
     right: 0;
     bottom: calc(100% + #{map-get($ds-spacers, lg)});
-    width: 232px;
+    width: 272px;
     display: flex;
     align-items: flex-start;
-    gap: map-get($ds-spacers, sm);
+    gap: map-get($ds-spacers, md);
     background: var(--ds-bg-shell);
     border: 1px solid var(--ds-border);
-    border-radius: map-get($ds-radii, lg);
+    border-radius: map-get($ds-radii, xl);
     box-shadow: 0 8px 24px rgba($grey-900, 0.14), 0 1px 3px rgba($grey-900, 0.08);
-    padding: map-get($ds-spacers, md);
-    padding-right: map-get($ds-spacers, "2xl");
+    padding: map-get($ds-spacers, xl);
+    padding-right: map-get($ds-spacers, "3xl");
 
     // Speech-bubble tail, pointing down at the trigger's horizontal
     // center (44px trigger / 2 = 22px from the shared right edge).
@@ -206,22 +206,21 @@
     }
 }
 
-.dial-kit__coachmark-icon {
+.dial-kit__coachmark-avatar {
     flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--ds-accent-bg);
-    font-size: 16px;
-    line-height: 1;
+    object-fit: cover;
+    // A ring in the DS accent tint (instead of the reference's solid
+    // orange disc) — ties the photo back to the same accent used for
+    // the trigger's active/hover states elsewhere in this widget.
+    box-shadow: 0 0 0 3px var(--ds-accent-bg);
 }
 
 .dial-kit__coachmark-text {
     margin: 0;
-    padding-top: 2px;
+    padding-top: 4px;
     font-family: $font-family-sans-serif;
     font-size: ds-ramp("text-sm", size);
     line-height: ds-ramp("text-sm", line-height);
@@ -230,8 +229,8 @@
 
 .dial-kit__coachmark-close {
     position: absolute;
-    top: map-get($ds-spacers, xs);
-    right: map-get($ds-spacers, xs);
+    top: map-get($ds-spacers, sm);
+    right: map-get($ds-spacers, sm);
     display: flex;
     align-items: center;
     justify-content: center;

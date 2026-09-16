@@ -29,6 +29,15 @@ Encore
 
     // enables Sass/SCSS support and Bootstrap customization
     .enableSassLoader()
+
+    // Static raster images (e.g. the onboarding coachmark's avatar) that
+    // aren't referenced from CSS/JS and so wouldn't otherwise be picked
+    // up by webpack — copied as-is into build/images/, referenced from
+    // Twig as "build/images/<file>" same as build/app.css/app.js.
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -41,13 +41,13 @@
         reappears once the widget's been discovered either way.
     #}
     <div x-show="showOnboarding" x-cloak
-         x-transition:enter.opacity.scale.90.duration.400ms
+         x-transition:enter.opacity.scale.90.duration.400ms.delay.120ms
          x-transition:leave.opacity.scale.95.duration.200ms
          class="dial-kit__coachmark">
         <button type="button" class="dial-kit__coachmark-close" @click="dismissOnboarding()" aria-label="Uždaryti">
             {{ icons.icon('x', 12) }}
         </button>
-        <div class="dial-kit__coachmark-icon">🪄</div>
+        <img src="build/images/onboarding-avatar.png" alt="" class="dial-kit__coachmark-avatar">
         <p class="dial-kit__coachmark-text">Čia gali pamodifikuoti dalykus, jei prireiks</p>
     </div>
 
