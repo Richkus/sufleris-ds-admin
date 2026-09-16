@@ -16,15 +16,24 @@
 {% block content %}
     <div class="home-main">
         <div class="home-main__primary">
+            {#
+                Real markup: a pale outer card (.theme-info-block, bg
+                #F3F6F6) wrapping a single baked banner <img> — the
+                inner .home-hero__banner here reconstructs that image's
+                content (teal graphic, date badge, title, CTA) as real
+                HTML/CSS instead.
+            #}
             <div class="home-hero">
-                <div class="home-hero__text">
-                    <span class="home-hero__date">
-                        <span class="home-hero__date-month">RUGSĖJO</span>
-                        <span class="home-hero__date-day">09</span>
-                    </span>
-                    <h2 class="home-hero__title">Dienpinigių mokėjimo tvarkos pakeitimai nuo 2026-10-01</h2>
-                    <button type="button" class="home-hero__cta" @click.prevent>Registruotis</button>
-                    <p class="home-hero__caption">Seminaras su Rūta Zaikauskiene</p>
+                <div class="home-hero__banner">
+                    <div class="home-hero__text">
+                        <span class="home-hero__date">
+                            <span class="home-hero__date-month">RUGSĖJO</span>
+                            <span class="home-hero__date-day">09</span>
+                        </span>
+                        <h2 class="home-hero__title">Dienpinigių mokėjimo tvarkos pakeitimai nuo 2026-10-01</h2>
+                        <button type="button" class="home-hero__cta" @click.prevent>Registruotis</button>
+                        <p class="home-hero__caption">Seminaras su Rūta Zaikauskiene</p>
+                    </div>
                 </div>
             </div>
 

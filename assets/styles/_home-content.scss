@@ -3,10 +3,50 @@
 // "Naujausios praktinės situacijos" list, and the "Kitos praktinės
 // situacijos" side column. See templates/home.html.twig.
 //
+// Values here are pulled directly from the real site's shipped CSS
+// (HomepageV2.*.css / main_calendar.*.css, read via document.styleSheets
+// on https://richkus.github.io/Richkus-MS-atkurti-bandau/) rather than
+// snapped to the nearest existing DS token — the user asked for a 1:1
+// recreation of that specific page, so literal hex values are used
+// where they don't already match a token exactly. $grey-800 (#405359)
+// and $teal-300 (~#99cccc, sidebar) still lined up with real tokens and
+// are used as such.
+//
 // No real presenter photo is used in the hero (the real site's is a
-// real person's headshot) — a plain color card carries the same visual
-// weight instead.
+// real person's headshot, and the hero itself is literally a single
+// baked marketing banner image there, not a CSS component) — a
+// reconstructed teal/salmon graphic carries the same visual weight.
 // ==========================================================================
+
+// Real hex values with no close DS token match.
+$home-card-bg: #f3f6f6; // .theme-info-block / .wrapper__today_content__items__block__link
+$home-card-border: #e9efef;
+$home-card-text: #336666;
+$home-link-accent: #53a9b1; // "Rodyti visas" / "Rodyti visus" link color
+$home-title-hover: #219da5; // list item title hover color
+$home-row-border: rgba(102, 153, 153, 0.23);
+
+// --------------------------------------------------------------------
+// Shell corrections, scoped to .is-home only — the real site's sidebar
+// is 280px (not content-concept's 260px, sized off the Figma reference)
+// and the topbar is 55px with a square corner (not content-concept's
+// 68px + rounded corner, added later for that Figma-based page).
+// content-concept.html is untouched; see home-base.html.twig.
+// --------------------------------------------------------------------
+.is-home .content-sidebar {
+    flex-basis: 280px;
+    width: 280px;
+}
+
+.is-home.is-sidebar-collapsed .content-sidebar {
+    flex-basis: 72px;
+    width: 72px;
+}
+
+.is-home .content-topbar {
+    height: 55px;
+    border-top-left-radius: 0;
+}
 
 .home-main {
     display: flex;
@@ -26,11 +66,22 @@
     width: 320px;
 }
 
-// --- Hero -------------------------------------------------------------
+// --- Hero -----------------------------------------------------------
+// Real markup: .theme-info-block.featured-block (bg #F3F6F6, radius
+// 5px, padding 15px) wrapping a single <img> banner. Reconstructed here
+// as a teal/salmon graphic inside that same pale outer card instead of
+// an image asset.
 .home-hero {
+    padding: map-get($ds-spacers, lg);
+    border-radius: 5px;
+    background: $home-card-bg;
+    border: 1px solid $home-card-border;
+}
+
+.home-hero__banner {
     position: relative;
-    padding: map-get($ds-spacers, "3xl");
-    border-radius: map-get($ds-radii, xl);
+    padding: map-get($ds-spacers, "2xl");
+    border-radius: 5px;
     background: linear-gradient(135deg, $teal-600, $teal-800);
     overflow: hidden;
 }
@@ -41,21 +92,22 @@
 
 .home-hero__date {
     position: absolute;
-    top: map-get($ds-spacers, xl);
-    right: map-get($ds-spacers, xl);
+    top: map-get($ds-spacers, lg);
+    right: map-get($ds-spacers, lg);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 56px;
+    width: 55px;
     padding: map-get($ds-spacers, xs) 0;
-    border-radius: map-get($ds-radii, md);
+    border-radius: 5px;
     background: $salmon-500;
     color: #fff;
     line-height: 1.1;
+    box-shadow: 0 0 5px rgba(#000, 0.2);
 }
 
 .home-hero__date-month {
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.04em;
 }
@@ -66,7 +118,7 @@
 }
 
 .home-hero__title {
-    margin: 0 0 map-get($ds-spacers, xl);
+    margin: 0 0 map-get($ds-spacers, lg);
     font-size: ds-ramp("h3", size);
     line-height: ds-ramp("h3", line-height);
     font-weight: 700;
@@ -76,10 +128,10 @@
 .home-hero__cta {
     display: inline-flex;
     align-items: center;
-    height: 40px;
+    height: 38px;
     padding: 0 map-get($ds-spacers, xl);
     border: none;
-    border-radius: map-get($ds-radii, sm);
+    border-radius: 5px;
     background: $salmon-500;
     color: #fff;
     font-size: ds-ramp("text-sm", size);
@@ -95,12 +147,15 @@
 }
 
 .home-hero__caption {
-    margin: map-get($ds-spacers, lg) 0 0;
+    margin: map-get($ds-spacers, md) 0 0;
     color: rgba(#fff, 0.75);
     font-size: ds-ramp("text-sm", size);
 }
 
-// --- Secondary cards ----------------------------------------------------
+// --- Secondary cards --------------------------------------------------
+// Real: .wrapper__today_content__items__block__link — bg #F3F6F6,
+// border 1px #E9EFEF, radius 5px, color #336666, padding 15px 15px
+// 12px, text-align: center.
 .home-secondary-row {
     display: flex;
     gap: map-get($ds-spacers, xl);
@@ -110,9 +165,11 @@
 .home-secondary-card {
     flex: 1 1 0;
     min-width: 0;
-    border: 1px solid var(--ds-border);
-    border-radius: map-get($ds-radii, lg);
-    background: var(--ds-bg-shell);
+    border: 1px solid $home-card-border;
+    border-radius: 5px;
+    background: $home-card-bg;
+    color: $home-card-text;
+    text-align: center;
     overflow: hidden;
 }
 
@@ -121,6 +178,7 @@
     align-items: center;
     justify-content: center;
     height: 96px;
+    margin: -1px -1px 0;
     background: linear-gradient(135deg, $teal-400, $teal-600);
 }
 
@@ -144,18 +202,19 @@
 }
 
 .home-secondary-card__body {
-    padding: map-get($ds-spacers, lg);
+    padding: map-get($ds-spacers, lg) map-get($ds-spacers, lg) map-get($ds-spacers, md);
 }
 
 .home-secondary-card__title {
-    font-size: ds-ramp("text-sm", size);
+    font-size: ds-ramp("text-intro", size);
     font-weight: 700;
-    color: var(--ds-text-title);
+    color: $home-card-text;
 }
 
 .home-secondary-card__meta {
     margin-top: 2px;
-    color: var(--ds-text-faint);
+    color: $home-card-text;
+    opacity: 0.7;
     font-size: ds-ramp("caption", size);
 }
 
@@ -164,20 +223,20 @@
     flex-direction: column;
 
     .home-secondary-card__title {
-        padding: map-get($ds-spacers, md) map-get($ds-spacers, lg);
-        border-top: 1px solid var(--ds-border);
+        padding: map-get($ds-spacers, md) map-get($ds-spacers, lg) map-get($ds-spacers, lg);
     }
 }
 
 .home-secondary-card__quiz-body {
-    padding: map-get($ds-spacers, lg);
+    padding: map-get($ds-spacers, lg) map-get($ds-spacers, lg) map-get($ds-spacers, md);
+    text-align: left;
 }
 
 .home-secondary-card__quiz-title {
     margin-bottom: map-get($ds-spacers, sm);
-    font-size: ds-ramp("text-sm", size);
+    font-size: ds-ramp("text-intro", size);
     font-weight: 700;
-    color: var(--ds-text-title);
+    color: $home-card-text;
 }
 
 .home-secondary-card__quiz-list {
@@ -192,14 +251,17 @@
         display: flex;
         align-items: center;
         gap: map-get($ds-spacers, xs);
-        color: var(--ds-text-body);
+        color: $home-card-text;
         font-size: ds-ramp("text-xs", size);
     }
 
     svg { flex: 0 0 auto; color: $green-500; }
 }
 
-// --- Section header (shared by the situations list + aside column) ------
+// --- Section header (shared by the situations list + aside column) ----
+// Real: .wrapper__today_content__items__ps_newest__header_wrapper__title
+// — 20px/700/#405359 ($grey-800, exact match); the "Rodyti visas" link
+// is 13px/#53A9B1.
 .home-section {
     margin-top: map-get($ds-spacers, "3xl");
 }
@@ -208,37 +270,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: map-get($ds-spacers, lg);
-}
-
-.home-main__aside .home-section__header {
-    margin-bottom: map-get($ds-spacers, lg);
+    padding-bottom: map-get($ds-spacers, sm);
 }
 
 .home-section__title {
     margin: 0;
-    font-size: ds-ramp("h4", size);
-    line-height: ds-ramp("h4", line-height);
+    font-size: 20px;
+    line-height: 24px;
     font-weight: 700;
-    color: var(--ds-text-title);
+    color: $grey-800;
 }
 
 .home-section__more {
     display: flex;
     align-items: center;
     gap: 2px;
-    color: $teal-700;
+    color: $home-link-accent;
     text-decoration: none;
     font-size: ds-ramp("text-sm", size);
-    font-weight: 600;
+    font-weight: 400;
     white-space: nowrap;
 
     &:hover {
-        color: $teal-900;
+        text-decoration: underline;
     }
 }
 
-// --- Naujausios praktinės situacijos --------------------------------------
+// --- Naujausios praktinės situacijos ------------------------------------
+// Real: .wrapper__today_content__items__ps_newest__list_wrapper__item —
+// border-top 1px rgba(102,153,153,.23), padding 8-10px 0; date column
+// 13px/opacity .49/75px min-width; title 15px/600/#405359, hover #219DA5.
 .home-situations {
     display: flex;
     flex-direction: column;
@@ -247,30 +308,32 @@
 .home-situations__item {
     display: flex;
     align-items: baseline;
-    gap: map-get($ds-spacers, xl);
-    padding: map-get($ds-spacers, lg) 0;
-    border-bottom: 1px solid var(--ds-border);
+    gap: map-get($ds-spacers, lg);
+    padding: map-get($ds-spacers, sm) 0;
+    border-top: 1px solid $home-row-border;
     text-decoration: none;
 
-    &:first-child {
-        padding-top: 0;
+    &:last-child {
+        border-bottom: 1px solid $home-row-border;
     }
 }
 
 .home-situations__date {
     flex: 0 0 auto;
-    width: 84px;
-    color: var(--ds-text-faint);
+    width: 75px;
+    color: $grey-800;
+    opacity: 0.49;
     font-size: ds-ramp("text-sm", size);
+    white-space: nowrap;
 }
 
 .home-situations__title {
-    color: var(--ds-text-title);
-    font-size: ds-ramp("text-sm", size);
+    color: $grey-800;
+    font-size: ds-ramp("text-intro", size);
     font-weight: 600;
 
     .home-situations__item:hover & {
-        color: $teal-700;
+        color: $home-title-hover;
     }
 }
 
@@ -284,22 +347,22 @@
     display: flex;
     flex-direction: column;
     gap: map-get($ds-spacers, xs);
-    padding: map-get($ds-spacers, lg) 0;
-    border-bottom: 1px solid var(--ds-border);
+    padding: map-get($ds-spacers, sm) 0;
+    border-top: 1px solid $home-row-border;
     text-decoration: none;
 
-    &:first-child {
-        padding-top: 0;
+    &:last-child {
+        border-bottom: 1px solid $home-row-border;
     }
 }
 
 .home-aside-list__title {
-    color: var(--ds-text-title);
+    color: $grey-800;
     font-size: ds-ramp("text-sm", size);
     font-weight: 600;
 
     .home-aside-list__item:hover & {
-        color: $teal-700;
+        color: $home-title-hover;
     }
 }
 
@@ -307,7 +370,8 @@
     display: flex;
     align-items: center;
     gap: map-get($ds-spacers, xxs);
-    color: var(--ds-text-faint);
+    color: $grey-800;
+    opacity: 0.49;
     font-size: ds-ramp("caption", size);
     text-transform: uppercase;
     letter-spacing: 0.02em;

@@ -26,7 +26,14 @@
         duplicated; only the nav content differs, via these separate
         partials. Same sidebarCollapsed Alpine state/toggle mechanism.
     #}
-    <div class="content-shell" x-data="contentShellState()" :class="{ 'is-sidebar-collapsed': sidebarCollapsed }">
+    {#
+        "is-home" scopes the pixel corrections below (real 280px
+        sidebar/55px topbar/no rounded corner, vs content-concept's
+        Figma-derived 260px/68px/rounded) to this page only — see
+        _home-content.scss's "Shell corrections, scoped to .is-home"
+        block. content-concept.html stays exactly as it was.
+    #}
+    <div class="content-shell is-home" x-data="contentShellState()" :class="{ 'is-sidebar-collapsed': sidebarCollapsed }">
         {% include "partials/_home-sidebar.html.twig" %}
 
         <div class="content-shell__main">
