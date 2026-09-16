@@ -27,7 +27,7 @@
     &:hover,
     &.is-active {
         border-color: var(--ds-accent);
-        transform: translateY(-1px) rotate(-8deg);
+        transform: translateY(-1px);
     }
 
     // The generic [data-tooltip] in _topbar.scss centers the tooltip on
@@ -56,6 +56,17 @@
     // circle's vertical centering.
     font-size: 20px;
     line-height: 1;
+    display: inline-block;
+    transition: transform 0.15s ease;
+
+    // The playful tilt lives on the emoji itself, not on .dial-kit__trigger
+    // — that button is also the [data-tooltip] anchor, and CSS transforms
+    // rotate an element's whole rendered box including its ::after
+    // pseudo-element, which was tilting the tooltip bubble along with it.
+    .dial-kit__trigger:hover &,
+    .dial-kit__trigger.is-active & {
+        transform: rotate(-8deg);
+    }
 }
 
 // Styled after Figma's own right-hand inspector panel (Design/Prototype
