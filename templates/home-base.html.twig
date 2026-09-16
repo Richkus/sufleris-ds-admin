@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mokesčių Sufleris{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="build/app.css">
+</head>
+<body>
+    {#
+        "Home" shell — recreated from the real product snapshot
+        (https://richkus.github.io/Richkus-MS-atkurti-bandau/), not the
+        Figma reference used for content-base.html.twig. Separate base
+        on purpose: content-base.html.twig stays untouched for now
+        (per the user — "šitą kolkas paliekam"), and the real home page
+        genuinely differs from that Figma article-page mockup — no AI
+        panel, no top icon nav row, different topbar actions, a much
+        longer real sidebar ("Admin dalis").
+
+        Reuses the SAME .content-sidebar / .content-topbar CSS classes
+        as the content-concept shell (identical visual treatment —
+        colors, collapse-to-rail, VIBE badge) so that styling isn't
+        duplicated; only the nav content differs, via these separate
+        partials. Same sidebarCollapsed Alpine state/toggle mechanism.
+    #}
+    <div class="content-shell" x-data="contentShellState()" :class="{ 'is-sidebar-collapsed': sidebarCollapsed }">
+        {% include "partials/_home-sidebar.html.twig" %}
+
+        <div class="content-shell__main">
+            {% include "partials/_home-topbar.html.twig" %}
+
+            <div class="content-shell__scroll">
+                {% block content %}{% endblock %}
+
+                {% include "partials/_content-footer.html.twig" %}
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script src="build/runtime.js"></script>
+        <script src="build/app.js"></script>
+    {% endblock %}
+</body>
+</html>

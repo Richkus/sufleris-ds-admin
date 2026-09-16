@@ -178,7 +178,8 @@
     // nearest token to the reference's own literal gap-[17px] elsewhere.
     gap: map-get($ds-spacers, xl);
 
-    & + .content-sidebar__pro-label {
+    & + .content-sidebar__pro-label,
+    & + .content-sidebar__section-label {
         margin-top: map-get($ds-spacers, xl);
     }
 }
@@ -232,6 +233,15 @@
     display: flex;
     align-items: center;
     gap: map-get($ds-spacers, sm);
+    margin-bottom: map-get($ds-spacers, sm);
+    color: $teal-900;
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+}
+
+// "Admin dalis" — same heading treatment as .content-sidebar__pro-label,
+// just without the PRO pill (this section isn't a PRO-content group).
+.content-sidebar__section-label {
     margin-bottom: map-get($ds-spacers, sm);
     color: $teal-900;
     font-size: ds-ramp("text-sm", size);

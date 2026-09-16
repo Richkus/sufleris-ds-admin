@@ -135,3 +135,45 @@
         color: $teal-700;
     }
 }
+
+// Plain text+icon nav links (Susisiekti / Kainos ir planai on the real
+// home page's topbar — see _home-topbar.html.twig).
+.content-topbar__text-link {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, xs);
+    color: var(--ds-text-muted);
+    text-decoration: none;
+    font-size: ds-ramp("text-sm", size);
+    white-space: nowrap;
+
+    svg { flex: 0 0 auto; }
+
+    &:hover {
+        color: $teal-700;
+    }
+}
+
+// "Išbandyti nemokamai" — real value probed as a soft mint fill
+// (#F1F7F7/#105354), closest tokens $teal-100/$teal-900, radius "xs".
+.content-topbar__cta {
+    flex: 0 0 auto;
+    height: 36px;
+    padding: 0 map-get($ds-spacers, lg);
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: map-get($ds-radii, xs);
+    background: $teal-100;
+    color: $teal-900;
+    text-decoration: none;
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: $teal-200;
+    }
+}

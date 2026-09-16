@@ -42,3 +42,8 @@
 @import "ai-panel";
 @import "content-footer";
 @import "content-article";
+
+// "Home" template — recreated from the real product snapshot, reuses
+// content-shell/content-sidebar/content-topbar (same shell mechanics),
+// adds its own content styles. See templates/home-base.html.twig.
+@import "home-content";

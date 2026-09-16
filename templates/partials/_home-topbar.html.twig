@@ -1,0 +1,33 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    Real Home page topbar, per https://richkus.github.io/Richkus-MS-atkurti-bandau/
+    — search, Susisiekti/Kainos ir planai text links, account name, and
+    a filled CTA. No "Klausti Di Vedlio" AI entry point — confirmed
+    absent on the real home page (present only in the Figma reference
+    content-topbar.html.twig was built from).
+#}
+<header class="content-topbar">
+    <label class="content-topbar__search">
+        <input type="text" placeholder="Ieškoti pagal frazę" class="content-topbar__search-input">
+        <button type="button" class="content-topbar__search-submit">
+            {{ icons.icon('search', 18) }}
+            Ieškoti
+        </button>
+    </label>
+
+    <div class="content-topbar__actions">
+        <a href="#" @click.prevent class="content-topbar__text-link">
+            {{ icons.icon('phone', 16) }}
+            Susisiekti
+        </a>
+        <a href="#" @click.prevent class="content-topbar__text-link">
+            {{ icons.icon('grid', 16) }}
+            Kainos ir planai
+        </a>
+        <a href="#" @click.prevent class="content-topbar__login">
+            {{ icons.icon('user-circle', 18) }}
+            Audrius
+        </a>
+        <a href="#" @click.prevent class="content-topbar__cta">Išbandyti nemokamai</a>
+    </div>
+</header>

@@ -1,0 +1,109 @@
+{% extends "home-base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Mokesčių naujienos — {{ parent() }}{% endblock %}
+
+{#
+    Recreates the top portion of the real home page
+    (https://richkus.github.io/Richkus-MS-atkurti-bandau/) — hero
+    event card, the two secondary cards below it, the "Naujausios
+    praktinės situacijos" list, and the "Kitos praktinės situacijos"
+    side column. The real page continues well past this (PRO comments,
+    Profilaktika, a full calendar widget, testimonials, stats, feature
+    highlights) — not reproduced here; this is the above-the-fold slice,
+    same scoping call as content-concept.html's single article.
+#}
+{% block content %}
+    <div class="home-main">
+        <div class="home-main__primary">
+            <div class="home-hero">
+                <div class="home-hero__text">
+                    <span class="home-hero__date">
+                        <span class="home-hero__date-month">RUGSĖJO</span>
+                        <span class="home-hero__date-day">09</span>
+                    </span>
+                    <h2 class="home-hero__title">Dienpinigių mokėjimo tvarkos pakeitimai nuo 2026-10-01</h2>
+                    <button type="button" class="home-hero__cta" @click.prevent>Registruotis</button>
+                    <p class="home-hero__caption">Seminaras su Rūta Zaikauskiene</p>
+                </div>
+            </div>
+
+            <div class="home-secondary-row">
+                <div class="home-secondary-card home-secondary-card--video">
+                    <div class="home-secondary-card__media">
+                        <button type="button" class="home-secondary-card__play" aria-label="Žiūrėti įrašą" @click.prevent>{{ icons.icon('play', 20) }}</button>
+                    </div>
+                    <div class="home-secondary-card__body">
+                        <div class="home-secondary-card__title">Savaitės apžvalga</div>
+                        <div class="home-secondary-card__meta">2026-08-21</div>
+                    </div>
+                </div>
+
+                <div class="home-secondary-card home-secondary-card--quiz">
+                    <div class="home-secondary-card__quiz-body">
+                        <div class="home-secondary-card__quiz-title">Žinių testai</div>
+                        <ul class="home-secondary-card__quiz-list">
+                            <li>{{ icons.icon('check', 14) }} Prekių vežimo paslaugos</li>
+                            <li>{{ icons.icon('check', 14) }} PVM klausimai</li>
+                        </ul>
+                    </div>
+                    <div class="home-secondary-card__title">Pasitikrinkite žinias</div>
+                </div>
+            </div>
+
+            <section class="home-section">
+                <div class="home-section__header">
+                    <h2 class="home-section__title">Naujausios praktinės situacijos</h2>
+                    <a href="#" @click.prevent class="home-section__more">Rodyti visas {{ icons.icon('chevron-right', 14) }}</a>
+                </div>
+                <div class="home-situations">
+                    <a href="#" @click.prevent class="home-situations__item">
+                        <span class="home-situations__date">2026-08-21</span>
+                        <span class="home-situations__title">Nusprendė automobilį parduoti, bet vėliau persigalvojo</span>
+                    </a>
+                    <a href="#" @click.prevent class="home-situations__item">
+                        <span class="home-situations__date">2026-08-21</span>
+                        <span class="home-situations__title">Išskaitos pagal kelis vykdomuosius raštus, kai darbuotojas dirba ne visu etatu</span>
+                    </a>
+                    <a href="#" @click.prevent class="home-situations__item">
+                        <span class="home-situations__date">2026-08-21</span>
+                        <span class="home-situations__title">LV įmonė skolinga LT patronuojančiajai įmonei 4 mln. Eur ir negali šios skolos grąžinti</span>
+                    </a>
+                    <a href="#" @click.prevent class="home-situations__item">
+                        <span class="home-situations__date">2026-08-21</span>
+                        <span class="home-situations__title">GPM ir „Sodros“ įmokos, kai MB narys vadovauja įmonei ir gauna pajamų pagal CPS</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <aside class="home-main__aside">
+            <div class="home-section__header">
+                <h2 class="home-section__title">Kitos praktinės situacijos</h2>
+            </div>
+            <div class="home-aside-list">
+                <a href="#" @click.prevent class="home-aside-list__item">
+                    <span class="home-aside-list__title">Darbuotojas įmonės telefoną naudoja susimokėti už automobilio stovėjimą</span>
+                    <span class="home-aside-list__meta">PRAKTINĖ SITUACIJA {{ icons.icon('clock', 12) }} 2 min.</span>
+                </a>
+                <a href="#" @click.prevent class="home-aside-list__item">
+                    <span class="home-aside-list__title">Įsakymai dėl priedų mokėjimo darbuotojams</span>
+                    <span class="home-aside-list__meta">PRAKTINĖ SITUACIJA {{ icons.icon('clock', 12) }} 3 min.</span>
+                </a>
+                <a href="#" @click.prevent class="home-aside-list__item">
+                    <span class="home-aside-list__title">Akcininkui perparduos motociklą, kurį tiekėjas pirko JAV aukcione</span>
+                    <span class="home-aside-list__meta">PRAKTINĖ SITUACIJA {{ icons.icon('clock', 12) }} 4 min.</span>
+                </a>
+                <a href="#" @click.prevent class="home-aside-list__item">
+                    <span class="home-aside-list__title">Ūkininkė statys pastatą, pirks medžiagų iš ES ir registruosis kaip PVM mokėtoja</span>
+                    <span class="home-aside-list__meta">PRAKTINĖ SITUACIJA {{ icons.icon('clock', 12) }} 4 min.</span>
+                </a>
+                <a href="#" @click.prevent class="home-aside-list__item">
+                    <span class="home-aside-list__title">Įmonė sumoka už degalus, skirtus darbuotojui vykti į darbą ir kitus įmonės reikalus</span>
+                    <span class="home-aside-list__meta">PRAKTINĖ SITUACIJA {{ icons.icon('clock', 12) }} 3 min.</span>
+                </a>
+            </div>
+            <a href="#" @click.prevent class="home-section__more">Visos praktinės situacijos {{ icons.icon('chevron-right', 14) }}</a>
+        </aside>
+    </div>
+{% endblock %}

@@ -1,0 +1,321 @@
+// ==========================================================================
+// "Home" page content — hero event card, two secondary cards, the
+// "Naujausios praktinės situacijos" list, and the "Kitos praktinės
+// situacijos" side column. See templates/home.html.twig.
+//
+// No real presenter photo is used in the hero (the real site's is a
+// real person's headshot) — a plain color card carries the same visual
+// weight instead.
+// ==========================================================================
+
+.home-main {
+    display: flex;
+    align-items: flex-start;
+    gap: map-get($ds-spacers, "2xl");
+    max-width: 1160px;
+    padding: map-get($ds-spacers, "2xl");
+}
+
+.home-main__primary {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.home-main__aside {
+    flex: 0 0 320px;
+    width: 320px;
+}
+
+// --- Hero -------------------------------------------------------------
+.home-hero {
+    position: relative;
+    padding: map-get($ds-spacers, "3xl");
+    border-radius: map-get($ds-radii, xl);
+    background: linear-gradient(135deg, $teal-600, $teal-800);
+    overflow: hidden;
+}
+
+.home-hero__text {
+    max-width: 420px;
+}
+
+.home-hero__date {
+    position: absolute;
+    top: map-get($ds-spacers, xl);
+    right: map-get($ds-spacers, xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 56px;
+    padding: map-get($ds-spacers, xs) 0;
+    border-radius: map-get($ds-radii, md);
+    background: $salmon-500;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.home-hero__date-month {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.home-hero__date-day {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.home-hero__title {
+    margin: 0 0 map-get($ds-spacers, xl);
+    font-size: ds-ramp("h3", size);
+    line-height: ds-ramp("h3", line-height);
+    font-weight: 700;
+    color: #fff;
+}
+
+.home-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 map-get($ds-spacers, xl);
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    background: $salmon-500;
+    color: #fff;
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: $salmon-600;
+    }
+}
+
+.home-hero__caption {
+    margin: map-get($ds-spacers, lg) 0 0;
+    color: rgba(#fff, 0.75);
+    font-size: ds-ramp("text-sm", size);
+}
+
+// --- Secondary cards ----------------------------------------------------
+.home-secondary-row {
+    display: flex;
+    gap: map-get($ds-spacers, xl);
+    margin-top: map-get($ds-spacers, xl);
+}
+
+.home-secondary-card {
+    flex: 1 1 0;
+    min-width: 0;
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, lg);
+    background: var(--ds-bg-shell);
+    overflow: hidden;
+}
+
+.home-secondary-card__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 96px;
+    background: linear-gradient(135deg, $teal-400, $teal-600);
+}
+
+.home-secondary-card__play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(#fff, 0.9);
+    color: $teal-700;
+    cursor: pointer;
+
+    svg { margin-left: 2px; }
+
+    &:hover {
+        background: #fff;
+    }
+}
+
+.home-secondary-card__body {
+    padding: map-get($ds-spacers, lg);
+}
+
+.home-secondary-card__title {
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 700;
+    color: var(--ds-text-title);
+}
+
+.home-secondary-card__meta {
+    margin-top: 2px;
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("caption", size);
+}
+
+.home-secondary-card--quiz {
+    display: flex;
+    flex-direction: column;
+
+    .home-secondary-card__title {
+        padding: map-get($ds-spacers, md) map-get($ds-spacers, lg);
+        border-top: 1px solid var(--ds-border);
+    }
+}
+
+.home-secondary-card__quiz-body {
+    padding: map-get($ds-spacers, lg);
+}
+
+.home-secondary-card__quiz-title {
+    margin-bottom: map-get($ds-spacers, sm);
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 700;
+    color: var(--ds-text-title);
+}
+
+.home-secondary-card__quiz-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, xs);
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: map-get($ds-spacers, xs);
+        color: var(--ds-text-body);
+        font-size: ds-ramp("text-xs", size);
+    }
+
+    svg { flex: 0 0 auto; color: $green-500; }
+}
+
+// --- Section header (shared by the situations list + aside column) ------
+.home-section {
+    margin-top: map-get($ds-spacers, "3xl");
+}
+
+.home-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: map-get($ds-spacers, lg);
+}
+
+.home-main__aside .home-section__header {
+    margin-bottom: map-get($ds-spacers, lg);
+}
+
+.home-section__title {
+    margin: 0;
+    font-size: ds-ramp("h4", size);
+    line-height: ds-ramp("h4", line-height);
+    font-weight: 700;
+    color: var(--ds-text-title);
+}
+
+.home-section__more {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: $teal-700;
+    text-decoration: none;
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+    white-space: nowrap;
+
+    &:hover {
+        color: $teal-900;
+    }
+}
+
+// --- Naujausios praktinės situacijos --------------------------------------
+.home-situations {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-situations__item {
+    display: flex;
+    align-items: baseline;
+    gap: map-get($ds-spacers, xl);
+    padding: map-get($ds-spacers, lg) 0;
+    border-bottom: 1px solid var(--ds-border);
+    text-decoration: none;
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.home-situations__date {
+    flex: 0 0 auto;
+    width: 84px;
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("text-sm", size);
+}
+
+.home-situations__title {
+    color: var(--ds-text-title);
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+
+    .home-situations__item:hover & {
+        color: $teal-700;
+    }
+}
+
+// --- Kitos praktinės situacijos (aside column) --------------------------
+.home-aside-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-aside-list__item {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, xs);
+    padding: map-get($ds-spacers, lg) 0;
+    border-bottom: 1px solid var(--ds-border);
+    text-decoration: none;
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.home-aside-list__title {
+    color: var(--ds-text-title);
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+
+    .home-aside-list__item:hover & {
+        color: $teal-700;
+    }
+}
+
+.home-aside-list__meta {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, xxs);
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("caption", size);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+
+    svg { margin-left: map-get($ds-spacers, xs); }
+}
+
+.home-main__aside > .home-section__more {
+    display: flex;
+    margin-top: map-get($ds-spacers, lg);
+}
