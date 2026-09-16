@@ -138,15 +138,14 @@ window.dsSetShell = function dsSetShell(version) {
  * render at all, site-wide, on every page/shell. Off means the block is
  * not just collapsed but absent next to the component entirely (see the
  * `x-show="... && $store.devTools.showCode"` bindings in buttons.html.twig).
- * Defaults to shown (true) when nothing is saved yet.
+ * Defaults to hidden (false) when nothing is saved yet.
  */
 Alpine.store('devTools', {
     showCode: (() => {
         try {
-            const saved = localStorage.getItem('ds-show-code');
-            return saved === null ? true : saved === '1';
+            return localStorage.getItem('ds-show-code') === '1';
         } catch (e) {
-            return true;
+            return false;
         }
     })(),
 });

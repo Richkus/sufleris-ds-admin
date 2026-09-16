@@ -70,25 +70,6 @@
     padding: map-get($ds-spacers, xs);
 }
 
-.dial-kit__panel-title {
-    display: flex;
-    align-items: center;
-    gap: map-get($ds-spacers, xs);
-    padding: map-get($ds-spacers, xs) map-get($ds-spacers, sm);
-    font-family: $font-family-sans-serif;
-    font-size: ds-ramp("text-xs", size);
-    font-weight: 600;
-    color: var(--ds-text-muted);
-}
-
-.dial-kit__live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: $green-500;
-    flex: 0 0 auto;
-}
-
 .dial-kit__divider {
     height: 1px;
     background: var(--ds-border);

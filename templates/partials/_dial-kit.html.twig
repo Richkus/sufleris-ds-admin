@@ -19,13 +19,8 @@
 <div class="dial-kit" x-data="{ open: false }">
     <div x-show="open" x-cloak @click.outside="open = false"
          x-transition.opacity.scale.95.duration.150ms class="dial-kit__panel">
-        <div class="dial-kit__panel-title">
-            <span class="dial-kit__live-dot"></span>
-            Live
-        </div>
-
         <div class="dial-kit__group">
-            <div class="dial-kit__group-label">Layoutas</div>
+            <div class="dial-kit__group-label">Layouto admin</div>
             {% for version, label in { v1: 'V.1', v2: 'V.2', v3: 'V.3', v4: 'V.4 (dark)' } %}
                 <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.shell.current === '{{ version }}' }"
                         @click="window.dsSetShell('{{ version }}')">
