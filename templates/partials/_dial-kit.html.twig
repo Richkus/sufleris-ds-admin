@@ -16,7 +16,41 @@
     it's fixed-positioned and independent of the topbar/sidebar chrome,
     so it doesn't need a shell-specific duplicate.
 #}
-<div class="dial-kit" x-data="{ open: false }">
+<div class="dial-kit" x-data="{
+        open: false,
+        showOnboarding: false,
+        initOnboarding() {
+            try {
+                if (!localStorage.getItem('ds-onboarding-seen')) {
+                    setTimeout(() => { this.showOnboarding = true; }, 700);
+                }
+            } catch (e) {}
+        },
+        dismissOnboarding() {
+            this.showOnboarding = false;
+            try { localStorage.setItem('ds-onboarding-seen', '1'); } catch (e) {}
+        }
+    }"
+    x-init="initOnboarding()"
+>
+    {#
+        First-visit-only coachmark pointing at the trigger below — "you
+        can tweak things here if you need to". Shown once ever (per
+        browser, via localStorage 'ds-onboarding-seen'); dismissing it
+        (X) OR opening the trigger itself both mark it seen, so it never
+        reappears once the widget's been discovered either way.
+    #}
+    <div x-show="showOnboarding" x-cloak
+         x-transition:enter.opacity.scale.90.duration.400ms
+         x-transition:leave.opacity.scale.95.duration.200ms
+         class="dial-kit__coachmark">
+        <button type="button" class="dial-kit__coachmark-close" @click="dismissOnboarding()" aria-label="Uždaryti">
+            {{ icons.icon('x', 12) }}
+        </button>
+        <div class="dial-kit__coachmark-icon">🪄</div>
+        <p class="dial-kit__coachmark-text">Čia gali pamodifikuoti dalykus, jei prireiks</p>
+    </div>
+
     <div x-show="open" x-cloak @click.outside="open = false"
          x-transition.opacity.scale.95.duration.150ms class="dial-kit__panel">
         <div class="dial-kit__group">
@@ -54,7 +88,8 @@
        opens a meta/dev-tools widget, not a real product surface, and the
        emoji signals that at a glance instead of blending in with the
        DS's own serious icon language. #}
-    <button type="button" class="dial-kit__trigger" :class="{ 'is-active': open }" @click="open = !open"
+    <button type="button" class="dial-kit__trigger" :class="{ 'is-active': open }"
+            @click="open = !open; if (showOnboarding) dismissOnboarding()"
             :data-tooltip="open ? false : 'Pareguliavimai :)'" aria-label="Pareguliavimai">
         <span class="dial-kit__trigger-emoji">🪄</span>
     </button>

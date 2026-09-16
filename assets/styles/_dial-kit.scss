@@ -158,3 +158,86 @@
 
     svg { width: 15px; height: 15px; }
 }
+
+// First-visit coachmark, pointing down at the trigger via the ::after
+// tail below. Styled like a Figma-style callout (Figma reference) but
+// on our own tokens — white/surface card, DS accent-tinted icon badge,
+// so it reads as part of this system rather than a copy of the ref.
+.dial-kit__coachmark {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + #{map-get($ds-spacers, lg)});
+    width: 232px;
+    display: flex;
+    align-items: flex-start;
+    gap: map-get($ds-spacers, sm);
+    background: var(--ds-bg-shell);
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, lg);
+    box-shadow: 0 8px 24px rgba($grey-900, 0.14), 0 1px 3px rgba($grey-900, 0.08);
+    padding: map-get($ds-spacers, md);
+    padding-right: map-get($ds-spacers, "2xl");
+
+    // Speech-bubble tail, pointing down at the trigger's horizontal
+    // center (44px trigger / 2 = 22px from the shared right edge).
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        right: 16px;
+        width: 12px;
+        height: 12px;
+        background: var(--ds-bg-shell);
+        border-right: 1px solid var(--ds-border);
+        border-bottom: 1px solid var(--ds-border);
+        border-radius: 0 0 2px 0;
+        transform: rotate(45deg);
+    }
+}
+
+.dial-kit__coachmark-icon {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ds-accent-bg);
+    font-size: 16px;
+    line-height: 1;
+}
+
+.dial-kit__coachmark-text {
+    margin: 0;
+    padding-top: 2px;
+    font-family: $font-family-sans-serif;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
+    color: var(--ds-text-body);
+}
+
+.dial-kit__coachmark-close {
+    position: absolute;
+    top: map-get($ds-spacers, xs);
+    right: map-get($ds-spacers, xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, xs);
+    color: var(--ds-text-faint);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    svg { width: 12px; height: 12px; }
+
+    &:hover {
+        color: var(--ds-text-title);
+        background: var(--ds-bg-surface-hover);
+    }
+}
