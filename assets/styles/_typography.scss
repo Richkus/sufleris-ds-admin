@@ -8,7 +8,7 @@
 
 @each $key, $props in $ds-type-ramp {
     .ds-#{$key} {
-        font-family: $font-family-sans-serif;
+        font-family: var(--ds-font-family);
         font-size: map-get($props, size);
         line-height: map-get($props, line-height);
         font-weight: map-get($props, weight);
@@ -24,7 +24,7 @@ h4, .h4 { @extend .ds-h4; }
 h5, .h5 { @extend .ds-h5; }
 
 body {
-    font-family: $font-family-sans-serif;
+    font-family: var(--ds-font-family);
     @extend .ds-text-md;
     // Also the default color for h1-h5 (see the aliases above) and any
     // other title text without its own explicit color — grey-900 read as

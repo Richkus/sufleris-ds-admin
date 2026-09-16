@@ -58,7 +58,7 @@
     height: 19px;
     background: transparent;
     border: none;
-    font-family: $font-family-sans-serif;
+    font-family: var(--ds-font-family);
     font-size: 14px;
     line-height: 19px;
     font-weight: 600;
@@ -93,7 +93,7 @@
     align-items: center;
     height: 34px;
     padding: 0 map-get($ds-spacers, lg);
-    font-family: $font-family-sans-serif;
+    font-family: var(--ds-font-family);
     font-size: ds-ramp("text-sm", size);
     line-height: ds-ramp("text-sm", line-height);
     font-weight: 400;

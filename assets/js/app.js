@@ -133,6 +133,44 @@ window.dsSetShell = function dsSetShell(version) {
 };
 
 /**
+ * Font picker (DialKit widget, "Šriftas" group) — swaps the DS-admin
+ * shell's --ds-font-family custom property live (see _theme.scss,
+ * which also repoints Bootstrap's own --bs-body-font-family/
+ * --bs-font-sans-serif at it, so Bootstrap-native elements follow too).
+ * Font sizes are untouched on purpose — every size still comes from
+ * $ds-type-ramp regardless of which font is picked, only the typeface
+ * changes. Keep this stack map in sync with the duplicate in
+ * base.html.twig's pre-paint flash-prevention script (that one has to
+ * run before app.js is even loaded, so it can't just call this).
+ */
+const DS_FONTS = {
+    'open-sans': { label: 'Open Sans', stack: '"Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif' },
+    'dm-sans': { label: 'DM Sans', stack: '"DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif' },
+    'inter': { label: 'Inter', stack: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif' },
+    'roboto': { label: 'Roboto', stack: '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif' },
+};
+
+Alpine.store('font', {
+    current: (() => {
+        try {
+            const saved = localStorage.getItem('ds-font');
+            return saved && DS_FONTS[saved] ? saved : 'open-sans';
+        } catch (e) {
+            return 'open-sans';
+        }
+    })(),
+});
+
+window.dsSetFont = function dsSetFont(key) {
+    if (!DS_FONTS[key]) return;
+    document.documentElement.style.setProperty('--ds-font-family', DS_FONTS[key].stack);
+    try {
+        localStorage.setItem('ds-font', key);
+    } catch (e) {}
+    Alpine.store('font').current = key;
+};
+
+/**
  * Global "show code" toggle (DialKit widget, "Kodas" group) — controls
  * whether the per-component "Kodas" toggle button AND its code panel
  * render at all, site-wide, on every page/shell. Off means the block is

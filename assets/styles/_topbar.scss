@@ -135,7 +135,7 @@
     transform: translate(-50%, -4px);
     background: $teal-700;
     color: #fff;
-    font-family: $font-family-sans-serif;
+    font-family: var(--ds-font-family);
     font-size: ds-ramp("text-xs", size);
     line-height: ds-ramp("text-xs", line-height);
     font-weight: 400;

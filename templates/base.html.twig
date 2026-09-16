@@ -8,8 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     {# Enriqueta is used ONLY for the Wellcome hero headline (index.html) —
        a deliberate one-off serif accent per the Figma source, distinct from
-       the site-wide Open Sans. #}
-    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+       the site-wide Open Sans. DM Sans/Inter/Roboto are the DialKit
+       "Šriftas" picker's other options (see _dial-kit.html.twig,
+       window.dsSetFont() in app.js) — loaded upfront so picking one is
+       instant, no per-pick <link> injection/FOUC to manage. #}
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Enriqueta:wght@600;700&family=Inter:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
@@ -25,6 +28,13 @@
         specific variant can be linked/captured directly (e.g. for a
         screenshot or a design-review link) without having to open the
         DialKit widget and click through it by hand first.
+
+        Same flash-prevention reasoning applies to the saved font pick
+        (window.dsSetFont() in app.js, DialKit "Šriftas" group) — set
+        the --ds-font-family custom property here too, before first
+        paint, rather than waiting for app.js. The font-stack map is
+        duplicated from app.js's DS_FONTS on purpose: this has to run
+        synchronously pre-paint, before any module script is available.
     #}
     <script>
         (function () {
@@ -36,6 +46,18 @@
                 if (fromUrl) localStorage.setItem('ds-shell', fromUrl);
                 if (v === 'v2' || v === 'v3' || v === 'v4') {
                     document.documentElement.classList.add('shell-' + v);
+                }
+            } catch (e) {}
+            try {
+                var fontStacks = {
+                    'open-sans': '"Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    'dm-sans': '"DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    'inter': '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    'roboto': '"Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif'
+                };
+                var font = localStorage.getItem('ds-font');
+                if (font && fontStacks[font]) {
+                    document.documentElement.style.setProperty('--ds-font-family', fontStacks[font]);
                 }
             } catch (e) {}
         })();

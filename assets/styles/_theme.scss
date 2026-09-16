@@ -44,6 +44,19 @@
     --ds-hero-bg: #{$teal-100};
     --ds-hero-text: #005a5a;
     --ds-hero-grid: rgba(#{$teal-700}, 0.08);
+
+    // Live-switchable via the DialKit "Šriftas" picker (window.dsSetFont()
+    // in app.js) — every explicit `font-family: $font-family-sans-serif`
+    // in the DS-admin partials was swapped for var(--ds-font-family) so a
+    // pick actually reaches the whole shell, not just body-inherited text.
+    --ds-font-family: #{$font-family-sans-serif};
+    // Bootstrap 5.3 emits its OWN font custom properties and its
+    // components (buttons, form controls, etc.) reference those, not our
+    // SCSS variable — repointing them here means Bootstrap-native
+    // elements pick up a font change too, without hunting down every
+    // Bootstrap component that sets its own font-family.
+    --bs-body-font-family: var(--ds-font-family);
+    --bs-font-sans-serif: var(--ds-font-family);
 }
 
 // V.4 dark theme — subtle, not pure black/white (same idea as Tailwind's

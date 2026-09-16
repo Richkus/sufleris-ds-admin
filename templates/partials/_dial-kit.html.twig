@@ -68,6 +68,33 @@
         <div class="dial-kit__divider"></div>
 
         {#
+            Font picker — swaps --ds-font-family live across the whole
+            DS-admin shell (window.dsSetFont() in app.js; see
+            _theme.scss for how it also repoints Bootstrap's own font
+            vars). Sizes are untouched — every option still uses the
+            same $ds-type-ramp values, only the typeface changes. Each
+            option label is set in its own font (inline style) so the
+            picker previews the face directly, not just its name.
+        #}
+        <div class="dial-kit__group">
+            <div class="dial-kit__group-label">Šriftas</div>
+            {% for key, font in {
+                'open-sans': { label: 'Open Sans', stack: '"Open Sans", sans-serif' },
+                'dm-sans': { label: 'DM Sans', stack: '"DM Sans", sans-serif' },
+                'inter': { label: 'Inter', stack: '"Inter", sans-serif' },
+                'roboto': { label: 'Roboto', stack: '"Roboto", sans-serif' }
+            } %}
+                <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.font.current === '{{ key }}' }"
+                        @click="window.dsSetFont('{{ key }}')">
+                    <span style="font-family: {{ font.stack }}">{{ font.label }}</span>
+                    <span class="dial-kit__check" x-show="$store.font.current === '{{ key }}'">{{ icons.icon('check', 14) }}</span>
+                </button>
+            {% endfor %}
+        </div>
+
+        <div class="dial-kit__divider"></div>
+
+        {#
             Global "show code" switch — hides the per-component "Kodas"
             toggle + code panel everywhere (all pages/shells), not just
             collapses it. See window.dsSetShowCode / $store.devTools in
