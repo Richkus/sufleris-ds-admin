@@ -20,7 +20,7 @@
     <div x-show="open" x-cloak @click.outside="open = false"
          x-transition.opacity.scale.95.duration.150ms class="dial-kit__panel">
         <div class="dial-kit__group">
-            <div class="dial-kit__group-label">Layouto admin</div>
+            <div class="dial-kit__group-label">Layoutas</div>
             {% for version, label in { v1: 'V.1', v2: 'V.2', v3: 'V.3', v4: 'V.4 (dark)' } %}
                 <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.shell.current === '{{ version }}' }"
                         @click="window.dsSetShell('{{ version }}')">
@@ -50,8 +50,12 @@
         </div>
     </div>
 
+    {# A playful emoji instead of a stroke-icon on purpose — this trigger
+       opens a meta/dev-tools widget, not a real product surface, and the
+       emoji signals that at a glance instead of blending in with the
+       DS's own serious icon language. #}
     <button type="button" class="dial-kit__trigger" :class="{ 'is-active': open }" @click="open = !open"
             :data-tooltip="open ? false : 'Pareguliavimai :)'" aria-label="Pareguliavimai">
-        {{ icons.icon('sliders', 20) }}
+        <span class="dial-kit__trigger-emoji">🪄</span>
     </button>
 </div>
