@@ -10,13 +10,23 @@
 #}
 <aside class="content-sidebar">
     <div class="content-sidebar__header">
-        <a href="content-concept.html" class="content-sidebar__logo">
-            <span class="content-sidebar__logo-text" x-show="!sidebarCollapsed">
-                <span class="content-sidebar__logo-eyebrow">Mokesčių</span>
-                <span class="content-sidebar__logo-word">SUFLERIS</span>
-            </span>
-            <span class="content-sidebar__logo-collapsed" x-show="sidebarCollapsed" x-cloak>MS</span>
-        </a>
+        <div class="content-sidebar__brand">
+            <a href="content-concept.html" class="content-sidebar__logo">
+                <span class="content-sidebar__logo-text" x-show="!sidebarCollapsed">
+                    <span class="content-sidebar__logo-eyebrow">Mokesčių</span>
+                    <span class="content-sidebar__logo-word">SUFLERIS</span>
+                </span>
+                <span class="content-sidebar__logo-collapsed" x-show="sidebarCollapsed" x-cloak>MS</span>
+            </a>
+            {#
+                Marks every page built on this shell as an unofficial
+                mockup — every link here is inert (@click.prevent, see
+                below) so experimenting with layout/content never risks
+                wandering onto the real mokesciu-sufleris.lt site
+                without noticing.
+            #}
+            <span class="content-sidebar__vibe-badge" x-show="!sidebarCollapsed" x-cloak title="Prototipas / eksperimentas — ne realus puslapis">VIBE</span>
+        </div>
         <button type="button" class="content-sidebar__collapse" @click="toggleSidebar()"
                 :data-tooltip="sidebarCollapsed ? 'Išskleisti meniu' : 'Suskleisti meniu'"
                 aria-label="Suskleisti / išskleisti meniu">
@@ -25,31 +35,31 @@
     </div>
 
     <nav class="content-sidebar__primary">
-        <a href="#" class="content-sidebar__item" data-tooltip="Kaip veikia SUFLERIS">{{ icons.icon('help-circle', 20) }} <span x-show="!sidebarCollapsed">Kaip veikia SUFLERIS</span></a>
-        <a href="#" class="content-sidebar__item" data-tooltip="Naujausi">{{ icons.icon('clock', 20) }} <span x-show="!sidebarCollapsed">Naujausi</span></a>
-        <a href="#" class="content-sidebar__item" data-tooltip="Naršyti">{{ icons.icon('compass', 20) }} <span x-show="!sidebarCollapsed">Naršyti</span></a>
-        <a href="#" class="content-sidebar__item" data-tooltip="Mano SUFLERIS">{{ icons.icon('user-circle', 20) }} <span x-show="!sidebarCollapsed">Mano SUFLERIS</span></a>
+        <a href="#" @click.prevent class="content-sidebar__item" data-tooltip="Kaip veikia SUFLERIS">{{ icons.icon('help-circle', 20) }} <span x-show="!sidebarCollapsed">Kaip veikia SUFLERIS</span></a>
+        <a href="#" @click.prevent class="content-sidebar__item" data-tooltip="Naujausi">{{ icons.icon('clock', 20) }} <span x-show="!sidebarCollapsed">Naujausi</span></a>
+        <a href="#" @click.prevent class="content-sidebar__item" data-tooltip="Naršyti">{{ icons.icon('compass', 20) }} <span x-show="!sidebarCollapsed">Naršyti</span></a>
+        <a href="#" @click.prevent class="content-sidebar__item" data-tooltip="Mano SUFLERIS">{{ icons.icon('user-circle', 20) }} <span x-show="!sidebarCollapsed">Mano SUFLERIS</span></a>
     </nav>
 
     <div class="content-sidebar__scroll" x-show="!sidebarCollapsed" x-collapse>
         <nav class="content-sidebar__section">
-            <a href="#" class="content-sidebar__link">Šiandien DUFLERYJE</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Šiandien DUFLERYJE</a>
             <a href="content-concept.html" class="content-sidebar__link is-active">
                 <span>Mokesčių naujienos</span>
                 <span class="content-sidebar__count--pill">155</span>
             </a>
-            <a href="#" class="content-sidebar__link">
+            <a href="#" @click.prevent class="content-sidebar__link">
                 <span>Praktinės situacijos</span>
                 <span class="content-sidebar__count">14 566</span>
             </a>
-            <a href="#" class="content-sidebar__link">Sąvadai ir teminiai rinkiniai</a>
-            <a href="#" class="content-sidebar__link">Seminarai ir vaizdo įrašai</a>
-            <a href="#" class="content-sidebar__link">Renginių kalendorius</a>
-            <a href="#" class="content-sidebar__link">Skaičiuoklės</a>
-            <a href="#" class="content-sidebar__link">Testai</a>
-            <a href="#" class="content-sidebar__link">Tinklalaidės</a>
-            <a href="#" class="content-sidebar__link">Trumpai</a>
-            <a href="#" class="content-sidebar__link">Užduokite klausimą</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Sąvadai ir teminiai rinkiniai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Seminarai ir vaizdo įrašai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Renginių kalendorius</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Skaičiuoklės</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Testai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Tinklalaidės</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Trumpai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Užduokite klausimą</a>
         </nav>
 
         <div class="content-sidebar__pro-label">
@@ -57,13 +67,13 @@
             <span>turinys</span>
         </div>
         <nav class="content-sidebar__section">
-            <a href="#" class="content-sidebar__link">Geroji praktika</a>
-            <a href="#" class="content-sidebar__link">Pro mikroskopą</a>
-            <a href="#" class="content-sidebar__link">PRO komentarai</a>
-            <a href="#" class="content-sidebar__link">Profilaktika</a>
-            <a href="#" class="content-sidebar__link">PRO konsultacijos</a>
-            <a href="#" class="content-sidebar__link">Pagalbinės priemonės</a>
-            <a href="#" class="content-sidebar__link">Projektai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Geroji praktika</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Pro mikroskopą</a>
+            <a href="#" @click.prevent class="content-sidebar__link">PRO komentarai</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Profilaktika</a>
+            <a href="#" @click.prevent class="content-sidebar__link">PRO konsultacijos</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Pagalbinės priemonės</a>
+            <a href="#" @click.prevent class="content-sidebar__link">Projektai</a>
         </nav>
     </div>
 </aside>

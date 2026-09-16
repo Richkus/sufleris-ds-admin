@@ -35,11 +35,33 @@
     padding: 0 map-get($ds-spacers, lg) 0 map-get($ds-spacers, xl);
 }
 
+.content-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    min-width: 0;
+}
+
 .content-sidebar__logo {
     display: flex;
     align-items: center;
     min-width: 0;
     text-decoration: none;
+}
+
+// "VIBE" — flags every page on this shell as a prototype, not the real
+// site. Dashed border reads as "unofficial/WIP", distinct from the
+// solid PRO badge elsewhere so it's never mistaken for real UI.
+.content-sidebar__vibe-badge {
+    flex: 0 0 auto;
+    padding: 1px map-get($ds-spacers, sm);
+    border: 1px dashed rgba(#fff, 0.6);
+    border-radius: map-get($ds-radii, full);
+    color: #fff;
+    font-size: ds-ramp("caption", size);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
 }
 
 .content-sidebar__logo-text {

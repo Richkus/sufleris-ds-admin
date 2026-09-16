@@ -20,8 +20,8 @@
     </button>
 
     <div class="content-topbar__actions">
-        <a href="#" class="content-topbar__icon-btn" data-tooltip="Temos" aria-label="Temos">{{ icons.icon('theme', 18) }}</a>
-        <a href="#" class="content-topbar__icon-btn" data-tooltip="Skambinti" aria-label="Skambinti">{{ icons.icon('phone', 18) }}</a>
+        <a href="#" @click.prevent class="content-topbar__icon-btn" data-tooltip="Temos" aria-label="Temos">{{ icons.icon('theme', 18) }}</a>
+        <a href="#" @click.prevent class="content-topbar__icon-btn" data-tooltip="Skambinti" aria-label="Skambinti">{{ icons.icon('phone', 18) }}</a>
         {#
             "Admin panel" placeholder per the user's earlier ask — a
             visible entry point for future content-editing/admin
@@ -32,8 +32,8 @@
             clearly-inert addition rather than folded into the reference
             icon set.
         #}
-        <a href="#" class="content-topbar__icon-btn" data-tooltip="Admin (netrukus)" aria-label="Admin (netrukus)" @click.prevent>{{ icons.icon('edit', 18) }}</a>
-        <a href="#" class="content-topbar__login">
+        <a href="#" @click.prevent class="content-topbar__icon-btn" data-tooltip="Admin (netrukus)" aria-label="Admin (netrukus)">{{ icons.icon('edit', 18) }}</a>
+        <a href="#" @click.prevent class="content-topbar__login">
             {{ icons.icon('user-circle', 18) }}
             Prisijungti
         </a>
