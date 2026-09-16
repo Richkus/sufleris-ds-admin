@@ -1,0 +1,53 @@
+{% extends "content-base.html.twig" %}
+{% import "partials/_icons.html.twig" as icons %}
+
+{% block title %}Nusprendė automobilį parduoti, bet vėliau persigalvojo — {{ parent() }}{% endblock %}
+
+{% block content %}
+    <article class="content-article">
+        <div class="content-article__meta">
+            <span>2026-08-21 &middot; Skaitymo trukmė 4 min.</span>
+            <div class="content-article__meta-actions">
+                <button type="button" class="content-article__icon-btn" data-tooltip="Dalintis" aria-label="Dalintis">{{ icons.icon('share', 16) }}</button>
+                <button type="button" class="content-article__icon-btn" data-tooltip="Įsiminti" aria-label="Įsiminti">{{ icons.icon('bookmark', 16) }}</button>
+            </div>
+        </div>
+
+        <h1 class="content-article__title">Nusprendė automobilį parduoti, bet vėliau persigalvojo</h1>
+
+        <p class="content-article__intro">
+            Norint, kad apskaitoje ir pagal PMĮ būtų skaičiuojamos vienodos nusidėvėjimo sumos, iš trumpalaikio
+            turto sąskaitos, kurioje buvo registruotas parduoti skirtas automobilis, atgal į ilgalaikio turto
+            sąskaitą reikės perkelti turto įsigijimo vertę, nusidėvėjimo sumą ir nusidėvėjimą skaičiuoti toliau
+            taip pat, kaip tai buvo daroma iki sprendimo automobilį parduoti.
+        </p>
+
+        <h3>Klausimas</h3>
+        <p>
+            Įmonė jau priklausantį lengvąjį automobilį naudojo savo veikloje keletą metų, tada nusprendė
+            (turtas atiduotas tarpininkams parduoti). Iš ilgalaikio turto sąskaitos automobilis buvo perkeltas į
+            trumpalaikio turto sąskaitą ir, kol bandėme jį parduoti, nusidėvėjimas nebuvo skaičiuojamas.
+            Nepavykus parduoti automobilio už norimą kainą ir pasikeitus situacijai įmonėje, turtas vėl bus
+            pradėtas naudoti veikloje. Kaip skaičiuoti nusidėvėjimą?
+        </p>
+
+        <h3>MOKESČIŲ SUFLERIO atsakymas</h3>
+        <p>
+            Pradėjus automobilį vėl naudoti įmonės veikloje, jo nusidėvėjimo skaičiavimas tęsiamas.
+        </p>
+        <p>
+            Apskaitoje nėra keliama jokių specialių reikalavimų. Pradėjus naudoti automobilį veikloje, įmonė
+            turėtų įvertinti, kiek laiko jis būtų naudojamas, nustatyti jo likvidacinę vertę ir nuo kito mėnesio,
+            einančio po mėnesio, kurį automobilis pradėtas naudoti, pradėti skaičiuoti nusidėvėjimą.
+        </p>
+        <p>
+            Apskaitoje galima taikyti paprastesnį būdą. Tarkim, perkeliant automobilį iš ilgalaikio turto į
+            atsargas, jo likutinė vertė buvo 11 667 Eur. Tokia verte turtas yra fiksuotas 2 kl. sąskaitoje
+            (įsigijimo vertė – 38 000 Eur, nusidėvėjimas – 26 333 Eur). Automobilis buvo naudotas 4 metus. Dabar
+            jį vėl pradėjus naudoti įmonė įvertino, kad jis veikloje bus naudojamas dar 2 metus, nustatė 100 Eur
+            likvidacinę vertę. Tokiu atveju nenudėvėta 11 667 Eur suma bus nudėvima per kitus 2 metus. Tokius
+            duomenis galima naudoti apskaitoje skaičiuojant nusidėvėjimą (nustatant normatyvą – 50 proc., įrašant
+            duomenis į IMT kortelę). Apskaitoje būtų registruojamas įrašas.
+        </p>
+    </article>
+{% endblock %}

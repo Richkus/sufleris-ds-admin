@@ -1,0 +1,203 @@
+// ==========================================================================
+// "Content concept" sidebar — collapses to an icon-only rail via
+// .content-shell.is-sidebar-collapsed (see contentShellState() in app.js).
+// ==========================================================================
+
+.content-sidebar {
+    flex: 0 0 260px;
+    width: 260px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: $teal-100;
+    border-right: 1px solid var(--ds-border);
+    // No overflow:hidden — the collapse relies on Alpine x-show to hide
+    // labels/lists (not CSS clipping), and clipping would also cut off
+    // [data-tooltip] bubbles, which need to escape this box (see the
+    // left-anchor override below).
+    transition: flex-basis 0.2s ease, width 0.2s ease;
+
+    .is-sidebar-collapsed & {
+        flex-basis: 72px;
+        width: 72px;
+    }
+}
+
+.content-sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    height: 60px;
+    padding: 0 map-get($ds-spacers, lg) 0 map-get($ds-spacers, xl);
+}
+
+.content-sidebar__logo {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    text-decoration: none;
+    color: inherit;
+    min-width: 0;
+}
+
+.content-sidebar__logo-mark {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: map-get($ds-radii, sm);
+    background: $teal-600;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.content-sidebar__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    white-space: nowrap;
+
+    .is-sidebar-collapsed & {
+        display: none;
+    }
+}
+
+.content-sidebar__logo-eyebrow {
+    font-size: ds-ramp("caption", size);
+    color: var(--ds-text-muted);
+}
+
+.content-sidebar__logo-word {
+    font-size: 15px;
+    font-weight: 700;
+    color: $teal-700;
+}
+
+.content-sidebar__collapse {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, xs);
+    color: var(--ds-text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    svg { width: 18px; height: 18px; }
+
+    &:hover {
+        color: $teal-700;
+        background: rgba(#fff, 0.6);
+    }
+}
+
+.content-sidebar__primary {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, xxs);
+    padding: map-get($ds-spacers, sm) map-get($ds-spacers, lg);
+}
+
+.content-sidebar__item {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, md);
+    height: 38px;
+    padding: 0 map-get($ds-spacers, md);
+    border-radius: map-get($ds-radii, sm);
+    color: $teal-800;
+    text-decoration: none;
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+
+    svg { flex: 0 0 auto; width: 20px; height: 20px; }
+
+    .is-sidebar-collapsed & {
+        justify-content: center;
+        padding: 0;
+    }
+
+    &:hover {
+        background: rgba(#fff, 0.6);
+    }
+
+    // The generic [data-tooltip] in _topbar.scss centers the tooltip on
+    // the trigger — fine normally, but this sidebar sits flush against
+    // the viewport's left edge (same class of bug fixed elsewhere for
+    // the DialKit trigger / V.2 sidebar / topbar home icon), so a
+    // centered tooltip on these icons overflows off-screen left.
+    // Left-anchor it to the icon's own edge instead.
+    &[data-tooltip]::after {
+        left: 0;
+        transform: translate(0, -4px);
+    }
+
+    &[data-tooltip]:hover::after {
+        transform: translate(0, 0);
+    }
+}
+
+.content-sidebar__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: map-get($ds-spacers, lg) map-get($ds-spacers, xl) map-get($ds-spacers, "2xl");
+}
+
+.content-sidebar__section {
+    display: flex;
+    flex-direction: column;
+
+    & + .content-sidebar__pro-label {
+        margin-top: map-get($ds-spacers, xl);
+    }
+}
+
+.content-sidebar__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: map-get($ds-spacers, sm);
+    height: 32px;
+    color: var(--ds-text-body);
+    text-decoration: none;
+    font-size: ds-ramp("text-sm", size);
+    white-space: nowrap;
+
+    &:hover {
+        color: $teal-700;
+    }
+
+    &.is-active {
+        color: $teal-700;
+        font-weight: 700;
+    }
+}
+
+.content-sidebar__count {
+    flex: 0 0 auto;
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("caption", size);
+}
+
+.content-sidebar__pro-label {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    margin-bottom: map-get($ds-spacers, sm);
+    color: var(--ds-text-muted);
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 600;
+}

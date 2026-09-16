@@ -1,0 +1,144 @@
+// ==========================================================================
+// "Content concept" AI assistant panel — static mockup (see the twig
+// partial's own comment). Sits to the right of the article content.
+// ==========================================================================
+
+.ai-panel {
+    flex: 0 0 340px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    padding: map-get($ds-spacers, xl);
+    background: var(--ds-bg-shell);
+    border-left: 1px solid var(--ds-border);
+    overflow-y: auto;
+}
+
+.ai-panel__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: map-get($ds-spacers, xs);
+    flex: 0 0 auto;
+}
+
+.ai-panel__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    color: var(--ds-text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+        color: var(--ds-text-title);
+        background: var(--ds-bg-surface-hover);
+    }
+}
+
+.ai-panel__greeting {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, md);
+    margin-top: map-get($ds-spacers, "3xl");
+
+    p {
+        margin: 0;
+        font-size: ds-ramp("h4", size);
+        font-weight: 700;
+        line-height: ds-ramp("h4", line-height);
+        color: var(--ds-text-title);
+    }
+}
+
+.ai-panel__sparkle {
+    display: flex;
+    color: $salmon-500;
+
+    svg { width: 22px; height: 22px; }
+}
+
+.ai-panel__suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, xs);
+    margin-top: map-get($ds-spacers, "2xl");
+}
+
+.ai-panel__suggestion {
+    display: flex;
+    align-items: flex-start;
+    gap: map-get($ds-spacers, md);
+    padding: map-get($ds-spacers, md);
+    background: var(--ds-bg-page);
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, lg);
+    color: var(--ds-text-body);
+    font-family: $font-family-sans-serif;
+    font-size: ds-ramp("text-sm", size);
+    line-height: ds-ramp("text-sm", line-height);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+
+    svg { flex: 0 0 auto; margin-top: 1px; color: var(--ds-text-muted); }
+
+    &:hover {
+        background: var(--ds-bg-surface-hover);
+        border-color: var(--ds-border-strong);
+    }
+}
+
+.ai-panel__composer {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+    margin-top: auto;
+    padding-top: map-get($ds-spacers, xl);
+}
+
+.ai-panel__composer-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 map-get($ds-spacers, lg);
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, full);
+    background: var(--ds-bg-page);
+    font-family: $font-family-sans-serif;
+    font-size: ds-ramp("text-sm", size);
+    color: var(--ds-text-body);
+    outline: none;
+
+    &::placeholder {
+        color: var(--ds-text-faint);
+    }
+
+    &:focus {
+        border-color: $teal-500;
+    }
+}
+
+.ai-panel__composer-send {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: $teal-600;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: $teal-700;
+    }
+}

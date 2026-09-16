@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mokesčių Sufleris{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="build/app.css">
+</head>
+<body>
+    {#
+        "Content concept" shell — a SEPARATE template from base.html.twig
+        on purpose (see templates/base.html.twig's own header comment).
+        That one is the DS-admin documentation site's own chrome
+        (Foundations/Components sidebar, "Kodas" panels, DialKit widget);
+        this one is a live template for what an actual Mokesčių Sufleris
+        product page looks like — different sidebar content, different
+        topbar, an AI assistant panel, a real multi-column footer. They
+        share nothing structurally, so there's no shell-switcher/DialKit
+        widget here and this page doesn't appear in the DS-admin's own
+        "Pages / Templates" nav (deliberately kept standalone for now).
+
+        Figma reference: node 5669:1509 ("Side Ai Veldy - compact").
+        Colors/spacing/type come from our own DS tokens (_variables.scss,
+        _theme.scss), not the reference's own raw values.
+
+        `sidebarCollapsed` is shared state for every included partial
+        below (sidebar, topbar) since Alpine scope flows down through
+        `{% include %}` the same as through nested HTML — persisted like
+        every other sticky UI preference in this project (ds-shell,
+        ds-sidebar-sections, ds-show-code, ...).
+    #}
+    <div class="content-shell" x-data="contentShellState()" :class="{ 'is-sidebar-collapsed': sidebarCollapsed }">
+        {% include "partials/_content-sidebar.html.twig" %}
+
+        <div class="content-shell__main">
+            {% include "partials/_content-topbar.html.twig" %}
+
+            {#
+                Sidebar + topbar are the only fixed chrome — content, the
+                AI panel, AND the footer all scroll together as one
+                region below the topbar (the footer is tall enough on
+                its own that giving it a fixed flex slot alongside the
+                content row squeezed the row down to almost nothing).
+            #}
+            <div class="content-shell__scroll">
+                <div class="content-shell__body">
+                    <main class="content-shell__content">
+                        {% block content %}{% endblock %}
+                    </main>
+
+                    {% include "partials/_ai-panel.html.twig" %}
+                </div>
+
+                {% include "partials/_content-footer.html.twig" %}
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script src="build/runtime.js"></script>
+        <script src="build/app.js"></script>
+    {% endblock %}
+</body>
+</html>

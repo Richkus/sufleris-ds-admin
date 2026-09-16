@@ -32,3 +32,13 @@
 @import "admin";
 @import "toast";
 @import "dial-kit";
+
+// "Content concept" template — separate real-product shell, see
+// templates/content-base.html.twig for why it's kept apart from the
+// DS-admin chrome above.
+@import "content-shell";
+@import "content-sidebar";
+@import "content-topbar";
+@import "ai-panel";
+@import "content-footer";
+@import "content-article";

@@ -1,0 +1,75 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    Real-product mega-footer for the "Content concept" template — 4
+    columns + a social/copyright bar. Unrelated to the DS-admin's own
+    single-line _footer.html.twig (that one is a "this is a DS demo
+    page" credit strip, this is real site navigation).
+#}
+<footer class="content-footer">
+    <div class="content-footer__columns">
+        <div class="content-footer__column">
+            <div class="content-footer__heading">Apie mus</div>
+            <a href="#">Kaip veikia SUFLERIS?</a>
+            <a href="#">Kodėl tai darome?</a>
+            <a href="#">Mūsų komanda</a>
+            <a href="#">Atsiliepimai</a>
+            <a href="#">Taisyklės ir privatumas</a>
+
+            <hr class="content-footer__divider">
+
+            <div class="content-footer__heading">Susisiekti</div>
+            <a href="#">Pagalba prisijungiant</a>
+            <a href="#">Pagalba renkantis planą</a>
+            <a href="#">Kontaktai</a>
+            <a href="#">D.U.K</a>
+        </div>
+
+        <div class="content-footer__column">
+            <div class="content-footer__heading">Turinys</div>
+            <a href="#">Šiandien SUFLERYJE</a>
+            <a href="#">Mokesčių naujienos</a>
+            <a href="#">Praktinės situacijos</a>
+            <a href="#">Sąvadai ir teminiai rinkiniai</a>
+            <a href="#">Seminarai ir vaizdo įrašai</a>
+            <a href="#">Renginių kalendorius</a>
+            <a href="#">Skaičiuoklės</a>
+            <a href="#">Specialus pagalbos rinkinys</a>
+            <a href="#">Pro mikroskopą <span class="badge-ds badge-ds--success">PRO</span></a>
+            <a href="#">Geroji praktika <span class="badge-ds badge-ds--success">PRO</span></a>
+            <a href="#">Pro komentarai <span class="badge-ds badge-ds--success">PRO</span></a>
+            <a href="#">Profilaktika <span class="badge-ds badge-ds--success">PRO</span></a>
+        </div>
+
+        <div class="content-footer__column">
+            <div class="content-footer__heading">Mano sufleris</div>
+            <a href="#">Apie mano planą</a>
+            <a href="#">Mano pasižymėti</a>
+            <a href="#">Man atrakinti</a>
+            <a href="#">Man atsakyti</a>
+            <a href="#">Nustatymai</a>
+            <a href="#">Sąskaitos</a>
+            <a href="#">Užduoti savo klausimą</a>
+        </div>
+
+        <div class="content-footer__column">
+            <div class="content-footer__heading">Planai</div>
+            <a href="#">Kainos ir planai</a>
+            <a href="#">Planas BAZINIS</a>
+            <a href="#">Planas PRO</a>
+            <a href="#">Planas KOMANDA</a>
+            <a href="#">Papildomos prieigos</a>
+            <a href="#">Planų palyginimas</a>
+            <a href="#">Pasitarti su vadybininku</a>
+        </div>
+    </div>
+
+    <div class="content-footer__bottom">
+        <div class="content-footer__social">
+            <a href="#" aria-label="Facebook">{{ icons.icon('facebook', 18) }}</a>
+            <a href="#" aria-label="Instagram">{{ icons.icon('instagram', 18) }}</a>
+            <a href="#" aria-label="LinkedIn">{{ icons.icon('linkedin', 18) }}</a>
+            <span>Sekite mus socialiniuose tinkluose</span>
+        </div>
+        <div class="content-footer__copyright">Mokesčių SUFLERĮ kuria MERITS &copy; {{ "now"|date("Y") }}</div>
+    </div>
+</footer>

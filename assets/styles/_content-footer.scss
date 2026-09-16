@@ -1,0 +1,81 @@
+// ==========================================================================
+// "Content concept" mega-footer — 4 link columns + social/copyright bar.
+// ==========================================================================
+
+.content-footer {
+    flex: 0 0 auto;
+    background: $grey-100;
+    border-top: 1px solid var(--ds-border);
+    padding: map-get($ds-spacers, "4xl") map-get($ds-spacers, "2xl");
+}
+
+.content-footer__columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: map-get($ds-spacers, "3xl");
+    max-width: 960px;
+}
+
+.content-footer__column {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($ds-spacers, md);
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: map-get($ds-spacers, xs);
+        color: var(--ds-text-body);
+        text-decoration: none;
+        font-size: ds-ramp("text-sm", size);
+
+        &:hover {
+            color: $teal-700;
+        }
+    }
+}
+
+.content-footer__heading {
+    font-size: ds-ramp("text-sm", size);
+    font-weight: 700;
+    color: var(--ds-text-title);
+}
+
+.content-footer__divider {
+    border: none;
+    border-top: 1px solid var(--ds-border);
+    margin: map-get($ds-spacers, sm) 0;
+    width: 100%;
+}
+
+.content-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: map-get($ds-spacers, xl);
+    margin-top: map-get($ds-spacers, "4xl");
+    padding-top: map-get($ds-spacers, xl);
+    border-top: 1px solid var(--ds-border);
+}
+
+.content-footer__social {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, lg);
+    color: var(--ds-text-muted);
+    font-size: ds-ramp("text-sm", size);
+
+    a {
+        display: flex;
+        color: var(--ds-text-muted);
+
+        &:hover {
+            color: $teal-700;
+        }
+    }
+}
+
+.content-footer__copyright {
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("text-sm", size);
+}

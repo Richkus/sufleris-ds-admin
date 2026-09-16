@@ -180,4 +180,27 @@ window.dsSidebarState = function dsSidebarState() {
     };
 };
 
+/**
+ * Sidebar collapse state for the "Content concept" template (see
+ * content-base.html.twig / _content-sidebar.html.twig) — collapses to
+ * an icon-only rail. Separate from dsSidebarState() above (that's the
+ * DS-admin's own per-section expand/collapse); this shell has nothing
+ * to do with the DS-admin chrome, so it gets its own localStorage key.
+ */
+window.contentShellState = function contentShellState() {
+    let collapsed = false;
+    try {
+        collapsed = localStorage.getItem('ds-content-sidebar-collapsed') === '1';
+    } catch (e) {}
+    return {
+        sidebarCollapsed: collapsed,
+        toggleSidebar() {
+            this.sidebarCollapsed = !this.sidebarCollapsed;
+            try {
+                localStorage.setItem('ds-content-sidebar-collapsed', this.sidebarCollapsed ? '1' : '0');
+            } catch (e) {}
+        },
+    };
+};
+
 Alpine.start();

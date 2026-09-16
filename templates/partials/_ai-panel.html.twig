@@ -1,0 +1,46 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    AI assistant panel — static mockup only for now (per the user's
+    explicit call): visual structure matches the Figma reference, but
+    there's no real chat state, message list, or send behavior wired up
+    yet. Revisit as its own Alpine component if/when it needs to be
+    interactive.
+#}
+<aside class="ai-panel">
+    <div class="ai-panel__toolbar">
+        <button type="button" class="ai-panel__icon-btn" data-tooltip="Redaguoti" aria-label="Redaguoti">{{ icons.icon('edit', 18) }}</button>
+        <button type="button" class="ai-panel__icon-btn" data-tooltip="Istorija" aria-label="Istorija">{{ icons.icon('clock', 18) }}</button>
+        <button type="button" class="ai-panel__icon-btn" data-tooltip="Išskleisti" aria-label="Išskleisti">{{ icons.icon('maximize', 18) }}</button>
+    </div>
+
+    <div class="ai-panel__greeting">
+        <span class="ai-panel__sparkle">{{ icons.icon('sparkle', 22) }}</span>
+        <p>Labas Jolanta, galiu padėti tau susiorientuoti</p>
+    </div>
+
+    <div class="ai-panel__suggestions">
+        <button type="button" class="ai-panel__suggestion">
+            {{ icons.icon('compass', 18) }}
+            <span>Jei ši situacija netiko, radau panašias 6&nbsp;vnt.</span>
+        </button>
+        <button type="button" class="ai-panel__suggestion">
+            {{ icons.icon('graduation-cap', 18) }}
+            <span>Plačiau apie tai Kompetencijos centre</span>
+        </button>
+        <button type="button" class="ai-panel__suggestion">
+            {{ icons.icon('graduation-cap', 18) }}
+            <span>Turiu oficialius šaltinius susijusius su tema 4&nbsp;vnt.</span>
+        </button>
+        <button type="button" class="ai-panel__suggestion">
+            {{ icons.icon('graduation-cap', 18) }}
+            <span>Galiu padėti užduoti klausimą</span>
+        </button>
+    </div>
+
+    <div class="ai-panel__composer">
+        <input type="text" placeholder="Užduokite klausimą..." class="ai-panel__composer-input">
+        <button type="button" class="ai-panel__composer-send" aria-label="Siųsti">
+            {{ icons.icon('arrow-up', 16) }}
+        </button>
+    </div>
+</aside>

@@ -1,0 +1,65 @@
+// ==========================================================================
+// "Content concept" article body — the center column of the template.
+// ==========================================================================
+
+.content-article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: map-get($ds-spacers, "3xl") map-get($ds-spacers, "3xl") map-get($ds-spacers, "4xl");
+}
+
+.content-article__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: map-get($ds-spacers, lg);
+    color: var(--ds-text-faint);
+    font-size: ds-ramp("text-sm", size);
+}
+
+.content-article__meta-actions {
+    display: flex;
+    align-items: center;
+    gap: map-get($ds-spacers, sm);
+}
+
+.content-article__icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: map-get($ds-radii, sm);
+    color: var(--ds-text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+        color: $teal-700;
+        background: var(--ds-bg-surface-hover);
+    }
+}
+
+.content-article__title {
+    margin: 0 0 map-get($ds-spacers, xl);
+}
+
+.content-article__intro {
+    font-weight: 700;
+    color: var(--ds-text-title);
+    margin-bottom: map-get($ds-spacers, "2xl");
+}
+
+.content-article {
+    h3 {
+        margin: map-get($ds-spacers, "3xl") 0 map-get($ds-spacers, md);
+    }
+
+    p {
+        color: var(--ds-text-body);
+        margin-bottom: map-get($ds-spacers, lg);
+    }
+}

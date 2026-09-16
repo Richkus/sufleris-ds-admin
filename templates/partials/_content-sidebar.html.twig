@@ -1,0 +1,69 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    Real-product sidebar for the "Content concept" template — collapses
+    to an icon-only rail (see contentShellState() in app.js). Unlike the
+    DS-admin's own _sidebar.html.twig, most rows here are plain text
+    links with no icon (only the top "Kaip veikia / Naujausi / Naršyti /
+    Mano SUFLERIS" group has one each) — collapsing hides those
+    icon-less lists entirely rather than trying to invent icons for
+    them, and keeps just the icon row + logo mark visible.
+#}
+<aside class="content-sidebar">
+    <div class="content-sidebar__header">
+        <a href="content-concept.html" class="content-sidebar__logo">
+            <span class="content-sidebar__logo-mark">MS</span>
+            <span class="content-sidebar__logo-text">
+                <span class="content-sidebar__logo-eyebrow">Mokesčių</span>
+                <span class="content-sidebar__logo-word">SUFLERIS</span>
+            </span>
+        </a>
+        <button type="button" class="content-sidebar__collapse" @click="toggleSidebar()"
+                :data-tooltip="sidebarCollapsed ? 'Išskleisti meniu' : 'Suskleisti meniu'"
+                aria-label="Suskleisti / išskleisti meniu">
+            {{ icons.icon('panel-left', 18) }}
+        </button>
+    </div>
+
+    <nav class="content-sidebar__primary">
+        <a href="#" class="content-sidebar__item" data-tooltip="Kaip veikia SUFLERIS">{{ icons.icon('help-circle', 20) }} <span x-show="!sidebarCollapsed">Kaip veikia SUFLERIS</span></a>
+        <a href="#" class="content-sidebar__item" data-tooltip="Naujausi">{{ icons.icon('clock', 20) }} <span x-show="!sidebarCollapsed">Naujausi</span></a>
+        <a href="#" class="content-sidebar__item" data-tooltip="Naršyti">{{ icons.icon('compass', 20) }} <span x-show="!sidebarCollapsed">Naršyti</span></a>
+        <a href="#" class="content-sidebar__item" data-tooltip="Mano SUFLERIS">{{ icons.icon('user-circle', 20) }} <span x-show="!sidebarCollapsed">Mano SUFLERIS</span></a>
+    </nav>
+
+    <div class="content-sidebar__scroll" x-show="!sidebarCollapsed" x-collapse>
+        <nav class="content-sidebar__section">
+            <a href="#" class="content-sidebar__link">Šiandien SUFLERYJE</a>
+            <a href="content-concept.html" class="content-sidebar__link is-active">
+                <span>Mokesčių naujienos</span>
+                <span class="content-sidebar__count">155</span>
+            </a>
+            <a href="#" class="content-sidebar__link">
+                <span>Praktinės situacijos</span>
+                <span class="content-sidebar__count">14 566</span>
+            </a>
+            <a href="#" class="content-sidebar__link">Sąvadai ir teminiai rinkiniai</a>
+            <a href="#" class="content-sidebar__link">Seminarai ir vaizdo įrašai</a>
+            <a href="#" class="content-sidebar__link">Renginių kalendorius</a>
+            <a href="#" class="content-sidebar__link">Skaičiuoklės</a>
+            <a href="#" class="content-sidebar__link">Testai</a>
+            <a href="#" class="content-sidebar__link">Tinklalaidės</a>
+            <a href="#" class="content-sidebar__link">Trumpai</a>
+            <a href="#" class="content-sidebar__link">Užduokite klausimą</a>
+        </nav>
+
+        <div class="content-sidebar__pro-label">
+            <span class="badge-ds badge-ds--success">PRO</span>
+            <span>turinys</span>
+        </div>
+        <nav class="content-sidebar__section">
+            <a href="#" class="content-sidebar__link">Geroji praktika</a>
+            <a href="#" class="content-sidebar__link">Pro mikroskopą</a>
+            <a href="#" class="content-sidebar__link">PRO komentarai</a>
+            <a href="#" class="content-sidebar__link">Profilaktika</a>
+            <a href="#" class="content-sidebar__link">PRO konsultacijos</a>
+            <a href="#" class="content-sidebar__link">Pagalbinės priemonės</a>
+            <a href="#" class="content-sidebar__link">Projektai</a>
+        </nav>
+    </div>
+</aside>

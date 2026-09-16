@@ -18,7 +18,7 @@ const templatesDir = path.join(__dirname, '..', 'templates');
 const outputDir = path.join(__dirname, '..', 'public');
 
 // Layout/partial templates that must never be rendered on their own.
-const SKIP = new Set(['base.html.twig']);
+const SKIP = new Set(['base.html.twig', 'content-base.html.twig']);
 
 async function main() {
     // Node's `fs.stat`/`fs.readFile` already match Twing's minimal

@@ -1,0 +1,35 @@
+{% import "partials/_icons.html.twig" as icons %}
+{#
+    Real-product topbar for the "Content concept" template — search,
+    the "Klausti Di Vedlio" AI entry point, and account/contact actions.
+    Completely different content from the DS-admin's own _topbar.html.twig
+    (this isn't a DS documentation chrome, see content-base.html.twig).
+#}
+<header class="content-topbar">
+    <label class="content-topbar__search">
+        {{ icons.icon('search', 18) }}
+        <input type="text" placeholder="Ieškoti pagal frazę" class="content-topbar__search-input">
+        <button type="button" class="content-topbar__search-submit">Ieškoti</button>
+    </label>
+
+    <button type="button" class="content-topbar__ask">
+        {{ icons.icon('zap', 16) }}
+        Klausti Di Vedlio
+    </button>
+
+    <div class="content-topbar__actions">
+        <a href="#" class="content-topbar__icon-btn" data-tooltip="Skambinti" aria-label="Skambinti">{{ icons.icon('phone', 18) }}</a>
+        <a href="#" class="content-topbar__icon-btn" data-tooltip="Visos paslaugos" aria-label="Visos paslaugos">{{ icons.icon('grid', 18) }}</a>
+        {#
+            "Admin panel" placeholder per the user's ask — a visible entry
+            point for future content-editing/admin controls, deliberately
+            inert for now (no destination, no real state) rather than
+            building any actual admin functionality prematurely.
+        #}
+        <a href="#" class="content-topbar__icon-btn" data-tooltip="Admin (netrukus)" aria-label="Admin (netrukus)" @click.prevent>{{ icons.icon('edit', 18) }}</a>
+        <a href="#" class="content-topbar__login">
+            {{ icons.icon('user-circle', 18) }}
+            Prisijungti
+        </a>
+    </div>
+</header>

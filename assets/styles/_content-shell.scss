@@ -1,0 +1,37 @@
+// ==========================================================================
+// "Content concept" shell layout — sidebar + topbar/content/AI-panel +
+// footer. See templates/content-base.html.twig for why this is a
+// separate shell from the DS-admin's own app-shell/_layout.scss.
+// ==========================================================================
+
+.content-shell {
+    display: flex;
+    height: 100vh;
+    background: var(--ds-bg-page);
+}
+
+.content-shell__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+// The one scrolling region below the topbar — content+AI-panel row,
+// then the footer once you scroll past them. Sidebar/topbar don't
+// scroll with it (see content-base.html.twig's own comment on why).
+.content-shell__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.content-shell__body {
+    display: flex;
+    align-items: stretch;
+}
+
+.content-shell__content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
