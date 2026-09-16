@@ -82,6 +82,23 @@
                 </span>
             </button>
         </div>
+
+        <div class="dial-kit__divider"></div>
+
+        {#
+            Onboarding only ever shows once (per browser) on its own, so
+            there's no normal way to re-look at a change made to it short
+            of clearing localStorage by hand — this re-triggers it
+            on-demand, for previewing/iterating on it, without touching
+            the "seen" flag that governs the real first-visit behavior.
+        #}
+        <div class="dial-kit__group">
+            <div class="dial-kit__group-label">Onboarding</div>
+            <button type="button" class="dial-kit__toggle-row" @click="open = false; showOnboarding = true">
+                <span>Peržiūrėti pranešimą</span>
+                <span class="dial-kit__eye">{{ icons.icon('eye', 16) }}</span>
+            </button>
+        </div>
     </div>
 
     {# A playful emoji instead of a stroke-icon on purpose — this trigger
