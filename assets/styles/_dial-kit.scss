@@ -125,7 +125,7 @@
     padding: 0 map-get($ds-spacers, xl) 0 map-get($ds-spacers, sm);
     border: 1px solid var(--ds-border);
     border-radius: map-get($ds-radii, sm);
-    background: var(--ds-bg-page);
+    background: var(--ds-bg-shell);
     color: var(--ds-text-body);
     font-size: ds-ramp("text-xs", size);
     cursor: pointer;
@@ -137,7 +137,7 @@
 
     &:focus {
         outline: none;
-        border-color: var(--ds-accent);
+        border-color: var(--ds-border-strong);
     }
 }
 

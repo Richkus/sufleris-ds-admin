@@ -114,7 +114,7 @@
             <div class="dial-kit__select-wrap">
                 <select class="dial-kit__select" :style="{ fontFamily: window.DS_SERIF_FONTS[$store.fontSerif.current].stack }"
                         @change="window.dsSetFontSerif($event.target.value)">
-                    {% for key, label in { 'enriqueta': 'Enriqueta', 'libre-baskerville': 'Libre Baskerville', 'corben': 'Corben' } %}
+                    {% for key, label in { 'enriqueta': 'Enriqueta', 'libre-baskerville': 'Libre Baskerville' } %}
                         <option value="{{ key }}" :selected="$store.fontSerif.current === '{{ key }}'" style="font-family: '{{ label }}', serif">{{ label }}</option>
                     {% endfor %}
                 </select>

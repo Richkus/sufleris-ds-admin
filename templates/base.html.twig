@@ -13,7 +13,7 @@
        (see _dial-kit.html.twig, window.dsSetFont()/dsSetFontSerif() in
        app.js) — everything loaded upfront so picking one is instant, no
        per-pick <link> injection/FOUC to manage. #}
-    <link href="https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=DM+Sans:wght@400;600;700&family=Enriqueta:wght@600;700&family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Enriqueta:wght@600;700&family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
@@ -64,8 +64,7 @@
             try {
                 var serifStacks = {
                     'enriqueta': '"Enriqueta", serif',
-                    'libre-baskerville': '"Libre Baskerville", serif',
-                    'corben': '"Corben", serif'
+                    'libre-baskerville': '"Libre Baskerville", serif'
                 };
                 var serifFont = localStorage.getItem('ds-font-serif');
                 if (serifFont && serifStacks[serifFont]) {

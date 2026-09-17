@@ -181,7 +181,6 @@ window.dsSetFont = function dsSetFont(key) {
 const DS_SERIF_FONTS = {
     'enriqueta': { label: 'Enriqueta', stack: '"Enriqueta", serif' },
     'libre-baskerville': { label: 'Libre Baskerville', stack: '"Libre Baskerville", serif' },
-    'corben': { label: 'Corben', stack: '"Corben", serif' },
 };
 
 // Exposed so the DialKit <select> pickers (see _dial-kit.html.twig) can
