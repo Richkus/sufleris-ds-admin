@@ -60,10 +60,13 @@
 }
 
 .hero-ds__title {
-    // Enriqueta is a deliberate one-off serif accent for this headline only
-    // (loaded in base.html.twig) — every other heading site-wide stays
-    // Open Sans, don't reuse this font elsewhere.
-    font-family: "Enriqueta", serif;
+    // A deliberate one-off serif accent for this headline only — every
+    // other heading site-wide stays Open Sans (or whatever the DialKit
+    // sans picker currently has set), don't reuse this font elsewhere.
+    // Live-switchable (Enriqueta / Libre Baskerville) via the DialKit
+    // "Serifinis šriftas" group — see --ds-font-family-serif in
+    // _theme.scss and window.dsSetFontSerif() in app.js.
+    font-family: var(--ds-font-family-serif);
     font-weight: 600;
     font-size: 42px;
     line-height: 1.2;

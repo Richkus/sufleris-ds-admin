@@ -57,6 +57,13 @@
     // Bootstrap component that sets its own font-family.
     --bs-body-font-family: var(--ds-font-family);
     --bs-font-sans-serif: var(--ds-font-family);
+
+    // Same idea, for the one deliberate serif accent (see the
+    // .hero-ds__title comment in _wellcome.scss) — a separate token so
+    // switching the site-wide sans pick above never touches this, and
+    // vice versa. Live-switchable via the DialKit "Serifinis šriftas"
+    // picker (window.dsSetFontSerif() in app.js).
+    --ds-font-family-serif: "Enriqueta", serif;
 }
 
 // V.4 dark theme — subtle, not pure black/white (same idea as Tailwind's

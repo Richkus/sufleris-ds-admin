@@ -95,6 +95,29 @@
         <div class="dial-kit__divider"></div>
 
         {#
+            The site has exactly one deliberate serif usage — the
+            Wellcome hero headline (.hero-ds__title, index.html) — so
+            this is its own small picker, separate from the sans
+            "Šriftas" group above (window.dsSetFontSerif() in app.js,
+            --ds-font-family-serif in _theme.scss).
+        #}
+        <div class="dial-kit__group">
+            <div class="dial-kit__group-label">Serifinis šriftas</div>
+            {% for key, font in {
+                'enriqueta': { label: 'Enriqueta', stack: '"Enriqueta", serif' },
+                'libre-baskerville': { label: 'Libre Baskerville', stack: '"Libre Baskerville", serif' }
+            } %}
+                <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.fontSerif.current === '{{ key }}' }"
+                        @click="window.dsSetFontSerif('{{ key }}')">
+                    <span style="font-family: {{ font.stack }}">{{ font.label }}</span>
+                    <span class="dial-kit__check" x-show="$store.fontSerif.current === '{{ key }}'">{{ icons.icon('check', 14) }}</span>
+                </button>
+            {% endfor %}
+        </div>
+
+        <div class="dial-kit__divider"></div>
+
+        {#
             Global "show code" switch — hides the per-component "Kodas"
             toggle + code panel everywhere (all pages/shells), not just
             collapses it. See window.dsSetShowCode / $store.devTools in

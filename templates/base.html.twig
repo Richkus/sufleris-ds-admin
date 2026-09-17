@@ -6,13 +6,14 @@
     <title>{% block title %}Mokesčių Sufleris — DS Admin{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {# Enriqueta is used ONLY for the Wellcome hero headline (index.html) —
-       a deliberate one-off serif accent per the Figma source, distinct from
-       the site-wide Open Sans. DM Sans/Inter/Roboto are the DialKit
-       "Šriftas" picker's other options (see _dial-kit.html.twig,
-       window.dsSetFont() in app.js) — loaded upfront so picking one is
-       instant, no per-pick <link> injection/FOUC to manage. #}
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Enriqueta:wght@600;700&family=Inter:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+    {# Enriqueta is the Wellcome hero headline's (index.html) serif
+       accent, distinct from the site-wide Open Sans — Libre Baskerville
+       is its DialKit-picker alternative ("Serifinis šriftas" group).
+       DM Sans/Inter/Roboto are the sans "Šriftas" picker's other options
+       (see _dial-kit.html.twig, window.dsSetFont()/dsSetFontSerif() in
+       app.js) — everything loaded upfront so picking one is instant, no
+       per-pick <link> injection/FOUC to manage. #}
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Enriqueta:wght@600;700&family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         <link rel="stylesheet" href="build/app.css">
     {% endblock %}
@@ -58,6 +59,16 @@
                 var font = localStorage.getItem('ds-font');
                 if (font && fontStacks[font]) {
                     document.documentElement.style.setProperty('--ds-font-family', fontStacks[font]);
+                }
+            } catch (e) {}
+            try {
+                var serifStacks = {
+                    'enriqueta': '"Enriqueta", serif',
+                    'libre-baskerville': '"Libre Baskerville", serif'
+                };
+                var serifFont = localStorage.getItem('ds-font-serif');
+                if (serifFont && serifStacks[serifFont]) {
+                    document.documentElement.style.setProperty('--ds-font-family-serif', serifStacks[serifFont]);
                 }
             } catch (e) {}
         })();

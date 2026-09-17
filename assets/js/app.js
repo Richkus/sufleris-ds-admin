@@ -171,6 +171,39 @@ window.dsSetFont = function dsSetFont(key) {
 };
 
 /**
+ * Serif accent picker (DialKit widget, "Serifinis šriftas" group) — the
+ * site has exactly one deliberate serif usage (.hero-ds__title, the
+ * Wellcome hero headline on index.html); this swaps --ds-font-family-serif
+ * (_theme.scss), a separate token from --ds-font-family above so the two
+ * pickers never interfere with each other. Same duplicated-stack-map
+ * reasoning as DS_FONTS — see base.html.twig's pre-paint script.
+ */
+const DS_SERIF_FONTS = {
+    'enriqueta': { label: 'Enriqueta', stack: '"Enriqueta", serif' },
+    'libre-baskerville': { label: 'Libre Baskerville', stack: '"Libre Baskerville", serif' },
+};
+
+Alpine.store('fontSerif', {
+    current: (() => {
+        try {
+            const saved = localStorage.getItem('ds-font-serif');
+            return saved && DS_SERIF_FONTS[saved] ? saved : 'enriqueta';
+        } catch (e) {
+            return 'enriqueta';
+        }
+    })(),
+});
+
+window.dsSetFontSerif = function dsSetFontSerif(key) {
+    if (!DS_SERIF_FONTS[key]) return;
+    document.documentElement.style.setProperty('--ds-font-family-serif', DS_SERIF_FONTS[key].stack);
+    try {
+        localStorage.setItem('ds-font-serif', key);
+    } catch (e) {}
+    Alpine.store('fontSerif').current = key;
+};
+
+/**
  * Global "show code" toggle (DialKit widget, "Kodas" group) — controls
  * whether the per-component "Kodas" toggle button AND its code panel
  * render at all, site-wide, on every page/shell. Off means the block is
