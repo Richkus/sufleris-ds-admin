@@ -181,7 +181,15 @@ window.dsSetFont = function dsSetFont(key) {
 const DS_SERIF_FONTS = {
     'enriqueta': { label: 'Enriqueta', stack: '"Enriqueta", serif' },
     'libre-baskerville': { label: 'Libre Baskerville', stack: '"Libre Baskerville", serif' },
+    'corben': { label: 'Corben', stack: '"Corben", serif' },
 };
+
+// Exposed so the DialKit <select> pickers (see _dial-kit.html.twig) can
+// look up a font's stack directly in an Alpine expression — e.g. to
+// preview the *closed* select in whichever face is currently active,
+// which a plain per-<option> font-family can't do on its own.
+window.DS_FONTS = DS_FONTS;
+window.DS_SERIF_FONTS = DS_SERIF_FONTS;
 
 Alpine.store('fontSerif', {
     current: (() => {

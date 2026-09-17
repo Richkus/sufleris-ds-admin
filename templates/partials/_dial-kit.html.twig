@@ -68,28 +68,37 @@
         <div class="dial-kit__divider"></div>
 
         {#
-            Font picker — swaps --ds-font-family live across the whole
-            DS-admin shell (window.dsSetFont() in app.js; see
-            _theme.scss for how it also repoints Bootstrap's own font
-            vars). Sizes are untouched — every option still uses the
-            same $ds-type-ramp values, only the typeface changes. Each
-            option label is set in its own font (inline style) so the
-            picker previews the face directly, not just its name.
+            Font pickers — a growing list of .dial-kit__option buttons
+            per font (the old approach) doesn't scale: it was already 4
+            rows for sans, and every new serif option (now 3) added more
+            of the same. A dropdown is the standard pattern here — one
+            compact row regardless of how many faces are offered (this
+            is how Figma's own font picker works too) — so both groups
+            render as a single <select> instead.
+
+            Swaps --ds-font-family / --ds-font-family-serif live (see
+            window.dsSetFont()/dsSetFontSerif() in app.js and
+            _theme.scss for how the sans one also repoints Bootstrap's
+            own font vars). Sizes are untouched either way — every
+            option still uses the same $ds-type-ramp values, only the
+            typeface changes.
+
+            Each <option> carries its own font-family so the OPEN
+            dropdown previews every face; the select's :style binding
+            (looked up from window.DS_FONTS/DS_SERIF_FONTS, exposed by
+            app.js) previews the CURRENT pick even while closed.
         #}
         <div class="dial-kit__group">
             <div class="dial-kit__group-label">Šriftas</div>
-            {% for key, font in {
-                'open-sans': { label: 'Open Sans', stack: '"Open Sans", sans-serif' },
-                'dm-sans': { label: 'DM Sans', stack: '"DM Sans", sans-serif' },
-                'inter': { label: 'Inter', stack: '"Inter", sans-serif' },
-                'roboto': { label: 'Roboto', stack: '"Roboto", sans-serif' }
-            } %}
-                <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.font.current === '{{ key }}' }"
-                        @click="window.dsSetFont('{{ key }}')">
-                    <span style="font-family: {{ font.stack }}">{{ font.label }}</span>
-                    <span class="dial-kit__check" x-show="$store.font.current === '{{ key }}'">{{ icons.icon('check', 14) }}</span>
-                </button>
-            {% endfor %}
+            <div class="dial-kit__select-wrap">
+                <select class="dial-kit__select" :style="{ fontFamily: window.DS_FONTS[$store.font.current].stack }"
+                        @change="window.dsSetFont($event.target.value)">
+                    {% for key, label in { 'open-sans': 'Open Sans', 'dm-sans': 'DM Sans', 'inter': 'Inter', 'roboto': 'Roboto' } %}
+                        <option value="{{ key }}" :selected="$store.font.current === '{{ key }}'" style="font-family: '{{ label }}', sans-serif">{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {{ icons.icon('chevron-down', 14) }}
+            </div>
         </div>
 
         <div class="dial-kit__divider"></div>
@@ -98,21 +107,19 @@
             The site has exactly one deliberate serif usage — the
             Wellcome hero headline (.hero-ds__title, index.html) — so
             this is its own small picker, separate from the sans
-            "Šriftas" group above (window.dsSetFontSerif() in app.js,
-            --ds-font-family-serif in _theme.scss).
+            "Šriftas" group above.
         #}
         <div class="dial-kit__group">
             <div class="dial-kit__group-label">Serifinis šriftas</div>
-            {% for key, font in {
-                'enriqueta': { label: 'Enriqueta', stack: '"Enriqueta", serif' },
-                'libre-baskerville': { label: 'Libre Baskerville', stack: '"Libre Baskerville", serif' }
-            } %}
-                <button type="button" class="dial-kit__option" :class="{ 'is-active': $store.fontSerif.current === '{{ key }}' }"
-                        @click="window.dsSetFontSerif('{{ key }}')">
-                    <span style="font-family: {{ font.stack }}">{{ font.label }}</span>
-                    <span class="dial-kit__check" x-show="$store.fontSerif.current === '{{ key }}'">{{ icons.icon('check', 14) }}</span>
-                </button>
-            {% endfor %}
+            <div class="dial-kit__select-wrap">
+                <select class="dial-kit__select" :style="{ fontFamily: window.DS_SERIF_FONTS[$store.fontSerif.current].stack }"
+                        @change="window.dsSetFontSerif($event.target.value)">
+                    {% for key, label in { 'enriqueta': 'Enriqueta', 'libre-baskerville': 'Libre Baskerville', 'corben': 'Corben' } %}
+                        <option value="{{ key }}" :selected="$store.fontSerif.current === '{{ key }}'" style="font-family: '{{ label }}', serif">{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {{ icons.icon('chevron-down', 14) }}
+            </div>
         </div>
 
         <div class="dial-kit__divider"></div>

@@ -101,6 +101,46 @@
     color: var(--ds-text-muted);
 }
 
+// Font pickers — a single-row <select> instead of an .dial-kit__option
+// list (see the twig partial's own comment on why: the option list
+// approach doesn't scale as more fonts get added).
+.dial-kit__select-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 map-get($ds-spacers, sm) map-get($ds-spacers, xs);
+
+    svg {
+        position: absolute;
+        right: map-get($ds-spacers, lg);
+        color: var(--ds-text-faint);
+        pointer-events: none;
+    }
+}
+
+.dial-kit__select {
+    appearance: none;
+    width: 100%;
+    height: 30px;
+    padding: 0 map-get($ds-spacers, xl) 0 map-get($ds-spacers, sm);
+    border: 1px solid var(--ds-border);
+    border-radius: map-get($ds-radii, sm);
+    background: var(--ds-bg-page);
+    color: var(--ds-text-body);
+    font-size: ds-ramp("text-xs", size);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+        border-color: var(--ds-border-strong);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--ds-accent);
+    }
+}
+
 .dial-kit__option {
     display: flex;
     align-items: center;
